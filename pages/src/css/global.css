@@ -1,0 +1,47 @@
+body {
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none !important;
+  color: #fff !important;
+}
+
+.aktif {
+  background-color: #fff;
+  color: #241468;
+  padding: 15px;
+}
+
+.ungu {
+  background-color: #241468 !important;
+  color: #fff !important;
+}
+
+.opacity {
+  opacity: 0.5;
+}
+
+.opacity:hover {
+  opacity: 1;
+  background-color: #241468;
+  transform: translateX(10px);
+}
+
+.sidebar {
+  background-color: #241468 !important;
+}
+
+.left {
+  border-left: 5px solid #241468 !important;
+}
+
+.pagination > li > a,
+.pagination > li > span {
+  background-color: #fff;
+}
+
+.pagination > li.active > a,
+.pagination > li.active > span {
+  background-color: #241468;
+}
