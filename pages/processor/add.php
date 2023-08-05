@@ -2,6 +2,24 @@
 
 include "../src/config/connect.php";
 
+if (isset($_POST['submit'])) {
+    $id = $_POST['id'];
+    $nama = $_POST['nama'];
+    $core = $_POST['core'];
+    $thread = $_POST['thread'];
+    $daya = $_POST['daya'];
+
+    $sql = "INSERT INTO processor (id, nama, core, thread, daya) VALUES ('$id', '$nama', '$core', '$thread', '$daya')";
+
+    if (mysqli_query($conn, $sql)) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+
+    mysqli_close($conn);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -37,12 +55,6 @@ include "../src/config/connect.php";
                     <a href="../ram/">
                         <p class="opacity">RAM</p>
                     </a>
-                    <a href="../motherboard/">
-                        <p class="opacity">Motherboard</p>
-                    </a>
-                    <a href="../psu/">
-                        <p class="opacity">Powersupply</p>
-                    </a>
                     <a href="../storage/">
                         <p class="opacity">Storage</p>
                     </a>
@@ -57,45 +69,38 @@ include "../src/config/connect.php";
             <div class="col-md-10 content">
                 <div class="wrapper shadow-lg p-3 my-3 left">
                     <h1>Processor | Tambah</h1>
-                    <div class="row">
-                        <div class="col">
-                            <div class="mb-3">
-                                <label for="kode">Kode</label>
-                                <input type="text" id="kode" class="form-control" placeholder="1">
+                    <form action="" method="POST">
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="id">ID</label>
+                                    <input type="text" id="id" name="id" class="form-control" placeholder="1">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nama">Nama</label>
+                                    <input type="text" id="nama" name="nama" class="form-control" placeholder="Intel Core i3 13100">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="core">Core</label>
+                                    <input type="text" id="core" name="core" class="form-control" placeholder="4">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="thread">Thread</label>
+                                    <input type="text" id="thread" name="thread" class="form-control" placeholder="8">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="daya">Daya (W)</label>
+                                    <input type="text" id="daya" name="daya" class="form-control" placeholder="60">
+                                </div>
                             </div>
                             <div class="mb-3">
-                                <label for="nama">Nama</label>
-                                <input type="text" id="nama" class="form-control" placeholder="Intel Core i3 13100">
-                            </div>
-                            <div class="mb-3">
-                                <label for="core">Core</label>
-                                <input type="text" id="core" class="form-control" placeholder="4">
-                            </div>
-                            <div class="mb-3">
-                                <label for="thread">Thread</label>
-                                <input type="text" id="thread" class="form-control" placeholder="8">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="mb-3">
-                                <label for="max-speed">Max Speed (GHz)</label>
-                                <input type="text" id="max-speed" class="form-control" placeholder="4.50">
-                            </div>
-                            <div class="mb-3">
-                                <label for="daya">Daya (W)</label>
-                                <input type="text" id="daya" class="form-control" placeholder="60">
-                            </div>
-                            <div class="mb-3">
-                                <label for="tgl-peluncuran">Tanggal Peluncuran</label>
-                                <input type="text" id="tgl-peluncuran" class="form-control" placeholder="
-Q1'23">
+                                <button class="btn ungu" name="submit">Simpan</button>
+                                <a href="../processor/" class="btn btn-danger">Batal</a>
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <a href="add.php" class="btn ungu">Simpan</a>
-                            <a href="../processor/" class="btn btn-danger">Batal</a>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

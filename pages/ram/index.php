@@ -31,12 +31,6 @@
                     <a href="../ram/">
                         <p class="opacity-100 aktif rounded-pill">RAM</p>
                     </a>
-                    <a href="../motherboard/">
-                        <p class="opacity">Motherboard</p>
-                    </a>
-                    <a href="../psu/">
-                        <p class="opacity">Powersupply</p>
-                    </a>
                     <a href="../storage/">
                         <p class="opacity">Storage</p>
                     </a>

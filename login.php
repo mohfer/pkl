@@ -1,6 +1,6 @@
 <?php
 
-include "src/config/connect.php";
+include "pages/src/config/connect.php";
 
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];
@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="pages/css/login.css">
+    <link rel="stylesheet" href="pages/src/css/login.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
     <title>Inventory Barang | Login</title>
 </head>
@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
     <div class="wrapper d-flex justify-content-center align-items-center vh-100">
         <div class="login w-25 p-5 rounded-5 shadow-lg bg-light">
             <div class="d-flex justify-content-center">
-                <img src="src/image/logo.png" class="w-75" alt="">
+                <img src="pages/src/image/logo.png" class="w-75" alt="">
             </div>
             <h2 class="mb-3 fw-bold">Login.</h2>
             <form action="" method="POST">

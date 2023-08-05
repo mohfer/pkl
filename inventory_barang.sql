@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `motherboard`
+-- Table structure for table ``
 --
 
-CREATE TABLE `motherboard` (
+CREATE TABLE `` (
   `kode` int(11) NOT NULL,
   `socket` varchar(25) NOT NULL,
   `slot_ram` int(11) NOT NULL,
@@ -61,10 +61,10 @@ INSERT INTO `processor` (`kode`, `nama`, `core`, `thread`, `max_speed`, `daya`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `psu`
+-- Table structure for table ``
 --
 
-CREATE TABLE `psu` (
+CREATE TABLE `` (
   `kode` int(11) NOT NULL,
   `jenis` varchar(25) NOT NULL,
   `daya` int(11) NOT NULL
@@ -136,9 +136,9 @@ CREATE TABLE `vga` (
 --
 
 --
--- Indexes for table `motherboard`
+-- Indexes for table ``
 --
-ALTER TABLE `motherboard`
+ALTER TABLE ``
   ADD PRIMARY KEY (`kode`);
 
 --
@@ -148,9 +148,9 @@ ALTER TABLE `processor`
   ADD PRIMARY KEY (`kode`);
 
 --
--- Indexes for table `psu`
+-- Indexes for table ``
 --
-ALTER TABLE `psu`
+ALTER TABLE ``
   ADD PRIMARY KEY (`kode`);
 
 --
@@ -182,9 +182,9 @@ ALTER TABLE `vga`
 --
 
 --
--- AUTO_INCREMENT for table `motherboard`
+-- AUTO_INCREMENT for table ``
 --
-ALTER TABLE `motherboard`
+ALTER TABLE ``
   MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -194,9 +194,9 @@ ALTER TABLE `processor`
   MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `psu`
+-- AUTO_INCREMENT for table ``
 --
-ALTER TABLE `psu`
+ALTER TABLE ``
   MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT;
 
 --

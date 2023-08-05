@@ -24,7 +24,7 @@ $row = mysqli_query($conn, "SELECT * FROM processor");
 
 <script>
     $(document).ready(function() {
-        $('#table').dataTable({
+        $('#myTable').dataTable({
             "scrollY": "300px",
             "scrollCollapse": true,
             "paging": true
@@ -53,12 +53,6 @@ $row = mysqli_query($conn, "SELECT * FROM processor");
                     <a href="../ram/">
                         <p class="opacity">RAM</p>
                     </a>
-                    <a href="../motherboard/">
-                        <p class="opacity">Motherboard</p>
-                    </a>
-                    <a href="../psu/">
-                        <p class="opacity">Powersupply</p>
-                    </a>
                     <a href="../storage/">
                         <p class="opacity">Storage</p>
                     </a>
@@ -73,17 +67,16 @@ $row = mysqli_query($conn, "SELECT * FROM processor");
             <div class="col-md-10 content">
                 <div class="wrapper shadow-lg p-3 my-3 left">
                     <h1 class="mb-3">Processor</h1>
-                    <table id="table" class="table display">
+                    <table id="myTable" class="table display">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Kode</th>
+                                <th scope="col">ID</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">Core</th>
                                 <th scope="col">Thread</th>
-                                <th scope="col">Max Speed (GHz)</th>
                                 <th scope="col">Daya (W)</th>
-                                <th scope="col">Tanggal Peluncuran</th>
+                                <th scope="col" class="text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -91,13 +84,16 @@ $row = mysqli_query($conn, "SELECT * FROM processor");
                             <?php while ($result = mysqli_fetch_array($row)) : ?>
                                 <tr>
                                     <th scope="row"><?= $no++ ?></th>
-                                    <td><?= $result["kode"] ?></td>
+                                    <td><?= $result["id"] ?></td>
                                     <td><?= $result["nama"] ?></td>
                                     <td><?= $result["core"] ?></td>
                                     <td><?= $result["thread"] ?></td>
-                                    <td><?= $result["max_speed"] ?></td>
                                     <td><?= $result["daya"] ?></td>
-                                    <td><?= $result["tgl_peluncuran"] ?></td>
+                                    <td>
+                                        <div class="text-center">
+                                            <button class="btn btn-warning">Edit</button> | <button class="btn btn-danger">Hapus</button>
+                                        </div>
+                                    </td>
                                 </tr>
                             <?php endwhile; ?>
                         </tbody>
