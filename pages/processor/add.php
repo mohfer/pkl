@@ -67,14 +67,13 @@ if (isset($_POST['submit'])) {
                 </div>
             </div>
             <div class="col-md-10 content">
-                <div class="wrapper shadow-lg p-3 my-3 left">
+                <div class="wrapper shadow p-3 my-3 left">
                     <h1>Processor | Tambah</h1>
                     <form action="" method="POST">
                         <div class="row">
                             <div class="col">
-                                <div class="mb-3">
-                                    <label for="id">ID</label>
-                                    <input type="text" id="id" name="id" class="form-control" placeholder="1">
+                                <div class="">
+                                    <input type="hidden" id="id" name="id" class="form-control" placeholder="1">
                                 </div>
                                 <div class="mb-3">
                                     <label for="nama">Nama</label>
@@ -88,12 +87,12 @@ if (isset($_POST['submit'])) {
                                     <label for="thread">Thread</label>
                                     <input type="text" id="thread" name="thread" class="form-control" placeholder="8">
                                 </div>
-                            </div>
-                            <div class="col">
                                 <div class="mb-3">
                                     <label for="daya">Daya (W)</label>
                                     <input type="text" id="daya" name="daya" class="form-control" placeholder="60">
                                 </div>
+                            </div>
+                            <div class="col">
                             </div>
                             <div class="mb-3">
                                 <button class="btn ungu" name="submit">Simpan</button>

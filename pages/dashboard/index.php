@@ -1,3 +1,12 @@
+<?php
+
+session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: /login.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,11 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="../src/css/global.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.6/datatables.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.6/datatables.min.js"></script>
+    <?php include '../src/library/bootstrap.php' ?>
     <title>Inventory Barang | Dashboard</title>
 </head>
 
@@ -25,11 +30,11 @@
 </script>
 
 <body>
+    <?php include '../src/layouts/navbar.php' ?>
     <div class="wrapper">
         <div class="row vh-100">
             <div class="col-md-2 sidebar text-light">
                 <div class="text-center my-3 mb-5">
-                    <h4>Inventory Barang</h4>
                 </div>
                 <div class="mx-4">
                     <h5>Menu</h5>
@@ -56,11 +61,12 @@
                     <h5>Komponen</h5>
                 </div>
             </div>
-            <div class="col-md-10 content">
+            <div class="col-md-10 content bg-body-secondary">
                 <div class="wrapper">
+                    <h2 class="mt-3">Dashboard</h2>
                     <div class="row my-3">
                         <div class="col-md-6">
-                            <div class="transaksi-masuk p-4 shadow-lg left">
+                            <div class="transaksi-masuk p-4 shadow left bg-light">
                                 <div class="row">
                                     <div class="col-md-10">
                                         <h1>Jumlah Transaksi Masuk</h1>
@@ -72,7 +78,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="transaksi-keluar p-4 shadow-lg left">
+                            <div class="transaksi-keluar p-4 shadow left bg-light">
                                 <div class="row">
                                     <div class="col-md-10">
                                         <h1>Jumlah Transaksi Keluar</h1>

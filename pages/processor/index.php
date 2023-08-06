@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 include "../src/config/connect.php";
 
 $row = mysqli_query($conn, "SELECT * FROM processor");
@@ -14,11 +16,8 @@ $row = mysqli_query($conn, "SELECT * FROM processor");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="../src/css/global.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.6/datatables.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.6/datatables.min.js"></script>
+    <?php include '../src/library/bootstrap.php' ?>
+    <?php include '../src/library/datatables.php' ?>
     <title>Inventory Barang | Processor</title>
 </head>
 
@@ -33,6 +32,15 @@ $row = mysqli_query($conn, "SELECT * FROM processor");
 </script>
 
 <body>
+
+    <!-- Swal -->
+    <div class="info-login" data-infologin="<?php if (isset($_SESSION['info'])) {
+                                                echo $_SESSION['info'];
+                                            }
+                                            unset($_SESSION['info']) ?>">
+    </div>
+    <!-- Swal -->
+
     <div class="wrapper">
         <div class="row vh-100">
             <div class="col-md-2 sidebar text-light">
@@ -65,9 +73,9 @@ $row = mysqli_query($conn, "SELECT * FROM processor");
                 </div>
             </div>
             <div class="col-md-10 content">
-                <div class="wrapper shadow-lg p-3 my-3 left">
-                    <h1 class="mb-3">Processor</h1>
-                    <table id="myTable" class="table display">
+                <div class="wrapper shadow p-3 my-3 left">
+                    <h1>Processor</h1>
+                    <table id="myTable" class="table table-striped display">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -91,7 +99,7 @@ $row = mysqli_query($conn, "SELECT * FROM processor");
                                     <td><?= $result["daya"] ?></td>
                                     <td>
                                         <div class="text-center">
-                                            <button class="btn btn-warning">Edit</button> | <button class="btn btn-danger">Hapus</button>
+                                            <a href="update.php?id=<?= $result['id'] ?>" class="btn btn-warning">Edit</a> | <a href="" class="btn btn-danger">Hapus</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -103,6 +111,7 @@ $row = mysqli_query($conn, "SELECT * FROM processor");
             </div>
         </div>
     </div>
+    <script src="../src/js/sweetalert.js"></script>
 </body>
 
 </html>

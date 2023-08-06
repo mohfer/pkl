@@ -1,5 +1,10 @@
 <?php
 
+session_start();
+// if (isset($_SESSION['username'])) {
+//     header("Location: pages/dashboard/");
+// }
+
 include "pages/src/config/connect.php";
 
 if (isset($_POST['submit'])) {
@@ -12,9 +17,11 @@ if (isset($_POST['submit'])) {
     if ($result->num_rows > 0) {
         $row = mysqli_fetch_assoc($result);
         $_SESSION['username'] = $row['username'];
-        header("Location: pages/dashboard");
+        $_SESSION['info'] = 'Berhasil';
+    } else if ($username == "" || $password == "") {
+        $_SESSION['info'] = 'Kosong';
     } else {
-        echo "<script>alert('Email atau password Anda salah. Silahkan coba lagi!')</script>";
+        $_SESSION['info'] = 'Gagal';
     }
 }
 
@@ -28,11 +35,21 @@ if (isset($_POST['submit'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="pages/src/css/login.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <?php include 'pages/src/library/bootstrap.php' ?>
+    <?php include 'pages/src/library/sweetalert.php' ?>
     <title>Inventory Barang | Login</title>
 </head>
 
 <body>
+
+    <!-- Swal -->
+    <div class="info-login" data-infologin="<?php if (isset($_SESSION['info'])) {
+                                                echo $_SESSION['info'];
+                                            }
+                                            unset($_SESSION['info']) ?>">
+    </div>
+    <!-- Swal -->
+
     <div class="wrapper d-flex justify-content-center align-items-center vh-100">
         <div class="login w-25 p-5 rounded-5 shadow-lg bg-light">
             <div class="d-flex justify-content-center">
@@ -52,6 +69,7 @@ if (isset($_POST['submit'])) {
             </form>
         </div>
     </div>
+    <script src="pages/src/js/sweetalert.js"></script>
 </body>
 
 </html>
