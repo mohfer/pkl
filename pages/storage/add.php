@@ -6,16 +6,15 @@ include "../src/config/connect.php";
 
 if (isset($_POST['submit'])) {
     $id = $_POST['id'];
-    $nama = $_POST['nama'];
-    $core = $_POST['core'];
-    $thread = $_POST['thread'];
-    $daya = $_POST['daya'];
+    $tipe = $_POST['tipe'];
+    $kecepatan = $_POST['kecepatan'];
+    $kapasitas = $_POST['kapasitas'];
 
-    $sql = "INSERT INTO processor (id, nama, core, thread, daya) VALUES ('$id', '$nama', '$core', '$thread', '$daya')";
+    $sql = "INSERT INTO storage (id, tipe, kecepatan, kapasitas) VALUES ('$id', '$tipe', '$kecepatan', '$kapasitas')";
 
     if (mysqli_query($conn, $sql)) {
         $_SESSION['data'] = "berhasil disimpan!";
-        header("Location: ../processor");
+        header("Location: ../storage");
     } else {
         $_SESSION['data'] = "gagal disimpan!";
     }
@@ -53,13 +52,13 @@ if (isset($_POST['submit'])) {
                 <div class="mx-4">
                     <h5>Komponen</h5>
                     <a href="../processor/">
-                        <p class="opacity-100 aktif rounded-pill">Processor</p>
+                        <p class="opacity">Processor</p>
                     </a>
                     <a href="../ram/">
                         <p class="opacity">RAM</p>
                     </a>
                     <a href="../storage/">
-                        <p class="opacity">Storage</p>
+                        <p class="opacity-100 aktif rounded-pill">Storage</p>
                     </a>
                     <a href="../vga/">
                         <p class="opacity">Graphics Card</p>
@@ -71,7 +70,7 @@ if (isset($_POST['submit'])) {
             </div>
             <div class="col-md-10 content">
                 <div class="wrapper shadow p-3 my-3 left">
-                    <h1>Processor | Tambah</h1>
+                    <h1>Storage | Tambah</h1>
                     <form action="" method="POST">
                         <div class="row">
                             <div class="col">
@@ -79,27 +78,26 @@ if (isset($_POST['submit'])) {
                                     <input type="hidden" id="id" name="id" class="form-control" placeholder="1">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="nama">Nama</label>
-                                    <input type="text" id="nama" name="nama" class="form-control" placeholder="Intel Core i3 13100" required>
+                                    <label for="tipe">Tipe (SSD/HDD)</label>
+                                    <select id="tipe" class="form-select" name="tipe" required>
+                                        <option value="SSD">SSD</option>
+                                        <option value="HDD">HDD</option>
+                                    </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="core">Core</label>
-                                    <input type="text" id="core" name="core" class="form-control" placeholder="4" required>
+                                    <label for="kecepatan">Kecepatan (MB/s)</label>
+                                    <input type="text" id="kecepatan" name="kecepatan" class="form-control" placeholder="600" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="thread">Thread</label>
-                                    <input type="text" id="thread" name="thread" class="form-control" placeholder="8" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="daya">Daya (W)</label>
-                                    <input type="text" id="daya" name="daya" class="form-control" placeholder="60" required>
+                                    <label for="kapasitas">Kapasitas (GB)</label>
+                                    <input type="text" id="kapasitas" name="kapasitas" class="form-control" placeholder="512" required>
                                 </div>
                             </div>
                             <div class="col">
                             </div>
                             <div class="mb-3">
                                 <button class="btn ungu" name="submit">Simpan</button>
-                                <a href="../processor/" class="btn btn-danger">Batal</a>
+                                <a href="../storage/" class="btn btn-danger">Batal</a>
                             </div>
                         </div>
                     </form>

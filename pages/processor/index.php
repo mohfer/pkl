@@ -26,16 +26,11 @@ $row = mysqli_query($conn, "SELECT * FROM processor ORDER BY nama DESC");
 
 <script>
     $(document).ready(function() {
-        $('#myTable').dataTable({
-            "scrollY": "400px",
-            "scrollCollapse": true,
-            "paging": true
-        });
+        $('#myTable').dataTable();
     });
 </script>
 
 <body>
-
     <!-- Swal -->
     <div class="info-data" data-infodata="<?php if (isset($_SESSION['data'])) {
                                                 echo $_SESSION['data'];
@@ -43,10 +38,9 @@ $row = mysqli_query($conn, "SELECT * FROM processor ORDER BY nama DESC");
                                             unset($_SESSION['data']) ?>">
     </div>
     <!-- Swal -->
-
     <div class="wrapper">
         <div class="row vh-100">
-            <div class="col-md-2 sidebar text-light">
+            <section id="sidebar" class="col-md-2 sidebar text-light">
                 <div class="text-center my-3 mb-5">
                     <h4>Inventory Barang</h4>
                 </div>
@@ -74,8 +68,8 @@ $row = mysqli_query($conn, "SELECT * FROM processor ORDER BY nama DESC");
                 <div class="mx-4">
                     <h5>Komponen</h5>
                 </div>
-            </div>
-            <div class="col-md-10 content">
+            </section>
+            <section id="content" class="col-md-10 content">
                 <div class="wrapper shadow p-3 my-3 left">
                     <h1>Processor</h1>
                     <table id="myTable" class="table table-striped display">
@@ -109,7 +103,7 @@ $row = mysqli_query($conn, "SELECT * FROM processor ORDER BY nama DESC");
                     </table>
                     <a href="add.php" class="btn ungu my-3">Tambah</a>
                 </div>
-            </div>
+            </section>
         </div>
     </div>
     <script src="../src/js/sweetalert.js"></script>

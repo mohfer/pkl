@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+
+include "../src/config/connect.php";
+
+$row = mysqli_query($conn, "SELECT * FROM storage ORDER BY kapasitas DESC, kecepatan DESC");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,14 +16,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="../src/css/global.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <?php include '../src/library/bootstrap.php' ?>
+    <?php include '../src/library/datatables.php' ?>
+    <?php include '../src/library/sweetalert.php' ?>
     <title>Inventory Barang | Storage</title>
 </head>
 
+<script>
+    $(document).ready(function() {
+        $('#myTable').dataTable();
+    });
+</script>
+
 <body>
+    <!-- Swal -->
+    <div class="info-data" data-infodata="<?php if (isset($_SESSION['data'])) {
+                                                echo $_SESSION['data'];
+                                            }
+                                            unset($_SESSION['data']) ?>">
+    </div>
+    <!-- Swal -->
     <div class="wrapper">
         <div class="row vh-100">
-            <div class="col-md-2 sidebar text-light">
+            <section id="sidebar" class="col-md-2 sidebar text-light">
                 <div class="text-center my-3 mb-5">
                     <h4>Inventory Barang</h4>
                 </div>
@@ -41,12 +67,43 @@
                 <div class="mx-4">
                     <h5>Komponen</h5>
                 </div>
-            </div>
-            <div class="col-md-10 content">
-
-            </div>
+            </section>
+            <section id="content" class="col-md-10 content">
+                <div class="wrapper shadow p-3 my-3 left">
+                    <h1>Storage</h1>
+                    <table id="myTable" class="table table-striped display">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Tipe (SSD/HDD)</th>
+                                <th scope="col">Kecepatan (MB/s)</th>
+                                <th scope="col">Kapasitas (GB)</th>
+                                <th scope="col" class="text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $no = 1 ?>
+                            <?php while ($result = mysqli_fetch_array($row)) : ?>
+                                <tr>
+                                    <th scope="row"><?= $no++ ?></th>
+                                    <td><?= $result["tipe"] ?></td>
+                                    <td><?= $result["kecepatan"] ?></td>
+                                    <td><?= $result["kapasitas"] ?></td>
+                                    <td>
+                                        <div class="text-center">
+                                            <a href="update.php?id=<?= $result['id'] ?>" class="btn btn-warning">Edit</a> | <a href="delete.php?id=<?= $result['id'] ?>" id="btn-del" class="btn btn-danger">Hapus</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endwhile; ?>
+                        </tbody>
+                    </table>
+                    <a href="add.php" class="btn ungu my-3">Tambah</a>
+                </div>
+            </section>
         </div>
     </div>
+    <script src="../src/js/sweetalert.js"></script>
 </body>
 
 </html>

@@ -8,16 +8,15 @@ $id = $_GET['id'];
 
 if (isset($_POST['submit'])) {
     $id = $_POST['id'];
-    $nama = $_POST['nama'];
-    $core = $_POST['core'];
-    $thread = $_POST['thread'];
-    $daya = $_POST['daya'];
+    $tipe = $_POST['tipe'];
+    $kecepatan = $_POST['kecepatan'];
+    $kapasitas = $_POST['kapasitas'];
 
-    $sql = "UPDATE processor SET  nama = '$nama', core = '$core', thread = '$thread', daya = '$daya' WHERE id = '$id'";
+    $sql = "UPDATE storage SET  tipe = '$tipe', kecepatan = '$kecepatan', kapasitas = '$kapasitas' WHERE id = '$id'";
 
     if (mysqli_query($conn, $sql)) {
         $_SESSION['data'] = "berhasil disimpan!";
-        header("Location: ../processor");
+        header("Location: ../storage");
     } else {
         $_SESSION['data'] = "gagal disimpan!";
     }
@@ -53,13 +52,13 @@ if (isset($_POST['submit'])) {
                 <div class="mx-4">
                     <h5>Komponen</h5>
                     <a href="../processor/">
-                        <p class="opacity-100 aktif rounded-pill">Processor</p>
+                        <p class="opacity">Processor</p>
                     </a>
                     <a href="../ram/">
                         <p class="opacity">RAM</p>
                     </a>
                     <a href="../storage/">
-                        <p class="opacity">Storage</p>
+                        <p class="opacity-100 aktif rounded-pill">Storage</p>
                     </a>
                     <a href="../vga/">
                         <p class="opacity">Graphics Card</p>
@@ -71,8 +70,8 @@ if (isset($_POST['submit'])) {
             </div>
             <div class="col-md-10 content">
                 <div class="wrapper shadow p-3 my-3 left">
-                    <h1>Processor | Update</h1>
-                    <?php $data = mysqli_query($conn, "SELECT * FROM processor WHERE id = $id") ?>
+                    <h1>Storage | Update</h1>
+                    <?php $data = mysqli_query($conn, "SELECT * FROM storage WHERE id = $id") ?>
                     <?php while ($d = mysqli_fetch_array($data)) : ?>
                         <form action="" method="POST">
                             <div class="row">
@@ -81,27 +80,27 @@ if (isset($_POST['submit'])) {
                                         <input type="hidden" id="id" name="id" class="form-control" placeholder="1" value="<?= $d['id'] ?>">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="nama">Nama</label>
-                                        <input type="text" id="nama" name="nama" class="form-control" placeholder="Intel Core i3 13100" value="<?= $d['nama'] ?>">
+                                        <label for="tipe">Tipe (SSD/HDD)</label>
+                                        <select id="tipe" class="form-select mb-3" name="tipe" required>
+                                            <option selected><?= $d['tipe'] ?></option>
+                                            <option value="SSD">SSD</option>
+                                            <option value="HDD">HDD</option>
+                                        </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="core">Core</label>
-                                        <input type="text" id="core" name="core" class="form-control" placeholder="4" value="<?= $d['core'] ?>">
+                                        <label for="kecepatan">Kecepatan (MB/s)</label>
+                                        <input type="text" id="kecepatan" name="kecepatan" class="form-control" placeholder="2666" value="<?= $d['kecepatan'] ?>">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="thread">Thread</label>
-                                        <input type="text" id="thread" name="thread" class="form-control" placeholder="8" value="<?= $d['thread'] ?>">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="daya">Daya (W)</label>
-                                        <input type="text" id="daya" name="daya" class="form-control" placeholder="60" value="<?= $d['daya'] ?>">
+                                        <label for="kapasitas">Kapasitas (GB)</label>
+                                        <input type="text" id="kapasitas" name="kapasitas" class="form-control" placeholder="8" value="<?= $d['kapasitas'] ?>">
                                     </div>
                                 </div>
                                 <div class="col">
                                 </div>
                                 <div class="mb-3">
                                     <button class="btn ungu" name="submit">Simpan</button>
-                                    <a href="../processor/" class="btn btn-danger">Batal</a>
+                                    <a href="../storage/" class="btn btn-danger">Batal</a>
                                 </div>
                             </div>
                         </form>
