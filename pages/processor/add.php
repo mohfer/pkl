@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 include "../src/config/connect.php";
 
 if (isset($_POST['submit'])) {
@@ -12,9 +14,10 @@ if (isset($_POST['submit'])) {
     $sql = "INSERT INTO processor (id, nama, core, thread, daya) VALUES ('$id', '$nama', '$core', '$thread', '$daya')";
 
     if (mysqli_query($conn, $sql)) {
-        echo "New record created successfully";
+        $_SESSION['data'] = "berhasil disimpan!";
+        header("Location: ../processor");
     } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        $_SESSION['data'] = "gagal disimpan!";
     }
 
     mysqli_close($conn);
@@ -77,19 +80,19 @@ if (isset($_POST['submit'])) {
                                 </div>
                                 <div class="mb-3">
                                     <label for="nama">Nama</label>
-                                    <input type="text" id="nama" name="nama" class="form-control" placeholder="Intel Core i3 13100">
+                                    <input type="text" id="nama" name="nama" class="form-control" placeholder="Intel Core i3 13100" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="core">Core</label>
-                                    <input type="text" id="core" name="core" class="form-control" placeholder="4">
+                                    <input type="text" id="core" name="core" class="form-control" placeholder="4" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="thread">Thread</label>
-                                    <input type="text" id="thread" name="thread" class="form-control" placeholder="8">
+                                    <input type="text" id="thread" name="thread" class="form-control" placeholder="8" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="daya">Daya (W)</label>
-                                    <input type="text" id="daya" name="daya" class="form-control" placeholder="60">
+                                    <input type="text" id="daya" name="daya" class="form-control" placeholder="60" required>
                                 </div>
                             </div>
                             <div class="col">

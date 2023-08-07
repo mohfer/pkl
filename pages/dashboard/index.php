@@ -34,7 +34,7 @@ if (!isset($_SESSION['username'])) {
     <div class="wrapper">
         <div class="row vh-100">
             <div class="col-md-2 sidebar text-light">
-                <div class="text-center my-3 mb-5">
+                <div class="text-center my-3 mb-3">
                 </div>
                 <div class="mx-4">
                     <h5>Menu</h5>

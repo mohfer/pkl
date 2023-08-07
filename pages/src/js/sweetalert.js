@@ -1,9 +1,12 @@
+const data = $('.info-data').data('infodata');
 const login = $('.info-login').data('infologin');
 
+// Login Page
 if (login == "Berhasil") {
     Swal.fire({
         icon: 'success',
         title: 'Success',
+        confirmButtonColor: '#241468',
         text: 'Login berhasil!',
     }).then(function () {
         window.location = "pages/dashboard";
@@ -12,28 +15,50 @@ if (login == "Berhasil") {
     Swal.fire({
         icon: 'error',
         title: 'Oops...',
+        confirmButtonColor: '#241468',
         text: 'Username atau password salah!',
     })
 } else if (login == "Kosong") {
     Swal.fire({
         icon: 'warning',
         title: 'Oops...',
+        confirmButtonColor: '#241468',
         text: 'Username atau password tidak boleh kosong!',
     })
 }
 
-const data = $('.info-data').data('infodata');
+// Delete Page
+$(document).on('click', '#btn-del', function (e) {
+    e.preventDefault();
+    var link = $(this).attr('href');
+    Swal.fire({
+        title: 'Hapus data?',
+        text: "Kamu tidak akan bisa mengembalikannya!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#241468',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, hapus!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location = link;
+        }
+    })
+})
 
-if (data == "berhasil disimpan!") {
+// Insert and Update Page
+if (data == "berhasil disimpan!" || data == "berhasil dihapus!") {
     Swal.fire({
         icon: 'success',
         title: 'Success',
-        text: 'Data' + data,
+        confirmButtonColor: '#241468',
+        text: 'Data' + ' ' + data,
     })
-} else if (data == "gagal disimpan!") {
+} else if (data == "gagal disimpan!" || data == "gagal dihapus!") {
     Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Data' + data,
+        confirmButtonColor: '#241468',
+        text: 'Data' + ' ' + data,
     })
 }

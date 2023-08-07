@@ -4,7 +4,8 @@ session_start();
 
 include "../src/config/connect.php";
 
-$row = mysqli_query($conn, "SELECT * FROM processor");
+$row = mysqli_query($conn, "SELECT * FROM processor ORDER BY nama DESC");
+
 
 ?>
 
@@ -16,15 +17,17 @@ $row = mysqli_query($conn, "SELECT * FROM processor");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="../src/css/global.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <?php include '../src/library/bootstrap.php' ?>
     <?php include '../src/library/datatables.php' ?>
+    <?php include '../src/library/sweetalert.php' ?>
     <title>Inventory Barang | Processor</title>
 </head>
 
 <script>
     $(document).ready(function() {
         $('#myTable').dataTable({
-            "scrollY": "300px",
+            "scrollY": "400px",
             "scrollCollapse": true,
             "paging": true
         });
@@ -34,10 +37,10 @@ $row = mysqli_query($conn, "SELECT * FROM processor");
 <body>
 
     <!-- Swal -->
-    <div class="info-login" data-infologin="<?php if (isset($_SESSION['info'])) {
-                                                echo $_SESSION['info'];
+    <div class="info-data" data-infodata="<?php if (isset($_SESSION['data'])) {
+                                                echo $_SESSION['data'];
                                             }
-                                            unset($_SESSION['info']) ?>">
+                                            unset($_SESSION['data']) ?>">
     </div>
     <!-- Swal -->
 
@@ -79,7 +82,6 @@ $row = mysqli_query($conn, "SELECT * FROM processor");
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">ID</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">Core</th>
                                 <th scope="col">Thread</th>
@@ -92,14 +94,13 @@ $row = mysqli_query($conn, "SELECT * FROM processor");
                             <?php while ($result = mysqli_fetch_array($row)) : ?>
                                 <tr>
                                     <th scope="row"><?= $no++ ?></th>
-                                    <td><?= $result["id"] ?></td>
                                     <td><?= $result["nama"] ?></td>
                                     <td><?= $result["core"] ?></td>
                                     <td><?= $result["thread"] ?></td>
                                     <td><?= $result["daya"] ?></td>
                                     <td>
                                         <div class="text-center">
-                                            <a href="update.php?id=<?= $result['id'] ?>" class="btn btn-warning">Edit</a> | <a href="" class="btn btn-danger">Hapus</a>
+                                            <a href="update.php?id=<?= $result['id'] ?>" class="btn btn-warning">Edit</a> | <a href="delete.php?id=<?= $result['id'] ?>" id="btn-del" class="btn btn-danger">Hapus</a>
                                         </div>
                                     </td>
                                 </tr>

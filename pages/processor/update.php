@@ -16,11 +16,12 @@ if (isset($_POST['submit'])) {
     $sql = "UPDATE processor SET  nama = '$nama', core = '$core', thread = '$thread', daya = '$daya' WHERE id = '$id'";
 
     if (mysqli_query($conn, $sql)) {
-        $_SESSION['info'] = "berhasil disimpan!";
+        $_SESSION['data'] = "berhasil disimpan!";
+        header("Location: ../processor");
     } else {
+        $_SESSION['data'] = "gagal disimpan!";
     }
 }
-
 
 ?>
 
@@ -31,7 +32,6 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="../src/css/global.css">
-    <?php include '../src/library/sweetalert.php' ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
     <title>Inventory Barang | Processor</title>
