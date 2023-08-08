@@ -8,17 +8,23 @@ if (isset($_POST['submit'])) {
     $id = $_POST['id'];
     $tipe_memori = $_POST['tipe_memori'];
     $kapasitas = $_POST['kapasitas'];
-    $kecepatan = $_POST['kecepatan'];
+    $stok = $_POST['stok'];
 
-    $sql = "INSERT INTO ram (id, tipe_memori, kapasitas, kecepatan) VALUES ('$id', '$tipe_memori', '$kapasitas', '$kecepatan')";
+    $query = "SELECT tipe_memori, kapasitas FROM ram WHERE tipe_memori = '$tipe_memori' AND kapasitas = '$kapasitas'";
+    $result = mysqli_query($conn, $query);
 
-    if (mysqli_query($conn, $sql)) {
-        $_SESSION['data'] = "berhasil disimpan!";
-        header("Location: ../ram");
+    if (mysqli_num_rows($result) > 0) {
+        $_SESSION['data'] = "sudah ada!";
     } else {
-        $_SESSION['data'] = "gagal disimpan!";
+        $sql = "INSERT INTO ram (id, tipe_memori, kapasitas, stok) VALUES ('$id', '$tipe_memori', '$kapasitas', '$stok')";
+        if (mysqli_query($conn, $sql)) {
+            $_SESSION['data'] = "berhasil disimpan!";
+            header("Location: ../ram");
+            exit;
+        } else {
+            $_SESSION['data'] = "gagal disimpan!";
+        }
     }
-
     mysqli_close($conn);
 }
 
@@ -32,11 +38,20 @@ if (isset($_POST['submit'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="../src/css/global.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <?php include "../src/library/bootstrap.php" ?>
+    <?php include "../src/library/sweetalert.php" ?>
     <title>Inventory Barang | Processor</title>
 </head>
 
 <body>
+    <!-- Swal -->
+    <div class="info-data" data-infodata="<?php if (isset($_SESSION['data'])) {
+                                                echo $_SESSION['data'];
+                                            }
+                                            unset($_SESSION['data']) ?>">
+    </div>
+    <!-- Swal -->
     <div class="wrapper">
         <div class="row vh-100">
             <div class="col-md-2 sidebar text-light">
@@ -91,8 +106,8 @@ if (isset($_POST['submit'])) {
                                     <input type="text" id="kapasitas" name="kapasitas" class="form-control" placeholder="8" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="kecepatan">Kecepatan (MHz)</label>
-                                    <input type="text" id="kecepatan" name="kecepatan" class="form-control" placeholder="2666" required>
+                                    <label for="stok">Stok</label>
+                                    <input type="text" id="stok" name="stok" class="form-control" placeholder="100" required>
                                 </div>
                             </div>
                             <div class="col">
@@ -107,6 +122,7 @@ if (isset($_POST['submit'])) {
             </div>
         </div>
     </div>
+    <script src="../src/js/sweetalert.js"></script>
 </body>
 
 </html>

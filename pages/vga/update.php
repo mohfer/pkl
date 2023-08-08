@@ -8,15 +8,16 @@ $id = $_GET['id'];
 
 if (isset($_POST['submit'])) {
     $id = $_POST['id'];
-    $tipe_memori = $_POST['tipe_memori'];
-    $kapasitas = $_POST['kapasitas'];
+    $brand = $_POST['brand'];
+    $nama = $_POST['nama'];
+    $vram = $_POST['vram'];
     $stok = $_POST['stok'];
 
-    $sql = "UPDATE ram SET  tipe_memori = '$tipe_memori', kapasitas = '$kapasitas', stok = '$stok' WHERE id = '$id'";
+    $sql = "UPDATE vga SET  brand = '$brand', nama = '$nama', vram = '$vram', stok = '$stok' WHERE id = '$id'";
 
     if (mysqli_query($conn, $sql)) {
         $_SESSION['data'] = "berhasil disimpan!";
-        header("Location: ../ram");
+        header("Location: ../vga");
     } else {
         $_SESSION['data'] = "gagal disimpan!";
     }
@@ -55,13 +56,13 @@ if (isset($_POST['submit'])) {
                         <p class="opacity">Processor</p>
                     </a>
                     <a href="../ram/">
-                        <p class="opacity-100 aktif rounded-pill">RAM</p>
+                        <p class="opacity">RAM</p>
                     </a>
                     <a href="../storage/">
                         <p class="opacity">Storage</p>
                     </a>
                     <a href="../vga/">
-                        <p class="opacity">Graphics Card</p>
+                        <p class="opacity-100 aktif rounded-pill">Graphics Card</p>
                     </a>
                 </div>
                 <div class="mx-4">
@@ -70,8 +71,8 @@ if (isset($_POST['submit'])) {
             </div>
             <div class="col-md-10 content">
                 <div class="wrapper shadow p-3 my-3 left">
-                    <h1>RAM | Update</h1>
-                    <?php $data = mysqli_query($conn, "SELECT * FROM ram WHERE id = $id") ?>
+                    <h1>Graphics Card | Update</h1>
+                    <?php $data = mysqli_query($conn, "SELECT * FROM vga WHERE id = $id") ?>
                     <?php while ($d = mysqli_fetch_array($data)) : ?>
                         <form action="" method="POST">
                             <div class="row">
@@ -80,18 +81,20 @@ if (isset($_POST['submit'])) {
                                         <input type="hidden" id="id" name="id" class="form-control" placeholder="1" value="<?= $d['id'] ?>">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="tipe_memori">Tipe Memori (DDR)</label>
-                                        <select id="tipe_memori" class="form-select mb-3" name="tipe_memori" required>
-                                            <option selected><?= $d['tipe_memori'] ?></option>
-                                            <option value="DDR2">DDR2</option>
-                                            <option value="DDR3">DDR3</option>
-                                            <option value="DDR4">DDR4</option>
-                                            <option value="DDR5">DDR5</option>
+                                        <label for="brand">Brand (NVIDIA/AMD)</label>
+                                        <select id="brand" class="form-select mb-3" name="brand" required>
+                                            <option selected><?= $d['brand'] ?></option>
+                                            <option value="NVIDIA">NVIDIA</option>
+                                            <option value="AMD">AMD</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="kapasitas">Kapasitas (GB)</label>
-                                        <input type="text" id="kapasitas" name="kapasitas" class="form-control" placeholder="8" value="<?= $d['kapasitas'] ?>">
+                                        <label for="nama">Nama</label>
+                                        <input type="text" id="nama" name="nama" class="form-control" placeholder="8" value="<?= $d['nama'] ?>">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="vram">VRAM (GB)</label>
+                                        <input type="text" id="vram" name="vram" class="form-control" placeholder="8" value="<?= $d['vram'] ?>">
                                     </div>
                                     <div class="mb-3">
                                         <label for="stok">Stok</label>
@@ -102,7 +105,7 @@ if (isset($_POST['submit'])) {
                                 </div>
                                 <div class="mb-3">
                                     <button class="btn ungu" name="submit">Simpan</button>
-                                    <a href="../ram/" class="btn btn-danger">Batal</a>
+                                    <a href="../vga/" class="btn btn-danger">Batal</a>
                                 </div>
                             </div>
                         </form>

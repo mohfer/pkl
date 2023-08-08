@@ -6,21 +6,22 @@ include "../src/config/connect.php";
 
 if (isset($_POST['submit'])) {
     $id = $_POST['id'];
-    $tipe = $_POST['tipe'];
-    $kapasitas = $_POST['kapasitas'];
+    $brand = $_POST['brand'];
+    $nama = $_POST['nama'];
+    $vram = $_POST['vram'];
     $stok = $_POST['stok'];
 
-    $query = "SELECT tipe, kapasitas FROM storage WHERE tipe = '$tipe' AND kapasitas = '$kapasitas'";
+    $query = "SELECT brand, nama, vram FROM vga WHERE brand = '$brand' AND nama = '$nama' AND vram = '$vram'";
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) > 0) {
         $_SESSION['data'] = "sudah ada!";
     } else {
-        $sql = "INSERT INTO storage (id, tipe, kapasitas, stok) VALUES ('$id', '$tipe', '$kapasitas', '$stok')";
+        $sql = "INSERT INTO vga (id, brand, nama, vram, stok) VALUES ('$id', '$brand', '$nama', '$vram', '$stok')";
 
         if (mysqli_query($conn, $sql)) {
             $_SESSION['data'] = "berhasil disimpan!";
-            header("Location: ../storage");
+            header("Location: ../vga");
             exit;
         } else {
             $_SESSION['data'] = "gagal disimpan!";
@@ -74,10 +75,10 @@ if (isset($_POST['submit'])) {
                         <p class="opacity">RAM</p>
                     </a>
                     <a href="../storage/">
-                        <p class="opacity-100 aktif rounded-pill">Storage</p>
+                        <p class="opacity">Storage</p>
                     </a>
                     <a href="../vga/">
-                        <p class="opacity">Graphics Card</p>
+                        <p class="opacity-100 aktif rounded-pill">Graphics Card</p>
                     </a>
                 </div>
                 <div class="mx-4">
@@ -86,7 +87,7 @@ if (isset($_POST['submit'])) {
             </div>
             <div class="col-md-10 content">
                 <div class="wrapper shadow p-3 my-3 left">
-                    <h1>Storage | Tambah</h1>
+                    <h1>Graphics Card | Tambah</h1>
                     <form action="" method="POST">
                         <div class="row">
                             <div class="col">
@@ -94,15 +95,19 @@ if (isset($_POST['submit'])) {
                                     <input type="hidden" id="id" name="id" class="form-control" placeholder="1">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="tipe">Tipe (SSD/HDD)</label>
-                                    <select id="tipe" class="form-select" name="tipe" required>
-                                        <option value="SSD">SSD</option>
-                                        <option value="HDD">HDD</option>
+                                    <label for="brand">Brand (NVIDIA/AMD)</label>
+                                    <select id="brand" class="form-select" name="brand" required>
+                                        <option value="NVIDIA">NVIDIA</option>
+                                        <option value="AMD">AMD</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="kapasitas">Kapasitas (GB)</label>
-                                    <input type="text" id="kapasitas" name="kapasitas" class="form-control" placeholder="512" required>
+                                    <label for="nama">Nama</label>
+                                    <input type="text" id="nama" name="nama" class="form-control" placeholder="RTX 2080Ti" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="vram">VRAM (GB)</label>
+                                    <input type="text" id="vram" name="vram" class="form-control" placeholder="2" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="stok">Stok</label>
@@ -113,7 +118,7 @@ if (isset($_POST['submit'])) {
                             </div>
                             <div class="mb-3">
                                 <button class="btn ungu" name="submit">Simpan</button>
-                                <a href="../storage/" class="btn btn-danger">Batal</a>
+                                <a href="../vga/" class="btn btn-danger">Batal</a>
                             </div>
                         </div>
                     </form>

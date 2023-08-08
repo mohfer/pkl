@@ -9,11 +9,9 @@ $id = $_GET['id'];
 if (isset($_POST['submit'])) {
     $id = $_POST['id'];
     $nama = $_POST['nama'];
-    $core = $_POST['core'];
-    $thread = $_POST['thread'];
-    $daya = $_POST['daya'];
+    $stok = $_POST['stok'];
 
-    $sql = "UPDATE processor SET  nama = '$nama', core = '$core', thread = '$thread', daya = '$daya' WHERE id = '$id'";
+    $sql = "UPDATE processor SET  nama = '$nama', stok = '$stok' WHERE id = '$id'";
 
     if (mysqli_query($conn, $sql)) {
         $_SESSION['data'] = "berhasil disimpan!";
@@ -85,16 +83,8 @@ if (isset($_POST['submit'])) {
                                         <input type="text" id="nama" name="nama" class="form-control" placeholder="Intel Core i3 13100" value="<?= $d['nama'] ?>">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="core">Core</label>
-                                        <input type="text" id="core" name="core" class="form-control" placeholder="4" value="<?= $d['core'] ?>">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="thread">Thread</label>
-                                        <input type="text" id="thread" name="thread" class="form-control" placeholder="8" value="<?= $d['thread'] ?>">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="daya">Daya (W)</label>
-                                        <input type="text" id="daya" name="daya" class="form-control" placeholder="60" value="<?= $d['daya'] ?>">
+                                        <label for="stok">Stok</label>
+                                        <input type="text" id="stok" name="stok" class="form-control" placeholder="4" value="<?= $d['stok'] ?>">
                                     </div>
                                 </div>
                                 <div class="col">

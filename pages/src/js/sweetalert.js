@@ -54,7 +54,7 @@ if (data == "berhasil disimpan!" || data == "berhasil dihapus!") {
         confirmButtonColor: '#241468',
         text: 'Data' + ' ' + data,
     })
-} else if (data == "gagal disimpan!" || data == "gagal dihapus!") {
+} else if (data == "gagal disimpan!" || data == "gagal dihapus!" || data == "sudah ada!") {
     Swal.fire({
         icon: 'error',
         title: 'Oops...',

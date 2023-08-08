@@ -77,9 +77,7 @@ $row = mysqli_query($conn, "SELECT * FROM processor ORDER BY nama DESC");
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Nama</th>
-                                <th scope="col">Core</th>
-                                <th scope="col">Thread</th>
-                                <th scope="col">Daya (W)</th>
+                                <th scope="col">Stok</th>
                                 <th scope="col" class="text-center">Aksi</th>
                             </tr>
                         </thead>
@@ -89,9 +87,7 @@ $row = mysqli_query($conn, "SELECT * FROM processor ORDER BY nama DESC");
                                 <tr>
                                     <th scope="row"><?= $no++ ?></th>
                                     <td><?= $result["nama"] ?></td>
-                                    <td><?= $result["core"] ?></td>
-                                    <td><?= $result["thread"] ?></td>
-                                    <td><?= $result["daya"] ?></td>
+                                    <td><?= $result["stok"] ?></td>
                                     <td>
                                         <div class="text-center">
                                             <a href="update.php?id=<?= $result['id'] ?>" class="btn btn-warning">Edit</a> | <a href="delete.php?id=<?= $result['id'] ?>" id="btn-del" class="btn btn-danger">Hapus</a>

@@ -4,7 +4,7 @@ session_start();
 
 include "../src/config/connect.php";
 
-$row = mysqli_query($conn, "SELECT * FROM storage ORDER BY kapasitas DESC, kecepatan DESC");
+$row = mysqli_query($conn, "SELECT * FROM storage ORDER BY kapasitas DESC");
 
 ?>
 
@@ -76,8 +76,8 @@ $row = mysqli_query($conn, "SELECT * FROM storage ORDER BY kapasitas DESC, kecep
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Tipe (SSD/HDD)</th>
-                                <th scope="col">Kecepatan (MB/s)</th>
                                 <th scope="col">Kapasitas (GB)</th>
+                                <th scope="col">Stok</th>
                                 <th scope="col" class="text-center">Aksi</th>
                             </tr>
                         </thead>
@@ -87,8 +87,8 @@ $row = mysqli_query($conn, "SELECT * FROM storage ORDER BY kapasitas DESC, kecep
                                 <tr>
                                     <th scope="row"><?= $no++ ?></th>
                                     <td><?= $result["tipe"] ?></td>
-                                    <td><?= $result["kecepatan"] ?></td>
                                     <td><?= $result["kapasitas"] ?></td>
+                                    <td><?= $result["stok"] ?></td>
                                     <td>
                                         <div class="text-center">
                                             <a href="update.php?id=<?= $result['id'] ?>" class="btn btn-warning">Edit</a> | <a href="delete.php?id=<?= $result['id'] ?>" id="btn-del" class="btn btn-danger">Hapus</a>

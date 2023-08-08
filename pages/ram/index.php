@@ -4,7 +4,7 @@ session_start();
 
 include "../src/config/connect.php";
 
-$row = mysqli_query($conn, "SELECT * FROM ram ORDER BY kecepatan DESC, kapasitas DESC");
+$row = mysqli_query($conn, "SELECT * FROM ram ORDER BY tipe_memori DESC");
 
 ?>
 
@@ -77,7 +77,7 @@ $row = mysqli_query($conn, "SELECT * FROM ram ORDER BY kecepatan DESC, kapasitas
                                 <th scope="col">#</th>
                                 <th scope="col">Tipe Memory (DDR)</th>
                                 <th scope="col">Kapasitas (GB)</th>
-                                <th scope="col">Kecepatan (MHz)</th>
+                                <th scope="col">Stok</th>
                                 <th scope="col" class="text-center">Aksi</th>
                             </tr>
                         </thead>
@@ -88,7 +88,7 @@ $row = mysqli_query($conn, "SELECT * FROM ram ORDER BY kecepatan DESC, kapasitas
                                     <th scope="row"><?= $no++ ?></th>
                                     <td><?= $result["tipe_memori"] ?></td>
                                     <td><?= $result["kapasitas"] ?></td>
-                                    <td><?= $result["kecepatan"] ?></td>
+                                    <td><?= $result["stok"] ?></td>
                                     <td>
                                         <div class="text-center">
                                             <a href="update.php?id=<?= $result['id'] ?>" class="btn btn-warning">Edit</a> | <a href="delete.php?id=<?= $result['id'] ?>" id="btn-del" class="btn btn-danger">Hapus</a>

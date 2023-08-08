@@ -9,10 +9,10 @@ $id = $_GET['id'];
 if (isset($_POST['submit'])) {
     $id = $_POST['id'];
     $tipe = $_POST['tipe'];
-    $kecepatan = $_POST['kecepatan'];
     $kapasitas = $_POST['kapasitas'];
+    $stok = $_POST['stok'];
 
-    $sql = "UPDATE storage SET  tipe = '$tipe', kecepatan = '$kecepatan', kapasitas = '$kapasitas' WHERE id = '$id'";
+    $sql = "UPDATE storage SET  tipe = '$tipe', kapasitas = '$kapasitas', stok = '$stok' WHERE id = '$id'";
 
     if (mysqli_query($conn, $sql)) {
         $_SESSION['data'] = "berhasil disimpan!";
@@ -88,12 +88,12 @@ if (isset($_POST['submit'])) {
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="kecepatan">Kecepatan (MB/s)</label>
-                                        <input type="text" id="kecepatan" name="kecepatan" class="form-control" placeholder="2666" value="<?= $d['kecepatan'] ?>">
-                                    </div>
-                                    <div class="mb-3">
                                         <label for="kapasitas">Kapasitas (GB)</label>
                                         <input type="text" id="kapasitas" name="kapasitas" class="form-control" placeholder="8" value="<?= $d['kapasitas'] ?>">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="stok">Stok</label>
+                                        <input type="text" id="stok" name="stok" class="form-control" placeholder="100" value="<?= $d['stok'] ?>">
                                     </div>
                                 </div>
                                 <div class="col">
