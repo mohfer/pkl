@@ -66,7 +66,7 @@ if (isset($_POST['submit'])) {
                     </a>
                 </div>
                 <div class="mx-4">
-                    <h5>Komponen</h5>
+                    <h5>Master | Komponen</h5>
                     <a href="../processor/">
                         <p class="opacity">Processor</p>
                     </a>
@@ -81,7 +81,22 @@ if (isset($_POST['submit'])) {
                     </a>
                 </div>
                 <div class="mx-4">
-                    <h5>Komponen</h5>
+                    <h5>Master | Karyawan</h5>
+                    <a href="../karyawan/">
+                        <p class="opacity">Karyawan</p>
+                    </a>
+                </div>
+                <div class="mx-4">
+                    <h5>Transaksi</h5>
+                    <a href="../komputer/">
+                        <p class="opacity">Komputer</p>
+                    </a>
+                    <a href="../barang/">
+                        <p class="opacity">Barang</p>
+                    </a>
+                    <a href="../keluhan/">
+                        <p class="opacity">Keluhan</p>
+                    </a>
                 </div>
             </div>
             <div class="col-md-10 content">
@@ -102,11 +117,11 @@ if (isset($_POST['submit'])) {
                                 </div>
                                 <div class="mb-3">
                                     <label for="kapasitas">Kapasitas (GB)</label>
-                                    <input type="text" id="kapasitas" name="kapasitas" class="form-control" placeholder="512" required>
+                                    <input type="number" id="kapasitas" name="kapasitas" class="form-control" placeholder="512" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="stok">Stok</label>
-                                    <input type="text" id="stok" name="stok" class="form-control" placeholder="100" required>
+                                    <input type="number" id="stok" name="stok" class="form-control" placeholder="100" required>
                                 </div>
                             </div>
                             <div class="col">

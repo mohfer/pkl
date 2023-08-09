@@ -9,13 +9,15 @@ $id = $_GET['id'];
 if (isset($_POST['submit'])) {
     $id = $_POST['id'];
     $nama = $_POST['nama'];
-    $stok = $_POST['stok'];
+    $nip = $_POST['nip'];
+    $jk = $_POST['jk'];
+    $divisi = $_POST['divisi'];
 
-    $sql = "UPDATE processor SET  nama = '$nama', stok = '$stok' WHERE id = '$id'";
+    $sql = "UPDATE karyawan SET  nama = '$nama', nip = '$nip', jk = '$jk', divisi = '$divisi' WHERE id = '$id'";
 
     if (mysqli_query($conn, $sql)) {
         $_SESSION['data'] = "berhasil disimpan!";
-        header("Location: ../processor");
+        header("Location: ../karyawan");
     } else {
         $_SESSION['data'] = "gagal disimpan!";
     }
@@ -51,7 +53,7 @@ if (isset($_POST['submit'])) {
                 <div class="mx-4">
                     <h5>Master | Komponen</h5>
                     <a href="../processor/">
-                        <p class="opacity-100 aktif rounded-pill">Processor</p>
+                        <p class="opacity">Processor</p>
                     </a>
                     <a href="../ram/">
                         <p class="opacity">RAM</p>
@@ -66,7 +68,7 @@ if (isset($_POST['submit'])) {
                 <div class="mx-4">
                     <h5>Master | Karyawan</h5>
                     <a href="../karyawan/">
-                        <p class="opacity">Karyawan</p>
+                        <p class="opacity-100 aktif rounded-pill">Karyawan</p>
                     </a>
                 </div>
                 <div class="mx-4">
@@ -84,8 +86,8 @@ if (isset($_POST['submit'])) {
             </div>
             <div class="col-md-10 content">
                 <div class="wrapper shadow p-3 my-3 left">
-                    <h1>Processor | Update</h1>
-                    <?php $data = mysqli_query($conn, "SELECT * FROM processor WHERE id = $id") ?>
+                    <h1>Karyawan | Update</h1>
+                    <?php $data = mysqli_query($conn, "SELECT * FROM karyawan WHERE id = $id") ?>
                     <?php while ($d = mysqli_fetch_array($data)) : ?>
                         <form action="" method="POST">
                             <div class="row">
@@ -95,18 +97,37 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="mb-3">
                                         <label for="nama">Nama</label>
-                                        <input type="text" id="nama" name="nama" class="form-control" placeholder="Intel Core i3 13100" value="<?= $d['nama'] ?>" required>
+                                        <input type="text" id="nama" name="nama" class="form-control" placeholder="Erwin Susanto" value="<?= $d['nama'] ?>" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="stok">Stok</label>
-                                        <input type="number" id="stok" name="stok" class="form-control" placeholder="10" value="<?= $d['stok'] ?>" required>
+                                        <label for="nip">NIP</label>
+                                        <input type="number" id="nip" name="nip" class="form-control" placeholder="164349612468052144" value="<?= $d['nip'] ?>" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="d-block mb-3">Jenis Kelamin</label><?php $jk = $d['jk']; ?>
+                                        <input class="form-check-input" type="radio" name="jk" id="laki_laki" value="Laki - Laki" <?= ($jk == 'Laki - Laki') ? "checked" : "" ?> required>
+                                        <label class="form-check-label mx-2" for="laki_laki">Laki - Laki</label>
+                                        <input class="form-check-input" type="radio" name="jk" id="perempuan" value="Perempuan" <?= ($jk == 'Perempuan') ? "checked" : "" ?> required>
+                                        <label class="form-check-label mx-2" for="perempuan">Perempuan</label>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="divisi">Divisi</label>
+                                        <select id="divisi" class="form-select" name="divisi" required>
+                                            <option selected><?= $d['divisi'] ?></option>
+                                            <option value="Marketing">Marketing</option>
+                                            <option value="HRD">HRD</option>
+                                            <option value="Finance">Finance</option>
+                                            <option value="Creative">Creative</option>
+                                            <option value="Operasional">Operasional</option>
+                                            <option value="IT">IT</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col">
                                 </div>
                                 <div class="mb-3">
                                     <button class="btn ungu" name="submit">Simpan</button>
-                                    <a href="../processor/" class="btn btn-danger">Batal</a>
+                                    <a href="../karyawan/" class="btn btn-danger">Batal</a>
                                 </div>
                             </div>
                         </form>

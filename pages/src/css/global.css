@@ -45,3 +45,9 @@ a {
 .pagination > li.active > span {
   background-color: #241468;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

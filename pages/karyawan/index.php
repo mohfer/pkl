@@ -4,7 +4,7 @@ session_start();
 
 include "../src/config/connect.php";
 
-$row = mysqli_query($conn, "SELECT * FROM ram ORDER BY tipe_memori DESC");
+$row = mysqli_query($conn, "SELECT * FROM karyawan ORDER BY nama ASC");
 
 ?>
 
@@ -20,7 +20,7 @@ $row = mysqli_query($conn, "SELECT * FROM ram ORDER BY tipe_memori DESC");
     <?php include '../src/library/bootstrap.php' ?>
     <?php include '../src/library/datatables.php' ?>
     <?php include '../src/library/sweetalert.php' ?>
-    <title>Inventory Barang | RAM</title>
+    <title>Inventory Barang | VGA</title>
 </head>
 
 <script>
@@ -39,7 +39,7 @@ $row = mysqli_query($conn, "SELECT * FROM ram ORDER BY tipe_memori DESC");
     <!-- Swal -->
     <div class="wrapper">
         <div class="row vh-100">
-            <section id="sidebar" class="col-md-2 sidebar text-light">
+            <section class="col-md-2 sidebar text-light">
                 <div class="text-center my-3 mb-5">
                     <h4>Inventory Barang</h4>
                 </div>
@@ -55,7 +55,7 @@ $row = mysqli_query($conn, "SELECT * FROM ram ORDER BY tipe_memori DESC");
                         <p class="opacity">Processor</p>
                     </a>
                     <a href="../ram/">
-                        <p class="opacity-100 aktif rounded-pill">RAM</p>
+                        <p class="opacity">RAM</p>
                     </a>
                     <a href="../storage/">
                         <p class="opacity">Storage</p>
@@ -67,7 +67,7 @@ $row = mysqli_query($conn, "SELECT * FROM ram ORDER BY tipe_memori DESC");
                 <div class="mx-4">
                     <h5>Master | Karyawan</h5>
                     <a href="../karyawan/">
-                        <p class="opacity">Karyawan</p>
+                        <p class="opacity-100 aktif rounded-pill">Karyawan</p>
                     </a>
                 </div>
                 <div class="mx-4">
@@ -83,16 +83,17 @@ $row = mysqli_query($conn, "SELECT * FROM ram ORDER BY tipe_memori DESC");
                     </a>
                 </div>
             </section>
-            <section id="content" class="col-md-10 content">
+            <section class="col-md-10 content">
                 <div class="wrapper shadow p-3 my-3 left">
-                    <h1>RAM</h1>
+                    <h1>Karyawan</h1>
                     <table id="myTable" class="table table-striped display">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Tipe Memory (DDR)</th>
-                                <th scope="col">Kapasitas (GB)</th>
-                                <th scope="col">Stok</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">NIP</th>
+                                <th scope="col">Jenis Kelamin</th>
+                                <th scope="col">Divisi</th>
                                 <th scope="col" class="text-center">Aksi</th>
                             </tr>
                         </thead>
@@ -101,9 +102,10 @@ $row = mysqli_query($conn, "SELECT * FROM ram ORDER BY tipe_memori DESC");
                             <?php while ($result = mysqli_fetch_array($row)) : ?>
                                 <tr>
                                     <th scope="row"><?= $no++ ?></th>
-                                    <td><?= $result["tipe_memori"] ?></td>
-                                    <td><?= $result["kapasitas"] ?></td>
-                                    <td><?= $result["stok"] ?></td>
+                                    <td><?= $result["nama"] ?></td>
+                                    <td><?= $result["nip"] ?></td>
+                                    <td><?= $result["jk"] ?></td>
+                                    <td><?= $result["divisi"] ?></td>
                                     <td>
                                         <div class="text-center">
                                             <a href="update.php?id=<?= $result['id'] ?>" class="btn btn-warning">Edit</a> | <a href="delete.php?id=<?= $result['id'] ?>" id="btn-del" class="btn btn-danger">Hapus</a>

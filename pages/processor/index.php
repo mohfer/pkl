@@ -51,7 +51,7 @@ $row = mysqli_query($conn, "SELECT * FROM processor ORDER BY nama DESC");
                     </a>
                 </div>
                 <div class="mx-4">
-                    <h5>Komponen</h5>
+                    <h5>Master | Komponen</h5>
                     <a href="../processor/">
                         <p class="opacity-100 aktif rounded-pill">Processor</p>
                     </a>
@@ -66,7 +66,22 @@ $row = mysqli_query($conn, "SELECT * FROM processor ORDER BY nama DESC");
                     </a>
                 </div>
                 <div class="mx-4">
-                    <h5>Komponen</h5>
+                    <h5>Master | Karyawan</h5>
+                    <a href="../karyawan/">
+                        <p class="opacity">Karyawan</p>
+                    </a>
+                </div>
+                <div class="mx-4">
+                    <h5>Transaksi</h5>
+                    <a href="../komputer/">
+                        <p class="opacity">Komputer</p>
+                    </a>
+                    <a href="../barang/">
+                        <p class="opacity">Barang</p>
+                    </a>
+                    <a href="../keluhan/">
+                        <p class="opacity">Keluhan</p>
+                    </a>
                 </div>
             </section>
             <section id="content" class="col-md-10 content">

@@ -6,22 +6,22 @@ include "../src/config/connect.php";
 
 if (isset($_POST['submit'])) {
     $id = $_POST['id'];
-    $brand = $_POST['brand'];
     $nama = $_POST['nama'];
-    $vram = $_POST['vram'];
-    $stok = $_POST['stok'];
+    $nip = $_POST['nip'];
+    $jk = $_POST['jk'];
+    $divisi = $_POST['divisi'];
 
-    $query = "SELECT brand, nama, vram FROM vga WHERE brand = '$brand' AND nama = '$nama' AND vram = '$vram'";
+    $query = "SELECT nip FROM karyawan WHERE nip = '$nip'";
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) > 0) {
-        $_SESSION['data'] = "sudah ada!";
+        $_SESSION['data'] = "nip sudah terdaftar!";
     } else {
-        $sql = "INSERT INTO vga (id, brand, nama, vram, stok) VALUES ('$id', '$brand', '$nama', '$vram', '$stok')";
+        $sql = "INSERT INTO karyawan (id, nama, nip, jk, divisi) VALUES ('$id', '$nama', '$nip', '$jk', '$divisi')";
 
         if (mysqli_query($conn, $sql)) {
             $_SESSION['data'] = "berhasil disimpan!";
-            header("Location: ../vga");
+            header("Location: ../karyawan");
             exit;
         } else {
             $_SESSION['data'] = "gagal disimpan!";
@@ -78,13 +78,13 @@ if (isset($_POST['submit'])) {
                         <p class="opacity">Storage</p>
                     </a>
                     <a href="../vga/">
-                        <p class="opacity-100 aktif rounded-pill">Graphics Card</p>
+                        <p class="opacity">Graphics Card</p>
                     </a>
                 </div>
                 <div class="mx-4">
                     <h5>Master | Karyawan</h5>
                     <a href="../karyawan/">
-                        <p class="opacity">Karyawan</p>
+                        <p class="opacity-100 aktif rounded-pill">Karyawan</p>
                     </a>
                 </div>
                 <div class="mx-4">
@@ -102,7 +102,7 @@ if (isset($_POST['submit'])) {
             </div>
             <div class="col-md-10 content">
                 <div class="wrapper shadow p-3 my-3 left">
-                    <h1>Graphics Card | Tambah</h1>
+                    <h1>Karyawan | Tambah</h1>
                     <form action="" method="POST">
                         <div class="row">
                             <div class="col">
@@ -110,30 +110,37 @@ if (isset($_POST['submit'])) {
                                     <input type="hidden" id="id" name="id" class="form-control" placeholder="1">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="brand">Brand (NVIDIA/AMD)</label>
-                                    <select id="brand" class="form-select" name="brand" required>
-                                        <option value="NVIDIA">NVIDIA</option>
-                                        <option value="AMD">AMD</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
                                     <label for="nama">Nama</label>
-                                    <input type="text" id="nama" name="nama" class="form-control" placeholder="RTX 2080Ti" required>
+                                    <input type="text" id="nama" name="nama" class="form-control" placeholder="Erwin Susanto" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="vram">VRAM (GB)</label>
-                                    <input type="number" id="vram" name="vram" class="form-control" placeholder="8" required>
+                                    <label for="nip">NIP</label>
+                                    <input type="number" id="nip" name="nip" class="form-control" placeholder="164349612468052144" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="stok">Stok</label>
-                                    <input type="number" id="stok" name="stok" class="form-control" placeholder="100" required>
+                                    <label class="d-block mb-3">Jenis Kelamin</label>
+                                    <input class="form-check-input" type="radio" name="jk" id="laki_laki" value="Laki - Laki" required>
+                                    <label class="form-check-label mx-2" for="laki_laki">Laki - Laki</label>
+                                    <input class="form-check-input" type="radio" name="jk" id="perempuan" value="Perempuan" required>
+                                    <label class="form-check-label mx-2" for="perempuan">Perempuan</label>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="divisi">Divisi</label>
+                                    <select id="divisi" class="form-select" name="divisi" required>
+                                        <option value="Marketing">Marketing</option>
+                                        <option value="HRD">HRD</option>
+                                        <option value="Finance">Finance</option>
+                                        <option value="Creative">Creative</option>
+                                        <option value="Operasional">Operasional</option>
+                                        <option value="IT">IT</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col">
                             </div>
                             <div class="mb-3">
                                 <button class="btn ungu" name="submit">Simpan</button>
-                                <a href="../vga/" class="btn btn-danger">Batal</a>
+                                <a href="../karyawan/" class="btn btn-danger">Batal</a>
                             </div>
                         </div>
                     </form>

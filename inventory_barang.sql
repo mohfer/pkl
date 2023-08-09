@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 04, 2023 at 11:01 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Generation Time: Aug 08, 2023 at 07:04 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,51 +24,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table ``
---
-
-CREATE TABLE `` (
-  `kode` int(11) NOT NULL,
-  `socket` varchar(25) NOT NULL,
-  `slot_ram` int(11) NOT NULL,
-  `slot_sata` int(11) NOT NULL,
-  `slot_pci` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `processor`
 --
 
 CREATE TABLE `processor` (
-  `kode` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `nama` varchar(25) NOT NULL,
-  `core` int(11) NOT NULL,
-  `thread` int(11) NOT NULL,
-  `max_speed` varchar(25) NOT NULL,
-  `daya` int(11) NOT NULL,
-  `tgl_peluncuran` varchar(25) NOT NULL
+  `stok` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `processor`
 --
 
-INSERT INTO `processor` (`kode`, `nama`, `core`, `thread`, `max_speed`, `daya`, `tgl_peluncuran`) VALUES
-(1, 'Intel Core i3 13100', 4, 8, '4,50', 60, ' Q1\'23');
-
--- --------------------------------------------------------
-
---
--- Table structure for table ``
---
-
-CREATE TABLE `` (
-  `kode` int(11) NOT NULL,
-  `jenis` varchar(25) NOT NULL,
-  `daya` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `processor` (`id`, `nama`, `stok`) VALUES
+(6, 'Intel Core i5-12400', 10),
+(10, 'Intel Core i3-13100', 25),
+(17, 'Intel Core i3-12100', 20),
+(19, 'Intel Core i5-3470', 20),
+(20, 'Intel Core i7-13700', 2),
+(21, 'Intel Core i7-3770', 50);
 
 -- --------------------------------------------------------
 
@@ -77,13 +52,23 @@ CREATE TABLE `` (
 --
 
 CREATE TABLE `ram` (
-  `kode` int(11) NOT NULL,
-  `kecepatan` varchar(25) NOT NULL,
-  `tipe_memori` varchar(25) NOT NULL,
-  `jumlah_pin` int(11) NOT NULL,
-  `voltase` int(11) NOT NULL,
-  `kapasitas` varchar(25) NOT NULL
+  `id` int(11) NOT NULL,
+  `tipe_memori` enum('DDR2','DDR3','DDR4','DDR5') NOT NULL,
+  `kapasitas` varchar(25) NOT NULL,
+  `stok` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ram`
+--
+
+INSERT INTO `ram` (`id`, `tipe_memori`, `kapasitas`, `stok`) VALUES
+(37, 'DDR2', '2', 100),
+(39, 'DDR3', '4', 50),
+(40, 'DDR3', '8', 20),
+(41, 'DDR4', '8', 10),
+(42, 'DDR5', '16', 5),
+(43, 'DDR2', '1', 100);
 
 -- --------------------------------------------------------
 
@@ -92,11 +77,21 @@ CREATE TABLE `ram` (
 --
 
 CREATE TABLE `storage` (
-  `kode` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `tipe` varchar(25) NOT NULL,
-  `kecepatan` int(11) NOT NULL,
-  `kapasitas` int(11) NOT NULL
+  `kapasitas` int(11) NOT NULL,
+  `stok` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `storage`
+--
+
+INSERT INTO `storage` (`id`, `tipe`, `kapasitas`, `stok`) VALUES
+(5, 'SSD', 512, 50),
+(7, 'HDD', 1024, 200),
+(9, 'SSD', 256, 100),
+(10, 'SSD', 128, 100);
 
 -- --------------------------------------------------------
 
@@ -125,45 +120,43 @@ INSERT INTO `users` (`id`, `name`, `username`, `password`) VALUES
 --
 
 CREATE TABLE `vga` (
-  `kode` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `brand` varchar(25) NOT NULL,
   `nama` varchar(25) NOT NULL,
-  `vram` int(11) NOT NULL
+  `vram` int(11) NOT NULL,
+  `stok` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `vga`
+--
+
+INSERT INTO `vga` (`id`, `brand`, `nama`, `vram`, `stok`) VALUES
+(1, 'NVIDIA', 'RTX 2080Ti', 8, 5),
+(3, 'NVIDIA', 'RTX 3090', 12, 10),
+(4, 'AMD', 'RX 6600XT', 8, 10);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table ``
---
-ALTER TABLE ``
-  ADD PRIMARY KEY (`kode`);
-
---
 -- Indexes for table `processor`
 --
 ALTER TABLE `processor`
-  ADD PRIMARY KEY (`kode`);
-
---
--- Indexes for table ``
---
-ALTER TABLE ``
-  ADD PRIMARY KEY (`kode`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `ram`
 --
 ALTER TABLE `ram`
-  ADD PRIMARY KEY (`kode`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `storage`
 --
 ALTER TABLE `storage`
-  ADD PRIMARY KEY (`kode`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -175,41 +168,29 @@ ALTER TABLE `users`
 -- Indexes for table `vga`
 --
 ALTER TABLE `vga`
-  ADD PRIMARY KEY (`kode`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table ``
---
-ALTER TABLE ``
-  MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `processor`
 --
 ALTER TABLE `processor`
-  MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table ``
---
-ALTER TABLE ``
-  MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `ram`
 --
 ALTER TABLE `ram`
-  MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `storage`
 --
 ALTER TABLE `storage`
-  MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -221,7 +202,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `vga`
 --
 ALTER TABLE `vga`
-  MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
