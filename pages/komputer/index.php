@@ -48,11 +48,11 @@ if (isset($_POST['submit'])) {
     $id_storage = $_POST['id_storage'];
     $id_vga = $_POST['id_vga'];
 
-    $query = "SELECT id_karyawan, id_processor, id_ram, id_storage, id_vga FROM komputer WHERE id_karyawan = '$id_karyawan' AND id_processor = '$id_processor' AND id_ram = '$id_ram' AND id_storage = '$id_storage' AND id_vga = '$id_vga'";
+    $query = "SELECT id_karyawan FROM komputer WHERE id_karyawan = '$id_karyawan'";
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) > 0) {
-        $_SESSION['data'] = "sudah ada!";
+        $_SESSION['data'] = "sudah memiliki komputer!";
     } else {
         $sql = "INSERT INTO komputer (id, id_karyawan, id_processor, id_ram, id_storage, id_vga) VALUES ('$id', '$id_karyawan', '$id_processor', '$id_ram', '$id_storage', '$id_vga')";
 
@@ -132,13 +132,13 @@ mysqli_close($conn);
                     <h5>Master | Karyawan</h5>
                     <a href="../karyawan/">
                         <p class="opacity">Karyawan</p>
+                        <a href="../komputer/">
+                            <p class="opacity-100 aktif rounded-pill">Komputer</p>
+                        </a>
                     </a>
                 </div>
                 <div class="mx-4">
                     <h5>Transaksi</h5>
-                    <a href="../komputer/">
-                        <p class="opacity-100 aktif rounded-pill">Komputer</p>
-                    </a>
                     <a href="../barang/">
                         <p class="opacity">Barang</p>
                     </a>
@@ -156,44 +156,54 @@ mysqli_close($conn);
                         </div>
                         <div class="row my-3">
                             <div class="col">
-                                <label for="">Nama Karyawan</label>
-                                <select class="form-select" name="id_karyawan">
+                                <label for="karyawan">Karyawan</label>
+                                <input class="form-control" type="text" name="karyawan_input" id="karyawan_input" list="list_karyawan" required>
+                                <datalist id="list_karyawan">
                                     <?php while ($row = mysqli_fetch_assoc($result_karyawan)) { ?>
-                                        <option value="<?php echo $row['id']; ?>"><?php echo $row['nama']; ?></option>
+                                        <option value="<?= $row['nama']; ?>" data-id="<?= $row['id']; ?>"></option>
                                     <?php } ?>
-                                </select>
+                                </datalist>
+                                <input type="hidden" name="id_karyawan" id="id_karyawan">
                             </div>
                             <div class="col">
-                                <label for="">Processor</label>
-                                <select class="form-select" name="id_processor">
+                                <label for="processor">Processor</label>
+                                <input class="form-control" type="text" name="processor_input" id="processor_input" list="list_processor" required>
+                                <datalist id="list_processor">
                                     <?php while ($row = mysqli_fetch_assoc($result_processor)) { ?>
-                                        <option value="<?php echo $row['id']; ?>"><?php echo $row['nama']; ?></option>
+                                        <option value="<?= $row['nama']; ?>" data-id="<?= $row['id']; ?>"></option>
                                     <?php } ?>
-                                </select>
+                                </datalist>
+                                <input type="hidden" name="id_processor" id="id_processor">
                             </div>
                             <div class="col">
-                                <label for="">RAM</label>
-                                <select class="form-select" name="id_ram">
+                                <label for="ram">RAM</label>
+                                <input class="form-control" type="text" name="ram_input" id="ram_input" list="list_ram" required>
+                                <datalist id="list_ram">
                                     <?php while ($row = mysqli_fetch_assoc($result_ram)) { ?>
-                                        <option value="<?php echo $row['id']; ?>"><?php echo $row['kapasitas'] . ' GB' . ' ' . $row['tipe_memori']; ?></option>
+                                        <option value="<?= $row['kapasitas'] . ' GB ' . $row['tipe_memori']; ?>" data-id="<?= $row['id']; ?>"></option>
                                     <?php } ?>
-                                </select>
+                                </datalist>
+                                <input type="hidden" name="id_ram" id="id_ram">
                             </div>
                             <div class="col">
-                                <label for="">Storage</label>
-                                <select class="form-select" name="id_storage">
+                                <label for="storage">Storage</label>
+                                <input class="form-control" type="text" name="storage_input" id="storage_input" list="list_storage" required>
+                                <datalist id="list_storage">
                                     <?php while ($row = mysqli_fetch_assoc($result_storage)) { ?>
-                                        <option value="<?php echo $row['id']; ?>"><?php echo $row['tipe'] . ' ' . $row['kapasitas'] . ' GB'; ?></option>
+                                        <option value="<?= $row['tipe'] . ' ' . $row['kapasitas'] . ' GB'; ?>" data-id="<?= $row['id']; ?>"></option>
                                     <?php } ?>
-                                </select>
+                                </datalist>
+                                <input type="hidden" name="id_storage" id="id_storage">
                             </div>
                             <div class="col">
-                                <label for="">Graphics Card</label>
-                                <select class="form-select" name="id_vga">
+                                <label for="vga">Graphics Card</label>
+                                <input class="form-control" type="text" name="vga_input" id="vga_input" list="list_vga" required>
+                                <datalist id="list_vga">
                                     <?php while ($row = mysqli_fetch_assoc($result_vga)) { ?>
-                                        <option value="<?php echo $row['id']; ?>"><?php echo $row['brand'] . ' ' . $row['nama'] . ' ' . $row['vram'] . ' GB'; ?></option>
+                                        <option value="<?= $row['brand'] . ' ' . $row['nama'] . ' ' . $row['vram'] . ' GB '; ?>" data-id="<?= $row['id']; ?>"></option>
                                     <?php } ?>
-                                </select>
+                                </datalist>
+                                <input type="hidden" name="id_vga" id="id_vga">
                             </div>
                         </div>
                         <button class="btn ungu mb-3" name="submit">Tambah</button>
@@ -234,6 +244,8 @@ mysqli_close($conn);
         </div>
     </div>
     <script src="../src/js/sweetalert.js"></script>
+    <script src="../src/js/datalist.js"></script>
+
 </body>
 
 </html>

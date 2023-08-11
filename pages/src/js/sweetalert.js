@@ -61,4 +61,11 @@ if (data == "berhasil disimpan!" || data == "berhasil dihapus!") {
         confirmButtonColor: '#241468',
         text: 'Data' + ' ' + data,
     })
+} else if (data == "sudah memiliki komputer!") {
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        confirmButtonColor: '#241468',
+        text: 'Nama tersebut' + ' ' + data,
+    })
 }

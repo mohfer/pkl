@@ -69,12 +69,12 @@ $row = mysqli_query($conn, "SELECT * FROM vga ORDER BY nama DESC");
                     <a href="../karyawan/">
                         <p class="opacity">Karyawan</p>
                     </a>
-                </div>
-                <div class="mx-4">
-                    <h5>Transaksi</h5>
                     <a href="../komputer/">
                         <p class="opacity">Komputer</p>
                     </a>
+                </div>
+                <div class="mx-4">
+                    <h5>Transaksi</h5>
                     <a href="../barang/">
                         <p class="opacity">Barang</p>
                     </a>
