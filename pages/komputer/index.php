@@ -84,7 +84,7 @@ mysqli_close($conn);
     <?php include '../src/library/bootstrap.php' ?>
     <?php include '../src/library/datatables.php' ?>
     <?php include '../src/library/sweetalert.php' ?>
-    <title>Inventory Barang | VGA</title>
+    <title>Inventory Barang | Komputer</title>
 </head>
 
 <script>

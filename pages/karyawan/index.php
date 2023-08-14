@@ -20,7 +20,7 @@ $row = mysqli_query($conn, "SELECT * FROM karyawan ORDER BY nama ASC");
     <?php include '../src/library/bootstrap.php' ?>
     <?php include '../src/library/datatables.php' ?>
     <?php include '../src/library/sweetalert.php' ?>
-    <title>Inventory Barang | VGA</title>
+    <title>Inventory Barang | Karyawan</title>
 </head>
 
 <script>

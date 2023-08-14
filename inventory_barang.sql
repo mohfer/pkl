@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 08, 2023 at 07:04 AM
+-- Generation Time: Aug 11, 2023 at 09:32 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -24,6 +24,53 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `karyawan`
+--
+
+CREATE TABLE `karyawan` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(25) NOT NULL,
+  `nip` bigint(18) NOT NULL,
+  `jk` enum('Laki - Laki','Perempuan') NOT NULL,
+  `divisi` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `karyawan`
+--
+
+INSERT INTO `karyawan` (`id`, `nama`, `nip`, `jk`, `divisi`) VALUES
+(5, 'Erwin Susanto', 277969621569632609, 'Laki - Laki', 'Finance'),
+(6, 'Hikaru Nakamura', 76769464422237115, 'Laki - Laki', 'Creative'),
+(7, 'Magnus Carlsen', 472991073763115014, 'Laki - Laki', 'IT'),
+(8, 'Elizabeth Harmon', 76769464422237115, 'Perempuan', 'Operasional');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `komputer`
+--
+
+CREATE TABLE `komputer` (
+  `id` int(11) NOT NULL,
+  `id_karyawan` int(11) NOT NULL,
+  `id_processor` int(11) NOT NULL,
+  `id_ram` int(11) NOT NULL,
+  `id_storage` int(11) NOT NULL,
+  `id_vga` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `komputer`
+--
+
+INSERT INTO `komputer` (`id`, `id_karyawan`, `id_processor`, `id_ram`, `id_storage`, `id_vga`) VALUES
+(12, 5, 20, 42, 5, 5),
+(9, 8, 20, 42, 7, 5);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `processor`
 --
 
@@ -38,12 +85,13 @@ CREATE TABLE `processor` (
 --
 
 INSERT INTO `processor` (`id`, `nama`, `stok`) VALUES
-(6, 'Intel Core i5-12400', 10),
+(6, 'Intel Core i5-12400F', 10),
 (10, 'Intel Core i3-13100', 25),
 (17, 'Intel Core i3-12100', 20),
 (19, 'Intel Core i5-3470', 20),
 (20, 'Intel Core i7-13700', 2),
-(21, 'Intel Core i7-3770', 50);
+(21, 'Intel Core i7-3770', 50),
+(22, 'Intel Core i9-13900K', 5);
 
 -- --------------------------------------------------------
 
@@ -132,13 +180,29 @@ CREATE TABLE `vga` (
 --
 
 INSERT INTO `vga` (`id`, `brand`, `nama`, `vram`, `stok`) VALUES
-(1, 'NVIDIA', 'RTX 2080Ti', 8, 5),
-(3, 'NVIDIA', 'RTX 3090', 12, 10),
-(4, 'AMD', 'RX 6600XT', 8, 10);
+(5, 'NVIDIA', 'RTX 2080Ti', 16, 20),
+(6, 'NVIDIA', 'GTX 1660 Super', 6, 20);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `karyawan`
+--
+ALTER TABLE `karyawan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `komputer`
+--
+ALTER TABLE `komputer`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_karyawan` (`id_karyawan`,`id_processor`,`id_ram`,`id_storage`,`id_vga`),
+  ADD KEY `id_processor` (`id_processor`),
+  ADD KEY `id_ram` (`id_ram`),
+  ADD KEY `id_storage` (`id_storage`),
+  ADD KEY `id_vga` (`id_vga`);
 
 --
 -- Indexes for table `processor`
@@ -175,10 +239,22 @@ ALTER TABLE `vga`
 --
 
 --
+-- AUTO_INCREMENT for table `karyawan`
+--
+ALTER TABLE `karyawan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `komputer`
+--
+ALTER TABLE `komputer`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
 -- AUTO_INCREMENT for table `processor`
 --
 ALTER TABLE `processor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `ram`
@@ -202,7 +278,21 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `vga`
 --
 ALTER TABLE `vga`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `komputer`
+--
+ALTER TABLE `komputer`
+  ADD CONSTRAINT `komputer_ibfk_1` FOREIGN KEY (`id_karyawan`) REFERENCES `karyawan` (`id`),
+  ADD CONSTRAINT `komputer_ibfk_2` FOREIGN KEY (`id_processor`) REFERENCES `processor` (`id`),
+  ADD CONSTRAINT `komputer_ibfk_3` FOREIGN KEY (`id_ram`) REFERENCES `ram` (`id`),
+  ADD CONSTRAINT `komputer_ibfk_4` FOREIGN KEY (`id_storage`) REFERENCES `storage` (`id`),
+  ADD CONSTRAINT `komputer_ibfk_5` FOREIGN KEY (`id_vga`) REFERENCES `vga` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
