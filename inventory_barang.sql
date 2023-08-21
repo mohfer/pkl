@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 11, 2023 at 09:32 AM
+-- Generation Time: Aug 21, 2023 at 09:39 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -48,6 +48,31 @@ INSERT INTO `karyawan` (`id`, `nama`, `nip`, `jk`, `divisi`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `keluhan`
+--
+
+CREATE TABLE `keluhan` (
+  `id` int(11) NOT NULL,
+  `tanggal_masuk` varchar(25) NOT NULL,
+  `tanggal_proses` varchar(25) NOT NULL,
+  `tanggal_selesai` varchar(25) NOT NULL,
+  `id_karyawan` int(11) NOT NULL,
+  `keluhan` text NOT NULL,
+  `solusi` varchar(25) NOT NULL,
+  `biaya` int(11) NOT NULL,
+  `status` enum('0','Proses','Selesai') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `keluhan`
+--
+
+INSERT INTO `keluhan` (`id`, `tanggal_masuk`, `tanggal_proses`, `tanggal_selesai`, `id_karyawan`, `keluhan`, `solusi`, `biaya`, `status`) VALUES
+(40, '21 August 2023', '21 August 2023', '21 August 2023', 8, 'Loading Windows Lambat', 'Ganti Ke SSD 512 GB', 398000, 'Selesai');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `komputer`
 --
 
@@ -65,8 +90,9 @@ CREATE TABLE `komputer` (
 --
 
 INSERT INTO `komputer` (`id`, `id_karyawan`, `id_processor`, `id_ram`, `id_storage`, `id_vga`) VALUES
-(12, 5, 20, 42, 5, 5),
-(9, 8, 20, 42, 7, 5);
+(12, 5, 6, 42, 5, 6),
+(33, 6, 22, 41, 5, 6),
+(9, 8, 20, 42, 5, 7);
 
 -- --------------------------------------------------------
 
@@ -181,7 +207,8 @@ CREATE TABLE `vga` (
 
 INSERT INTO `vga` (`id`, `brand`, `nama`, `vram`, `stok`) VALUES
 (5, 'NVIDIA', 'RTX 2080Ti', 16, 20),
-(6, 'NVIDIA', 'GTX 1660 Super', 6, 20);
+(6, 'NVIDIA', 'GTX 1660 Super', 6, 20),
+(7, 'AMD', 'RX 6900XT', 16, 20);
 
 --
 -- Indexes for dumped tables
@@ -192,6 +219,13 @@ INSERT INTO `vga` (`id`, `brand`, `nama`, `vram`, `stok`) VALUES
 --
 ALTER TABLE `karyawan`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `keluhan`
+--
+ALTER TABLE `keluhan`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_karyawan` (`id_karyawan`);
 
 --
 -- Indexes for table `komputer`
@@ -245,16 +279,22 @@ ALTER TABLE `karyawan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `keluhan`
+--
+ALTER TABLE `keluhan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
+--
 -- AUTO_INCREMENT for table `komputer`
 --
 ALTER TABLE `komputer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `processor`
 --
 ALTER TABLE `processor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `ram`
@@ -278,11 +318,17 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `vga`
 --
 ALTER TABLE `vga`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `keluhan`
+--
+ALTER TABLE `keluhan`
+  ADD CONSTRAINT `keluhan_ibfk_1` FOREIGN KEY (`id_karyawan`) REFERENCES `karyawan` (`id`);
 
 --
 -- Constraints for table `komputer`

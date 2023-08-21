@@ -141,7 +141,7 @@ if (isset($_POST['submit'])) {
                                 <div class="col">
                                     <div class="mb-3">
                                         <label for="karyawan">Karyawan</label>
-                                        <input class="form-control" type="text" name="karyawan_input" id="karyawan_input" list="list_karyawan" value="<?= getKaryawan($conn, $d['id_karyawan']) ?>" required>
+                                        <input class="form-control" type="text" name="karyawan_input" id="karyawan_input" list="list_karyawan" value="<?= getKaryawan($conn, $d['id_karyawan']) ?>" autocomplete="off" required>
                                         <datalist id="list_karyawan">
                                             <?php while ($row = mysqli_fetch_assoc($result_karyawan)) { ?>
                                                 <option value="<?= $row['nama']; ?>" data-id="<?= $row['id']; ?>"></option>
@@ -151,7 +151,7 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="mb-3">
                                         <label for="processor">Processor</label>
-                                        <input class="form-control" type="text" name="processor_input" id="processor_input" list="list_processor" value="<?= getProcessor($conn, $d['id_processor']) ?>" required>
+                                        <input class="form-control" type="text" name="processor_input" id="processor_input" list="list_processor" value="<?= getProcessor($conn, $d['id_processor']) ?>" autocomplete="off" required>
                                         <datalist id="list_processor">
                                             <?php while ($row = mysqli_fetch_assoc($result_processor)) { ?>
                                                 <option value="<?= $row['nama']; ?>" data-id="<?= $row['id']; ?>"></option>
@@ -161,7 +161,7 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="mb-3">
                                         <label for="ram">RAM</label>
-                                        <input class="form-control" type="text" name="ram_input" id="ram_input" list="list_ram" value="<?= getRam($conn, $d['id_ram']) ?>" required>
+                                        <input class="form-control" type="text" name="ram_input" id="ram_input" list="list_ram" value="<?= getRam($conn, $d['id_ram']) ?>" autocomplete="off" required>
                                         <datalist id="list_ram">
                                             <?php while ($row = mysqli_fetch_assoc($result_ram)) { ?>
                                                 <option value="<?= $row['kapasitas'] . ' GB ' . $row['tipe_memori']; ?>" data-id="<?= $row['id']; ?>"></option>
@@ -171,7 +171,7 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="mb-3">
                                         <label for="storage">Storage</label>
-                                        <input class="form-control" type="text" name="storage_input" id="storage_input" list="list_storage" value="<?= getStorage($conn, $d['id_storage']) ?>" required>
+                                        <input class="form-control" type="text" name="storage_input" id="storage_input" list="list_storage" value="<?= getStorage($conn, $d['id_storage']) ?>" autocomplete="off" required>
                                         <datalist id="list_storage">
                                             <?php while ($row = mysqli_fetch_assoc($result_storage)) { ?>
                                                 <option value="<?= $row['tipe'] . ' ' . $row['kapasitas'] . ' GB'; ?>" data-id="<?= $row['id']; ?>"></option>
@@ -181,7 +181,7 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="mb-3">
                                         <label for="vga">Graphics Card</label>
-                                        <input class="form-control" type="text" name="vga_input" id="vga_input" list="list_vga" value="<?= getVga($conn, $d['id_vga']) ?>" required>
+                                        <input class="form-control" type="text" name="vga_input" id="vga_input" list="list_vga" value="<?= getVga($conn, $d['id_vga']) ?>" autocomplete="off" required>
                                         <datalist id="list_vga">
                                             <?php while ($row = mysqli_fetch_assoc($result_vga)) { ?>
                                                 <option value="<?= $row['brand'] . ' ' . $row['nama'] . ' ' . $row['vram'] . ' GB '; ?>" data-id="<?= $row['id']; ?>"></option>

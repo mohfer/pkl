@@ -1,3 +1,4 @@
+// Fungsi untuk mengisi nilai input tersembunyi saat opsi datalist dipilih
 function setupDataList(inputId, dataListId, hiddenInputId) {
     const input = document.getElementById(inputId);
     const dataList = document.getElementById(dataListId);
@@ -11,6 +12,12 @@ function setupDataList(inputId, dataListId, hiddenInputId) {
             hiddenInput.value = '';
         }
     });
+
+    // Fungsi ini juga perlu dipanggil saat halaman dimuat untuk pertama kali
+    const initialSelectedOption = dataList.querySelector(`option[value="${input.value}"]`);
+    if (initialSelectedOption) {
+        hiddenInput.value = initialSelectedOption.getAttribute('data-id');
+    }
 }
 
 // Panggil fungsi setupDataList untuk setiap elemen input
@@ -19,4 +26,4 @@ setupDataList('processor_input', 'list_processor', 'id_processor');
 setupDataList('ram_input', 'list_ram', 'id_ram');
 setupDataList('storage_input', 'list_storage', 'id_storage');
 setupDataList('vga_input', 'list_vga', 'id_vga');
-// Dan seterusnya untuk elemen-elemen lainnya
+    // Dan seterusnya untuk elemen-elemen lainnya
