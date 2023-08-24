@@ -213,6 +213,8 @@ if (isset($_POST['selesai'])) {
                                     <div class="col mt-3">
                                         <?php if ($result = mysqli_fetch_array($result_join)) : ?>
                                             <p class="fs-3 fw-bold">Spesifikasi Komputer Karyawan</p>
+                                            <span>ID Komputer : <?= $result['id'] ?></span>
+                                            <br>
                                             <span>Processor : <?= $result['nama_processor'] ?></span>
                                             <br>
                                             <span>RAM : <?= $result['kapasitas_ram'] . " GB " . $result['tipe_ram'] ?></span>
@@ -220,6 +222,10 @@ if (isset($_POST['selesai'])) {
                                             <span>Storage : <?= $result['tipe_storage'] . " " . $result['kapasitas_storage'] . " GB " ?></span>
                                             <br>
                                             <span>Graphics Card : <?= $result['brand_vga'] . " " . $result['nama_vga'] . " " . $result['vram_vga'] . " GB " ?></span>
+                                            <br>
+                                        <?php else : ?>
+                                            <p class="fs-3 fw-bold">Spesifikasi Komputer Karyawan</p>
+                                            <span>Karyawan Tersebut Belum Memiliki Komputer</span>
                                             <br>
                                         <?php endif; ?>
                                         <?php if ($status == "0") : ?>
@@ -265,6 +271,8 @@ if (isset($_POST['selesai'])) {
                                     <div class="col mt-3">
                                         <?php if ($result = mysqli_fetch_array($result_join)) : ?>
                                             <p class="fs-3 fw-bold">Spesifikasi Komputer Karyawan</p>
+                                            <span>ID Komputer : <?= $result['id'] ?></span>
+                                            <br>
                                             <span>Processor : <?= $result['nama_processor'] ?></span>
                                             <br>
                                             <span>RAM : <?= $result['kapasitas_ram'] . " GB " . $result['tipe_ram'] ?></span>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2023 at 09:39 AM
+-- Generation Time: Aug 24, 2023 at 11:19 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `inventory_barang`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `barang`
+--
+
+CREATE TABLE `barang` (
+  `id` int(11) NOT NULL,
+  `tanggal` varchar(25) NOT NULL,
+  `komponen` varchar(25) NOT NULL,
+  `nama_komponen` varchar(25) NOT NULL,
+  `jumlah` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `barang`
+--
+
+INSERT INTO `barang` (`id`, `tanggal`, `komponen`, `nama_komponen`, `jumlah`) VALUES
+(41, '24 August 2023', 'Processor', 'Intel Core i9-13900K', ' + 20 ');
 
 -- --------------------------------------------------------
 
@@ -63,13 +84,6 @@ CREATE TABLE `keluhan` (
   `status` enum('0','Proses','Selesai') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `keluhan`
---
-
-INSERT INTO `keluhan` (`id`, `tanggal_masuk`, `tanggal_proses`, `tanggal_selesai`, `id_karyawan`, `keluhan`, `solusi`, `biaya`, `status`) VALUES
-(40, '21 August 2023', '21 August 2023', '21 August 2023', 8, 'Loading Windows Lambat', 'Ganti Ke SSD 512 GB', 398000, 'Selesai');
-
 -- --------------------------------------------------------
 
 --
@@ -90,9 +104,9 @@ CREATE TABLE `komputer` (
 --
 
 INSERT INTO `komputer` (`id`, `id_karyawan`, `id_processor`, `id_ram`, `id_storage`, `id_vga`) VALUES
-(12, 5, 6, 42, 5, 6),
-(33, 6, 22, 41, 5, 6),
-(9, 8, 20, 42, 5, 7);
+(36, 5, 6, 41, 9, 6),
+(38, 6, 20, 42, 5, 7),
+(34, 8, 20, 41, 5, 5);
 
 -- --------------------------------------------------------
 
@@ -115,9 +129,9 @@ INSERT INTO `processor` (`id`, `nama`, `stok`) VALUES
 (10, 'Intel Core i3-13100', 25),
 (17, 'Intel Core i3-12100', 20),
 (19, 'Intel Core i5-3470', 20),
-(20, 'Intel Core i7-13700', 2),
-(21, 'Intel Core i7-3770', 50),
-(22, 'Intel Core i9-13900K', 5);
+(20, 'Intel Core i7-13700', 10),
+(21, 'Intel Core i7-3770', 10),
+(22, 'Intel Core i9-13900K', 50);
 
 -- --------------------------------------------------------
 
@@ -137,11 +151,11 @@ CREATE TABLE `ram` (
 --
 
 INSERT INTO `ram` (`id`, `tipe_memori`, `kapasitas`, `stok`) VALUES
-(37, 'DDR2', '2', 100),
+(22, 'DDR2', '2', 100),
 (39, 'DDR3', '4', 50),
-(40, 'DDR3', '8', 20),
+(40, 'DDR3', '8', 25),
 (41, 'DDR4', '8', 10),
-(42, 'DDR5', '16', 5),
+(42, 'DDR5', '16', 30),
 (43, 'DDR2', '1', 100);
 
 -- --------------------------------------------------------
@@ -163,7 +177,7 @@ CREATE TABLE `storage` (
 
 INSERT INTO `storage` (`id`, `tipe`, `kapasitas`, `stok`) VALUES
 (5, 'SSD', 512, 50),
-(7, 'HDD', 1024, 200),
+(7, 'HDD', 1024, 100),
 (9, 'SSD', 256, 100),
 (10, 'SSD', 128, 100);
 
@@ -206,13 +220,21 @@ CREATE TABLE `vga` (
 --
 
 INSERT INTO `vga` (`id`, `brand`, `nama`, `vram`, `stok`) VALUES
-(5, 'NVIDIA', 'RTX 2080Ti', 16, 20),
+(5, 'NVIDIA', 'RTX 2080Ti', 16, 40),
 (6, 'NVIDIA', 'GTX 1660 Super', 6, 20),
-(7, 'AMD', 'RX 6900XT', 16, 20);
+(7, 'AMD', 'RX 6900XT', 16, 0);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `barang`
+--
+ALTER TABLE `barang`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_komponen` (`nama_komponen`),
+  ADD KEY `id_komponen_2` (`nama_komponen`);
 
 --
 -- Indexes for table `karyawan`
@@ -273,6 +295,12 @@ ALTER TABLE `vga`
 --
 
 --
+-- AUTO_INCREMENT for table `barang`
+--
+ALTER TABLE `barang`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
+--
 -- AUTO_INCREMENT for table `karyawan`
 --
 ALTER TABLE `karyawan`
@@ -282,13 +310,13 @@ ALTER TABLE `karyawan`
 -- AUTO_INCREMENT for table `keluhan`
 --
 ALTER TABLE `keluhan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `komputer`
 --
 ALTER TABLE `komputer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `processor`

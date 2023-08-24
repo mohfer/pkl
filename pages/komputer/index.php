@@ -212,6 +212,7 @@ mysqli_close($conn);
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
+                                <th scope="col">ID</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">Processor</th>
                                 <th scope="col">RAM</th>
@@ -225,6 +226,7 @@ mysqli_close($conn);
                             <?php while ($result = mysqli_fetch_array($result_join)) : ?>
                                 <tr>
                                     <th scope="row"><?= $no++ ?></th>
+                                    <td><?= $result["id"] ?></td>
                                     <td><?= $result["nama_karyawan"] ?></td>
                                     <td><?= $result["nama_processor"] ?></td>
                                     <td><?= $result["kapasitas_ram"] . ' GB ' . $result['tipe_ram'] ?></td>

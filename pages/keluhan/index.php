@@ -17,7 +17,7 @@ $query_join = "SELECT
     k.status AS status
 FROM keluhan k
 JOIN karyawan ON k.id_karyawan = karyawan.id WHERE status = '0'
-ORDER BY karyawan.nama ASC";
+ORDER BY k.tanggal_masuk ASC";
 
 $result_join = mysqli_query($conn, $query_join);
 
@@ -32,7 +32,7 @@ $query_join_proses = "SELECT
     k.status AS status
 FROM keluhan k
 JOIN karyawan ON k.id_karyawan = karyawan.id WHERE status = 'Proses'
-ORDER BY karyawan.nama ASC";
+ORDER BY k.tanggal_proses ASC";
 
 $result_join_proses = mysqli_query($conn, $query_join_proses);
 
@@ -48,7 +48,7 @@ $query_join_selesai = "SELECT
     k.status AS status
 FROM keluhan k
 JOIN karyawan ON k.id_karyawan = karyawan.id WHERE status = 'Selesai'
-ORDER BY karyawan.nama ASC";
+ORDER BY k.tanggal_selesai ASC";
 
 $result_join_selesai = mysqli_query($conn, $query_join_selesai);
 
@@ -135,7 +135,7 @@ $result_join_selesai = mysqli_query($conn, $query_join_selesai);
                 <div class="wrapper shadow p-3 my-3 left">
                     <h1>Keluhan | Status</h1>
                     <nav class="my-3">
-                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <ul class="nav nav-pills mb-3 gap-2" id="pills-tab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">0</button>
                             </li>
@@ -232,7 +232,7 @@ $result_join_selesai = mysqli_query($conn, $query_join_selesai);
                                                 <td><?= $result["biaya"] ?></td>
                                                 <td>
                                                     <div class="text-center">
-                                                        <a href="update.php?id=<?= $result['id'] ?>" class="btn btn-warning">Edit</a> | <a href="delete.php?id=<?= $result['id'] ?>" id="btn-del" class="btn btn-danger">Hapus</a>
+                                                        <a href="update.php?id=<?= $result['id'] ?>" class="btn btn-warning">Detail</a> | <a href="delete.php?id=<?= $result['id'] ?>" id="btn-del" class="btn btn-danger">Hapus</a>
                                                     </div>
                                                 </td>
                                             </tr>

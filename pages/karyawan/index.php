@@ -90,6 +90,7 @@ $row = mysqli_query($conn, "SELECT * FROM karyawan ORDER BY nama ASC");
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
+                                <th scope="col">ID</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">NIP</th>
                                 <th scope="col">Jenis Kelamin</th>
@@ -102,6 +103,7 @@ $row = mysqli_query($conn, "SELECT * FROM karyawan ORDER BY nama ASC");
                             <?php while ($result = mysqli_fetch_array($row)) : ?>
                                 <tr>
                                     <th scope="row"><?= $no++ ?></th>
+                                    <td><?= $result["id"] ?></td>
                                     <td><?= $result["nama"] ?></td>
                                     <td><?= $result["nip"] ?></td>
                                     <td><?= $result["jk"] ?></td>

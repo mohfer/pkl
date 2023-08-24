@@ -90,6 +90,7 @@ $row = mysqli_query($conn, "SELECT * FROM ram ORDER BY tipe_memori DESC");
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
+                                <th scope="col">ID</th>
                                 <th scope="col">Tipe Memory (DDR)</th>
                                 <th scope="col">Kapasitas (GB)</th>
                                 <th scope="col">Stok</th>
@@ -101,6 +102,7 @@ $row = mysqli_query($conn, "SELECT * FROM ram ORDER BY tipe_memori DESC");
                             <?php while ($result = mysqli_fetch_array($row)) : ?>
                                 <tr>
                                     <th scope="row"><?= $no++ ?></th>
+                                    <td><?= $result["id"] ?></td>
                                     <td><?= $result["tipe_memori"] ?></td>
                                     <td><?= $result["kapasitas"] ?></td>
                                     <td><?= $result["stok"] ?></td>

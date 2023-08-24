@@ -90,6 +90,7 @@ $row = mysqli_query($conn, "SELECT * FROM vga ORDER BY nama DESC");
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
+                                <th scope="col">ID</th>
                                 <th scope="col">Brand</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">VRAM (GB)</th>
@@ -102,6 +103,7 @@ $row = mysqli_query($conn, "SELECT * FROM vga ORDER BY nama DESC");
                             <?php while ($result = mysqli_fetch_array($row)) : ?>
                                 <tr>
                                     <th scope="row"><?= $no++ ?></th>
+                                    <td><?= $result["id"] ?></td>
                                     <td><?= $result["brand"] ?></td>
                                     <td><?= $result["nama"] ?></td>
                                     <td><?= $result["vram"] ?></td>
