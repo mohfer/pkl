@@ -32,7 +32,8 @@ WHERE kel.id = $id
 ORDER BY karyawan.nama ASC";
 
 $result_join = mysqli_query($conn, $query_join);
-$tanggal = date("j F Y");
+date_default_timezone_set('Asia/Jakarta');
+$tanggal = date('l, d F Y, h:i:s A');
 
 $query_status = "SELECT status FROM keluhan WHERE id = $id";
 $result_status = mysqli_query($conn, $query_status);
@@ -62,9 +63,8 @@ if (isset($_POST['submit'])) {
 
 if (isset($_POST['proses'])) {
     $id = $_GET['id'];
-    $solusi = $_POST['solusi'];
 
-    $sql = "UPDATE keluhan SET tanggal_proses = '$tanggal', solusi = '$solusi', status = 'Proses' WHERE id = '$id'";
+    $sql = "UPDATE keluhan SET tanggal_proses = '$tanggal', status = 'Proses' WHERE id = '$id'";
 
     if (mysqli_query($conn, $sql)) {
         $_SESSION['data'] = "berhasil disimpan!";
@@ -77,8 +77,10 @@ if (isset($_POST['proses'])) {
 
 if (isset($_POST['selesai'])) {
     $id = $_GET['id'];
+    $solusi = $_POST['solusi'];
+    $biaya = $_POST['biaya'];
 
-    $sql = "UPDATE keluhan SET tanggal_selesai = '$tanggal', status = 'Selesai' WHERE id = '$id'";
+    $sql = "UPDATE keluhan SET tanggal_selesai = '$tanggal', solusi = '$solusi', biaya = '$biaya', status = 'Selesai' WHERE id = '$id'";
 
     if (mysqli_query($conn, $sql)) {
         $_SESSION['data'] = "berhasil disimpan!";

@@ -120,7 +120,7 @@ mysqli_close($conn);
                                 <button class="nav-link" id="pills-ram-tab" data-bs-toggle="pill" data-bs-target="#pills-ram" type="button" role="tab" aria-controls="pills-ram" aria-selected="false">RAM</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-storage-tab" data-bs-toggle="pill" data-bs-target="#pills-storage" type="button" role="tab" aria-controls="pills-storage" aria-selected="false">storage</button>
+                                <button class="nav-link" id="pills-storage-tab" data-bs-toggle="pill" data-bs-target="#pills-storage" type="button" role="tab" aria-controls="pills-storage" aria-selected="false">Storage</button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="pills-vga-tab" data-bs-toggle="pill" data-bs-target="#pills-vga" type="button" role="tab" aria-controls="pills-vga" aria-selected="false">Graphics Card</button>
@@ -154,7 +154,7 @@ mysqli_close($conn);
                                                         <option value="<?= $row['nama']; ?>" data-id="<?= $row['id']; ?>"></option>
                                                     <?php } ?>
                                                 </datalist>
-                                                <input type="hidden" name="id_processor" id="id_processor">
+                                                <input type="text" name="id_processor" id="id_processor">
                                                 <input type="hidden" name="nama_processor" id="nama_processor">
                                             </div>
                                             <div class="col">
@@ -163,11 +163,15 @@ mysqli_close($conn);
                                             </div>
                                             <div class="col">
                                                 <label for="jumlah">Jumlah</label>
-                                                <input type="text" class="form-control" name="jumlah" id="" autocomplete="off" required>
+                                                <input type="number" class="form-control" name="jumlah" id="" autocomplete="off" required>
+                                            </div>
+                                            <div class="col">
+                                                <label for="perusahaan">Dari/Untuk</label>
+                                                <input type="text" class="form-control" name="perusahaan" id="" autocomplete="off" required>
                                             </div>
                                         </div>
-                                        <button class="btn ungu my-3" name="tambahProcessor">Tambah</button>
-                                        <button class="btn btn-danger my-3" name="kurangProcessor">Kurang</button>
+                                        <button class="btn ungu my-3" name="tambahProcessor">Masuk</button>
+                                        <button class="btn btn-danger my-3" name="kurangProcessor">Keluar</button>
                                     </form>
                                 </div>
                             </div>
@@ -195,11 +199,15 @@ mysqli_close($conn);
                                             </div>
                                             <div class="col">
                                                 <label for="jumlah">Jumlah</label>
-                                                <input type="text" class="form-control" name="jumlah" id="" autocomplete="off" required>
+                                                <input type="number" class="form-control" name="jumlah" id="" autocomplete="off" required>
+                                            </div>
+                                            <div class="col">
+                                                <label for="perusahaan">Dari/Untuk</label>
+                                                <input type="text" class="form-control" name="perusahaan" id="" autocomplete="off" required>
                                             </div>
                                         </div>
-                                        <button class="btn ungu my-3" name="tambahRAM">Tambah</button>
-                                        <button class="btn btn-danger my-3" name="kurangRAM">Kurang</button>
+                                        <button class="btn ungu my-3" name="tambahRAM">Masuk</button>
+                                        <button class="btn btn-danger my-3" name="kurangRAM">Keluar</button>
                                     </form>
                                 </div>
                             </div>
@@ -227,11 +235,15 @@ mysqli_close($conn);
                                             </div>
                                             <div class="col">
                                                 <label for="jumlah">Jumlah</label>
-                                                <input type="text" class="form-control" name="jumlah" id="" autocomplete="off" required>
+                                                <input type="number" class="form-control" name="jumlah" id="" autocomplete="off" required>
+                                            </div>
+                                            <div class="col">
+                                                <label for="perusahaan">Dari/Untuk</label>
+                                                <input type="text" class="form-control" name="perusahaan" id="" autocomplete="off" required>
                                             </div>
                                         </div>
-                                        <button class="btn ungu my-3" name="tambahStorage">Tambah</button>
-                                        <button class="btn btn-danger my-3" name="kurangStorage">Kurang</button>
+                                        <button class="btn ungu my-3" name="tambahStorage">Masuk</button>
+                                        <button class="btn btn-danger my-3" name="kurangStorage">Keluar</button>
                                     </form>
                                 </div>
                             </div>
@@ -259,11 +271,15 @@ mysqli_close($conn);
                                             </div>
                                             <div class="col">
                                                 <label for="jumlah">Jumlah</label>
-                                                <input type="text" class="form-control" name="jumlah" id="" autocomplete="off" required>
+                                                <input type="number" class="form-control" name="jumlah" id="" autocomplete="off" required>
+                                            </div>
+                                            <div class="col">
+                                                <label for="perusahaan">Dari/Untuk</label>
+                                                <input type="text" class="form-control" name="perusahaan" id="" autocomplete="off" required>
                                             </div>
                                         </div>
-                                        <button class="btn ungu my-3" name="tambahVga">Tambah</button>
-                                        <button class="btn btn-danger my-3" name="kurangVga">Kurang</button>
+                                        <button class="btn ungu my-3" name="tambahVga">Masuk</button>
+                                        <button class="btn btn-danger my-3" name="kurangVga">Keluar</button>
                                     </form>
                                 </div>
                             </div>
@@ -277,6 +293,8 @@ mysqli_close($conn);
                                 <th scope="col">Komponen</th>
                                 <th scope="col">Nama Barang</th>
                                 <th scope="col">Jumlah</th>
+                                <th scope="col">Dari/Untuk</th>
+                                <th class="text-center" scope="col">Status</th>
                                 <th scope="col" class="text-center">Aksi</th>
                             </tr>
                         </thead>
@@ -289,6 +307,10 @@ mysqli_close($conn);
                                     <td><?= $result["komponen"] ?></td>
                                     <td><?= $result["nama_komponen"] ?></td>
                                     <td><?= $result['jumlah'] ?></td>
+                                    <td><?= $result['perusahaan'] ?></td>
+                                    <td class="<?php echo ($result['status'] === 'Masuk') ? 'bg-success text-light text-center' : 'bg-danger text-light text-center'; ?>">
+                                        <?php echo $result['status']; ?>
+                                    </td>
                                     <td>
                                         <div class="text-center">
                                             <a href="delete.php?id=<?= $result['id'] ?>" id="btn-del" class="btn btn-danger">Hapus</a>

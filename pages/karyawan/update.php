@@ -120,6 +120,9 @@ if (isset($_POST['submit'])) {
                                             <option value="Creative">Creative</option>
                                             <option value="Operasional">Operasional</option>
                                             <option value="IT">IT</option>
+                                            <option value="Administration">Administration</option>
+                                            <option value="Engineering">Engineering</option>
+                                            <option value="DL Drawing">DL Drawing</option>
                                         </select>
                                     </div>
                                 </div>

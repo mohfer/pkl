@@ -15,7 +15,8 @@ JOIN karyawan ON k.id_karyawan = karyawan.id
 ORDER BY karyawan.nama ASC";
 
 $result_join = mysqli_query($conn, $query_join);
-$tanggal = date("j F Y");
+date_default_timezone_set('Asia/Jakarta');
+$tanggal = date('l, d F Y, h:i:s A');
 
 if (isset($_POST['submit'])) {
     $id = $_POST['id'];
