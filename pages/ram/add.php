@@ -109,7 +109,7 @@ if (isset($_POST['submit'])) {
                                 </div>
                                 <div class="mb-3">
                                     <label for="tipe_memori">Tipe Memori (DDR)</label>
-                                    <select id="tipe_memori" class="form-select" name="tipe_memori" required>
+                                    <select id="tipe_memori" class="form-select" name="tipe_memori" required autocomplete="off">
                                         <option value="DDR2">DDR2</option>
                                         <option value="DDR3">DDR3</option>
                                         <option value="DDR4">DDR4</option>
@@ -118,11 +118,11 @@ if (isset($_POST['submit'])) {
                                 </div>
                                 <div class="mb-3">
                                     <label for="kapasitas">Kapasitas (GB)</label>
-                                    <input type="number" id="kapasitas" name="kapasitas" class="form-control" placeholder="8" required>
+                                    <input type="number" id="kapasitas" name="kapasitas" class="form-control" placeholder="8" required autocomplete="off">
                                 </div>
                                 <div class="mb-3">
                                     <label for="stok">Stok</label>
-                                    <input type="number" id="stok" name="stok" class="form-control" placeholder="100" required>
+                                    <input type="number" id="stok" name="stok" class="form-control" placeholder="100" required autocomplete="off">
                                 </div>
                             </div>
                             <div class="col">

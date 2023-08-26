@@ -12,6 +12,15 @@ if (isset($_POST['submit'])) {
     $kapasitas = $_POST['kapasitas'];
     $stok = $_POST['stok'];
 
+    $sql_check_name = "SELECT id FROM ram WHERE tipe_memori = '$tipe_memori' AND kapasitas = '$kapasitas' AND id != '$id'";
+    $result = mysqli_query($conn, $sql_check_name);
+
+    if (mysqli_num_rows($result) > 0) {
+        $_SESSION['data'] = "sudah ada!";
+        header("Location: ../ram");
+        exit;
+    }
+
     $sql = "UPDATE ram SET  tipe_memori = '$tipe_memori', kapasitas = '$kapasitas', stok = '$stok' WHERE id = '$id'";
 
     if (mysqli_query($conn, $sql)) {
@@ -96,7 +105,7 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="mb-3">
                                         <label for="tipe_memori">Tipe Memori (DDR)</label>
-                                        <select id="tipe_memori" class="form-select mb-3" name="tipe_memori" required>
+                                        <select id="tipe_memori" class="form-select mb-3" name="tipe_memori" required autocomplete="off">
                                             <option selected><?= $d['tipe_memori'] ?></option>
                                             <option value="DDR2">DDR2</option>
                                             <option value="DDR3">DDR3</option>
@@ -106,11 +115,11 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="mb-3">
                                         <label for="kapasitas">Kapasitas (GB)</label>
-                                        <input type="number" id="kapasitas" name="kapasitas" class="form-control" placeholder="8" value="<?= $d['kapasitas'] ?>" required>
+                                        <input type="number" id="kapasitas" name="kapasitas" class="form-control" placeholder="8" value="<?= $d['kapasitas'] ?>" required autocomplete="off">
                                     </div>
                                     <div class="mb-3">
                                         <label for="stok">Stok</label>
-                                        <input type="number" id="stok" name="stok" class="form-control" placeholder="100" value="<?= $d['stok'] ?>" required>
+                                        <input type="number" id="stok" name="stok" class="form-control" placeholder="100" value="<?= $d['stok'] ?>" required autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col">

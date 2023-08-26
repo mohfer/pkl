@@ -111,22 +111,22 @@ if (isset($_POST['submit'])) {
                                 </div>
                                 <div class="mb-3">
                                     <label for="nama">Nama</label>
-                                    <input type="text" id="nama" name="nama" class="form-control" placeholder="Erwin Susanto" required>
+                                    <input type="text" id="nama" name="nama" class="form-control" placeholder="Erwin Susanto" required autocomplete="off">
                                 </div>
                                 <div class="mb-3">
                                     <label for="nip">NIP</label>
-                                    <input type="number" id="nip" name="nip" class="form-control" placeholder="164349612468052144" required>
+                                    <input type="number" id="nip" name="nip" class="form-control" placeholder="164349612468052144" required autocomplete="off">
                                 </div>
                                 <div class="mb-3">
                                     <label class="d-block mb-3">Jenis Kelamin</label>
-                                    <input class="form-check-input" type="radio" name="jk" id="laki_laki" value="Laki - Laki" required>
+                                    <input class="form-check-input" type="radio" name="jk" id="laki_laki" value="Laki - Laki" required autocomplete="off">
                                     <label class="form-check-label mx-2" for="laki_laki">Laki - Laki</label>
-                                    <input class="form-check-input" type="radio" name="jk" id="perempuan" value="Perempuan" required>
+                                    <input class="form-check-input" type="radio" name="jk" id="perempuan" value="Perempuan" required autocomplete="off">
                                     <label class="form-check-label mx-2" for="perempuan">Perempuan</label>
                                 </div>
                                 <div class="mb-3">
                                     <label for="divisi">Divisi</label>
-                                    <select id="divisi" class="form-select" name="divisi" required>
+                                    <select id="divisi" class="form-select" name="divisi" required autocomplete="off">
                                         <option value="Marketing">Marketing</option>
                                         <option value="HRD">HRD</option>
                                         <option value="Finance">Finance</option>

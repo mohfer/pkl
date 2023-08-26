@@ -1,6 +1,10 @@
 <?php
 
 session_start();
+
+include "../src/config/connect.php";
+include "../src/function/dashboardCount.php";
+
 if (!isset($_SESSION['username'])) {
     header("Location: /login.php");
 }
@@ -30,6 +34,7 @@ if (!isset($_SESSION['username'])) {
 </script>
 
 <body>
+    <?php include "../src/layouts/navbar.php" ?>
     <div class="wrapper">
         <div class="row vh-100">
             <div class="col-md-2 sidebar text-light">
@@ -79,32 +84,168 @@ if (!isset($_SESSION['username'])) {
                 </div>
             </div>
             <div class="col-md-10 content">
-                <div class="wrapper">
-                    <h2 class="mt-3">Dashboard</h2>
+                <div class="wrapper shadow p-3 my-3 left">
+                    <h1>Dashboard</h1>
                     <div class="row my-3">
                         <div class="col-md-6">
-                            <div class="transaksi-masuk p-4 shadow left">
-                                <div class="row">
-                                    <div class="col-md-10">
-                                        <h1>Jumlah Transaksi Masuk</h1>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <h1 class="text-success">200</h1>
+                            <a href="../barang/" class="text-dark">
+                                <div class="p-4 shadow hover rounded">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <p class="fs-2">Jumlah Transaksi Masuk</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <h1 class="text-ungu"><?= $tmasuk_result ?></h1>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="col-md-6">
-                            <div class="transaksi-keluar p-4 shadow left">
-                                <div class="row">
-                                    <div class="col-md-10">
-                                        <h1>Jumlah Transaksi Keluar</h1>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <h1 class="text-danger">200</h1>
+                            <a href="../barang/" class="text-dark">
+                                <div class="p-4 shadow hover rounded">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <p class="fs-2">Jumlah Transaksi Keluar</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <h1 class="text-ungu"><?= $tkeluar_result ?></h1>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-md-4">
+                            <a href="../keluhan/" class="text-dark">
+                                <div class="p-4 shadow hover rounded">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <p class="fs-3">Jumlah Keluhan Status "0"</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <h1 class="text-ungu"><?= $ks0_result ?></h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="../keluhan/" class="text-dark">
+                                <div class="p-4 shadow hover rounded">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <p class="fs-3">Jumlah Keluhan Status "Proses"</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <h1 class="text-ungu"><?= $ksp_result ?></h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="../keluhan/" class="text-dark">
+                                <div class="p-4 shadow hover rounded">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <p class="fs-3">Jumlah Keluhan Status "Selesai"</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <h1 class="text-ungu"><?= $kss_result ?></h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-md-3">
+                            <a href="../processor/" class="text-dark">
+                                <div class="p-4 shadow hover rounded">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <p class="fs-3">Jumlah Processor</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <h1 class="text-ungu"><?= $processor_result ?></h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="../ram/" class="text-dark">
+                                <div class="p-4 shadow hover rounded">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <p class="fs-3">Jumlah RAM</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <h1 class="text-ungu"><?= $ram_result ?></h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="../storage/" class="text-dark">
+                                <div class="p-4 shadow hover rounded">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <p class="fs-3">Jumlah Storage</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <h1 class="text-ungu"><?= $storage_result ?></h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="../vga/" class="text-dark">
+                                <div class="p-4 shadow hover rounded">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <p class="fs-3">Jumlah Graphics Card</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <h1 class="text-ungu"><?= $vga_result ?></h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-md-6">
+                            <a href="../karyawan/" class="text-dark">
+                                <div class="p-4 shadow hover rounded">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <p class="fs-2">Jumlah Karyawan</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <h1 class="text-ungu"><?= $karyawan_result ?></h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="../komputer/" class="text-dark">
+                                <div class="p-4 shadow hover rounded">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <p class="fs-2">Jumlah Komputer</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <h1 class="text-ungu"><?= $komputer_result ?></h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>

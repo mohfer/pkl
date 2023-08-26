@@ -1,7 +1,7 @@
 <?php
 
 date_default_timezone_set('Asia/Jakarta');
-$tanggal = date('l, d F Y, h:i:s A');
+$tanggal = date('l, d F Y, H:i:s') . " WIB";
 
 // Processor
 if (isset($_POST['tambahProcessor'])) {
@@ -11,21 +11,26 @@ if (isset($_POST['tambahProcessor'])) {
     $jumlah = $_POST['jumlah'];
     $perusahaan = $_POST['perusahaan'];
 
-    $sql_update_processor = "UPDATE processor SET stok = stok + '$jumlah' WHERE id = '$id_processor'";
+    if (empty($id_processor)) {
+        $_SESSION['data'] = "tidak ditemukan! tolong pilih data sesuai dengan datalist yang sudah ada!";
+    } else {
 
-    if (mysqli_query($conn, $sql_update_processor)) {
-        $sql_insert_barang = "INSERT INTO barang (id, tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
+        $sql_update_processor = "UPDATE processor SET stok = stok + '$jumlah' WHERE id = '$id_processor'";
+
+        if (mysqli_query($conn, $sql_update_processor)) {
+            $sql_insert_barang = "INSERT INTO barang (id, tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
         VALUES ('$id', '$tanggal', 'Processor', '$nama_processor', '$jumlah', '$perusahaan', 'Masuk')";
 
-        if (mysqli_query($conn, $sql_insert_barang)) {
-            $_SESSION['data'] = "berhasil disimpan!";
-            header("Location: ../barang");
-            exit;
+            if (mysqli_query($conn, $sql_insert_barang)) {
+                $_SESSION['data'] = "berhasil disimpan!";
+                header("Location: ../barang");
+                exit;
+            } else {
+                $_SESSION['data'] = "gagal disimpan!";
+            }
         } else {
             $_SESSION['data'] = "gagal disimpan!";
         }
-    } else {
-        $_SESSION['data'] = "gagal disimpan!";
     }
 }
 
@@ -37,27 +42,32 @@ if (isset($_POST['kurangProcessor'])) {
     $jumlah = $_POST['jumlah'];
     $perusahaan = $_POST['perusahaan'];
 
-    $sql_check_stok = "SELECT stok FROM processor WHERE id = '$id_processor'";
-    $result = mysqli_query($conn, $sql_check_stok);
+    if (empty($id_processor)) {
+        $_SESSION['data'] = "tidak ditemukan! tolong pilih data sesuai dengan datalist yang sudah ada!";
+    } else {
 
-    if ($result && mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $stok_processor = $row['stok'];
+        $sql_check_stok = "SELECT stok FROM processor WHERE id = '$id_processor'";
+        $result = mysqli_query($conn, $sql_check_stok);
 
-        if ($jumlah <= $stok_processor) {
-            $sql_update_processor = "UPDATE processor SET stok = stok - '$jumlah' WHERE id = '$id_processor'";
-            $sql_insert_barang = "INSERT INTO barang (id, tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
+        if ($result && mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            $stok_processor = $row['stok'];
+
+            if ($jumlah <= $stok_processor) {
+                $sql_update_processor = "UPDATE processor SET stok = stok - '$jumlah' WHERE id = '$id_processor'";
+                $sql_insert_barang = "INSERT INTO barang (id, tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
             VALUES ('$id', '$tanggal', 'Processor', '$nama_processor', '$jumlah', '$perusahaan', 'Keluar')";
 
-            if (mysqli_query($conn, $sql_update_processor) && mysqli_query($conn, $sql_insert_barang)) {
-                $_SESSION['data'] = "berhasil disimpan!";
-                header("Location: ../barang");
-                exit;
+                if (mysqli_query($conn, $sql_update_processor) && mysqli_query($conn, $sql_insert_barang)) {
+                    $_SESSION['data'] = "berhasil disimpan!";
+                    header("Location: ../barang");
+                    exit;
+                } else {
+                    $_SESSION['data'] = "gagal disimpan!";
+                }
             } else {
-                $_SESSION['data'] = "gagal disimpan!";
+                $_SESSION['data'] = "jumlah melebihi stok yang tersedia!";
             }
-        } else {
-            $_SESSION['data'] = "jumlah melebihi stok yang tersedia!";
         }
     }
 }
@@ -71,21 +81,26 @@ if (isset($_POST['tambahRAM'])) {
     $jumlah = $_POST['jumlah'];
     $perusahaan = $_POST['perusahaan'];
 
-    $sql_update_ram = "UPDATE ram SET stok = stok + '$jumlah' WHERE id = '$id_ram'";
+    if (empty($id_ram)) {
+        $_SESSION['data'] = "tidak ditemukan! tolong pilih data sesuai dengan datalist yang sudah ada!";
+    } else {
 
-    if (mysqli_query($conn, $sql_update_ram)) {
-        $sql_insert_barang = "INSERT INTO barang (id, tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
+        $sql_update_ram = "UPDATE ram SET stok = stok + '$jumlah' WHERE id = '$id_ram'";
+
+        if (mysqli_query($conn, $sql_update_ram)) {
+            $sql_insert_barang = "INSERT INTO barang (id, tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
         VALUES ('$id', '$tanggal', 'RAM', '$nama_ram', '$jumlah', '$perusahaan', 'Masuk')";
 
-        if (mysqli_query($conn, $sql_insert_barang)) {
-            $_SESSION['data'] = "berhasil disimpan!";
-            header("Location: ../barang");
-            exit;
+            if (mysqli_query($conn, $sql_insert_barang)) {
+                $_SESSION['data'] = "berhasil disimpan!";
+                header("Location: ../barang");
+                exit;
+            } else {
+                $_SESSION['data'] = "gagal disimpan!";
+            }
         } else {
             $_SESSION['data'] = "gagal disimpan!";
         }
-    } else {
-        $_SESSION['data'] = "gagal disimpan!";
     }
 }
 
@@ -96,27 +111,32 @@ if (isset($_POST['kurangRAM'])) {
     $jumlah = $_POST['jumlah'];
     $perusahaan = $_POST['perusahaan'];
 
-    $sql_check_stok = "SELECT stok FROM ram WHERE id = '$id_ram'";
-    $result = mysqli_query($conn, $sql_check_stok);
+    if (empty($id_ram)) {
+        $_SESSION['data'] = "tidak ditemukan! tolong pilih data sesuai dengan datalist yang sudah ada!";
+    } else {
 
-    if ($result && mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $stok_ram = $row['stok'];
+        $sql_check_stok = "SELECT stok FROM ram WHERE id = '$id_ram'";
+        $result = mysqli_query($conn, $sql_check_stok);
 
-        if ($jumlah <= $stok_ram) {
-            $sql_update_ram = "UPDATE ram SET stok = stok - '$jumlah' WHERE id = '$id_ram'";
-            $sql_insert_barang = "INSERT INTO barang (id, tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
+        if ($result && mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            $stok_ram = $row['stok'];
+
+            if ($jumlah <= $stok_ram) {
+                $sql_update_ram = "UPDATE ram SET stok = stok - '$jumlah' WHERE id = '$id_ram'";
+                $sql_insert_barang = "INSERT INTO barang (id, tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
             VALUES ('$id', '$tanggal', 'RAM', '$nama_ram', '$jumlah', '$perusahaan', 'Keluar')";
 
-            if (mysqli_query($conn, $sql_update_ram) && mysqli_query($conn, $sql_insert_barang)) {
-                $_SESSION['data'] = "berhasil disimpan!";
-                header("Location: ../barang");
-                exit;
+                if (mysqli_query($conn, $sql_update_ram) && mysqli_query($conn, $sql_insert_barang)) {
+                    $_SESSION['data'] = "berhasil disimpan!";
+                    header("Location: ../barang");
+                    exit;
+                } else {
+                    $_SESSION['data'] = "gagal disimpan!";
+                }
             } else {
-                $_SESSION['data'] = "gagal disimpan!";
+                $_SESSION['data'] = "jumlah melebihi stok yang tersedia!";
             }
-        } else {
-            $_SESSION['data'] = "jumlah melebihi stok yang tersedia!";
         }
     }
 }
@@ -129,21 +149,26 @@ if (isset($_POST['tambahStorage'])) {
     $jumlah = $_POST['jumlah'];
     $perusahaan = $_POST['perusahaan'];
 
-    $sql_update_storage = "UPDATE storage SET stok = stok + '$jumlah' WHERE id = '$id_storage'";
+    if (empty($id_storage)) {
+        $_SESSION['data'] = "tidak ditemukan! tolong pilih data sesuai dengan datalist yang sudah ada!";
+    } else {
 
-    if (mysqli_query($conn, $sql_update_storage)) {
-        $sql_insert_barang = "INSERT INTO barang (id, tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
+        $sql_update_storage = "UPDATE storage SET stok = stok + '$jumlah' WHERE id = '$id_storage'";
+
+        if (mysqli_query($conn, $sql_update_storage)) {
+            $sql_insert_barang = "INSERT INTO barang (id, tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
         VALUES ('$id', '$tanggal', 'Storage', '$nama_storage', '$jumlah', '$perusahaan', 'Masuk')";
 
-        if (mysqli_query($conn, $sql_insert_barang)) {
-            $_SESSION['data'] = "berhasil disimpan!";
-            header("Location: ../barang");
-            exit;
+            if (mysqli_query($conn, $sql_insert_barang)) {
+                $_SESSION['data'] = "berhasil disimpan!";
+                header("Location: ../barang");
+                exit;
+            } else {
+                $_SESSION['data'] = "gagal disimpan!";
+            }
         } else {
             $_SESSION['data'] = "gagal disimpan!";
         }
-    } else {
-        $_SESSION['data'] = "gagal disimpan!";
     }
 }
 
@@ -154,27 +179,32 @@ if (isset($_POST['kurangStorage'])) {
     $jumlah = $_POST['jumlah'];
     $perusahaan = $_POST['perusahaan'];
 
-    $sql_check_stok = "SELECT stok FROM storage WHERE id = '$id_storage'";
-    $result = mysqli_query($conn, $sql_check_stok);
+    if (empty($id_storage)) {
+        $_SESSION['data'] = "tidak ditemukan! tolong pilih data sesuai dengan datalist yang sudah ada!";
+    } else {
 
-    if ($result && mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $stok_storage = $row['stok'];
+        $sql_check_stok = "SELECT stok FROM storage WHERE id = '$id_storage'";
+        $result = mysqli_query($conn, $sql_check_stok);
 
-        if ($jumlah <= $stok_storage) {
-            $sql_update_storage = "UPDATE storage SET stok = stok - '$jumlah' WHERE id = '$id_storage'";
-            $sql_insert_barang = "INSERT INTO barang (id, tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
+        if ($result && mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            $stok_storage = $row['stok'];
+
+            if ($jumlah <= $stok_storage) {
+                $sql_update_storage = "UPDATE storage SET stok = stok - '$jumlah' WHERE id = '$id_storage'";
+                $sql_insert_barang = "INSERT INTO barang (id, tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
             VALUES ('$id', '$tanggal', 'Storage', '$nama_storage', '$jumlah', '$perusahaan', 'Keluar')";
 
-            if (mysqli_query($conn, $sql_update_storage) && mysqli_query($conn, $sql_insert_barang)) {
-                $_SESSION['data'] = "berhasil disimpan!";
-                header("Location: ../barang");
-                exit;
+                if (mysqli_query($conn, $sql_update_storage) && mysqli_query($conn, $sql_insert_barang)) {
+                    $_SESSION['data'] = "berhasil disimpan!";
+                    header("Location: ../barang");
+                    exit;
+                } else {
+                    $_SESSION['data'] = "gagal disimpan!";
+                }
             } else {
-                $_SESSION['data'] = "gagal disimpan!";
+                $_SESSION['data'] = "jumlah melebihi stok yang tersedia!";
             }
-        } else {
-            $_SESSION['data'] = "jumlah melebihi stok yang tersedia!";
         }
     }
 }
@@ -187,21 +217,26 @@ if (isset($_POST['tambahVga'])) {
     $jumlah = $_POST['jumlah'];
     $perusahaan = $_POST['perusahaan'];
 
-    $sql_update_vga = "UPDATE vga SET stok = stok + '$jumlah' WHERE id = '$id_vga'";
+    if (empty($id_vga)) {
+        $_SESSION['data'] = "tidak ditemukan! tolong pilih data sesuai dengan datalist yang sudah ada!";
+    } else {
 
-    if (mysqli_query($conn, $sql_update_vga)) {
-        $sql_insert_barang = "INSERT INTO barang (id, tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
+        $sql_update_vga = "UPDATE vga SET stok = stok + '$jumlah' WHERE id = '$id_vga'";
+
+        if (mysqli_query($conn, $sql_update_vga)) {
+            $sql_insert_barang = "INSERT INTO barang (id, tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
         VALUES ('$id', '$tanggal', 'Graphics Card', '$nama_vga', '$jumlah', '$perusahaan', 'Masuk')";
 
-        if (mysqli_query($conn, $sql_insert_barang)) {
-            $_SESSION['data'] = "berhasil disimpan!";
-            header("Location: ../barang");
-            exit;
+            if (mysqli_query($conn, $sql_insert_barang)) {
+                $_SESSION['data'] = "berhasil disimpan!";
+                header("Location: ../barang");
+                exit;
+            } else {
+                $_SESSION['data'] = "gagal disimpan!";
+            }
         } else {
             $_SESSION['data'] = "gagal disimpan!";
         }
-    } else {
-        $_SESSION['data'] = "gagal disimpan!";
     }
 }
 
@@ -212,28 +247,33 @@ if (isset($_POST['kurangVga'])) {
     $jumlah = $_POST['jumlah'];
     $perusahaan = $_POST['perusahaan'];
 
-    $sql_check_stok = "SELECT stok FROM vga WHERE id = '$id_vga'";
-    $result = mysqli_query($conn, $sql_check_stok);
+    if (empty($id_vga)) {
+        $_SESSION['data'] = "tidak ditemukan! tolong pilih data sesuai dengan datalist yang sudah ada!";
+    } else {
 
-    if ($result && mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $stok_vga = $row['stok'];
+        $sql_check_stok = "SELECT stok FROM vga WHERE id = '$id_vga'";
+        $result = mysqli_query($conn, $sql_check_stok);
 
-        if ($jumlah <= $stok_vga) {
-            $sql_update_vga = "UPDATE vga SET stok = stok - '$jumlah' WHERE id = '$id_vga'";
-            $sql_insert_barang = "INSERT INTO barang (id, tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
+        if ($result && mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            $stok_vga = $row['stok'];
+
+            if ($jumlah <= $stok_vga) {
+                $sql_update_vga = "UPDATE vga SET stok = stok - '$jumlah' WHERE id = '$id_vga'";
+                $sql_insert_barang = "INSERT INTO barang (id, tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
             VALUES ('$id', '$tanggal', 'Graphics Card
             ', '$nama_vga', '$jumlah', '$perusahaan', 'Keluar')";
 
-            if (mysqli_query($conn, $sql_update_vga) && mysqli_query($conn, $sql_insert_barang)) {
-                $_SESSION['data'] = "berhasil disimpan!";
-                header("Location: ../barang");
-                exit;
+                if (mysqli_query($conn, $sql_update_vga) && mysqli_query($conn, $sql_insert_barang)) {
+                    $_SESSION['data'] = "berhasil disimpan!";
+                    header("Location: ../barang");
+                    exit;
+                } else {
+                    $_SESSION['data'] = "gagal disimpan!";
+                }
             } else {
-                $_SESSION['data'] = "gagal disimpan!";
+                $_SESSION['data'] = "jumlah melebihi stok yang tersedia!";
             }
-        } else {
-            $_SESSION['data'] = "jumlah melebihi stok yang tersedia!";
         }
     }
 }

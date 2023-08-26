@@ -18,6 +18,11 @@ a {
   color: #fff !important;
 }
 
+.text-ungu {
+  color: #241468 !important;
+  transition: 0.2s;
+}
+
 .opacity {
   opacity: 0.5;
 }
@@ -69,4 +74,16 @@ input::-webkit-inner-spin-button {
 
 #karyawan {
   display: none;
+}
+
+.hover {
+  transition: 0.2s;
+}
+
+.hover:hover {
+  background-color: #241468;
+  color: #fff;
+  .text-ungu {
+    color: #fff !important;
+  }
 }

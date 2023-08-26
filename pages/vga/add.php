@@ -111,22 +111,22 @@ if (isset($_POST['submit'])) {
                                 </div>
                                 <div class="mb-3">
                                     <label for="brand">Brand (NVIDIA/AMD)</label>
-                                    <select id="brand" class="form-select" name="brand" required>
+                                    <select id="brand" class="form-select" name="brand" required autocomplete="off">
                                         <option value="NVIDIA">NVIDIA</option>
                                         <option value="AMD">AMD</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="nama">Nama</label>
-                                    <input type="text" id="nama" name="nama" class="form-control" placeholder="RTX 2080Ti" required>
+                                    <input type="text" id="nama" name="nama" class="form-control" placeholder="RTX 2080Ti" required autocomplete="off">
                                 </div>
                                 <div class="mb-3">
                                     <label for="vram">VRAM (GB)</label>
-                                    <input type="number" id="vram" name="vram" class="form-control" placeholder="8" required>
+                                    <input type="number" id="vram" name="vram" class="form-control" placeholder="8" required autocomplete="off">
                                 </div>
                                 <div class="mb-3">
                                     <label for="stok">Stok</label>
-                                    <input type="number" id="stok" name="stok" class="form-control" placeholder="100" required>
+                                    <input type="number" id="stok" name="stok" class="form-control" placeholder="100" required autocomplete="off">
                                 </div>
                             </div>
                             <div class="col">

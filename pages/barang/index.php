@@ -154,7 +154,7 @@ mysqli_close($conn);
                                                         <option value="<?= $row['nama']; ?>" data-id="<?= $row['id']; ?>"></option>
                                                     <?php } ?>
                                                 </datalist>
-                                                <input type="text" name="id_processor" id="id_processor">
+                                                <input type="hidden" name="id_processor" id="id_processor">
                                                 <input type="hidden" name="nama_processor" id="nama_processor">
                                             </div>
                                             <div class="col">
@@ -325,7 +325,7 @@ mysqli_close($conn);
         </div>
     </div>
     <script src="../src/js/sweetalert.js"></script>
-    <script src="../src/js/datalist.js"></script>
+    <script src="../src/js/datalistBarang.js"></script>
 </body>
 
 </html>

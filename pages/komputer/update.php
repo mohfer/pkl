@@ -30,7 +30,20 @@ if (isset($_POST['submit'])) {
     $id_storage = $_POST['id_storage'];
     $id_vga = $_POST['id_vga'];
 
-    $query = "UPDATE komputer SET 
+    if (empty($id_karyawan) || empty($id_processor) || empty($id_ram) || empty($id_storage) || empty($id_vga)) {
+        $_SESSION['data'] = "tidak ditemukan! tolong pilih data sesuai dengan datalist yang sudah ada!";
+    } else {
+
+        $sql_check_karyawan = "SELECT id FROM komputer WHERE id_karyawan = '$id_karyawan' AND id != '$id'";
+        $result_karyawan = mysqli_query($conn, $sql_check_karyawan);
+
+        if (mysqli_num_rows($result_karyawan) > 0) {
+            $_SESSION['data'] = "sudah ada!";
+            header("Location: ../komputer");
+            exit;
+        }
+
+        $query = "UPDATE komputer SET 
               id_karyawan = '$id_karyawan', 
               id_processor = '$id_processor', 
               id_ram = '$id_ram', 
@@ -38,14 +51,16 @@ if (isset($_POST['submit'])) {
               id_vga = '$id_vga' 
               WHERE id = '$id'";
 
-    if (mysqli_query($conn, $query)) {
-        $_SESSION['data'] = "berhasil disimpan!";
-        header("Location: ../komputer");
-        exit();
-    } else {
-        $_SESSION['data'] = "gagal disimpan!";
+        if (mysqli_query($conn, $query)) {
+            $_SESSION['data'] = "berhasil disimpan!";
+            header("Location: ../komputer");
+            exit();
+        } else {
+            $_SESSION['data'] = "gagal disimpan!";
+        }
     }
 }
+
 
 
 
@@ -135,7 +150,7 @@ if (isset($_POST['submit'])) {
                     <?php while ($d = mysqli_fetch_array($data)) : ?>
                         <form action="" method="POST">
                             <div class="">
-                                <input type="text" id="id" name="id" class="form-control" placeholder="1" value="<?= $d['id'] ?>">
+                                <input type="hidden" id="id" name="id" class="form-control" placeholder="1" value="<?= $d['id'] ?>">
                             </div>
                             <div class="row my-3">
                                 <div class="col">
@@ -147,7 +162,7 @@ if (isset($_POST['submit'])) {
                                                 <option value="<?= $row['nama']; ?>" data-id="<?= $row['id']; ?>"></option>
                                             <?php } ?>
                                         </datalist>
-                                        <input type="text" name="id_karyawan" id="id_karyawan" value="<?= $d['id_karyawan'] ?>">
+                                        <input type="hidden" name="id_karyawan" id="id_karyawan" value="<?= $d['id_karyawan'] ?>">
                                     </div>
                                     <div class="mb-3">
                                         <label for="processor">Processor</label>
@@ -157,7 +172,7 @@ if (isset($_POST['submit'])) {
                                                 <option value="<?= $row['nama']; ?>" data-id="<?= $row['id']; ?>"></option>
                                             <?php } ?>
                                         </datalist>
-                                        <input type="text" name="id_processor" id="id_processor" value="<?= $d['id_processor'] ?>">
+                                        <input type="hidden" name="id_processor" id="id_processor" value="<?= $d['id_processor'] ?>">
                                     </div>
                                     <div class="mb-3">
                                         <label for="ram">RAM</label>
@@ -167,7 +182,7 @@ if (isset($_POST['submit'])) {
                                                 <option value="<?= $row['kapasitas'] . ' GB ' . $row['tipe_memori']; ?>" data-id="<?= $row['id']; ?>"></option>
                                             <?php } ?>
                                         </datalist>
-                                        <input type="text" name="id_ram" id="id_ram" value="<?= $d['id_ram'] ?>">
+                                        <input type="hidden" name="id_ram" id="id_ram" value="<?= $d['id_ram'] ?>">
                                     </div>
                                     <div class="mb-3">
                                         <label for="storage">Storage</label>
@@ -177,7 +192,7 @@ if (isset($_POST['submit'])) {
                                                 <option value="<?= $row['tipe'] . ' ' . $row['kapasitas'] . ' GB'; ?>" data-id="<?= $row['id']; ?>"></option>
                                             <?php } ?>
                                         </datalist>
-                                        <input type="text" name="id_storage" id="id_storage" value="<?= $d['id_storage'] ?>">
+                                        <input type="hidden" name="id_storage" id="id_storage" value="<?= $d['id_storage'] ?>">
                                     </div>
                                     <div class="mb-3">
                                         <label for="vga">Graphics Card</label>
@@ -187,7 +202,7 @@ if (isset($_POST['submit'])) {
                                                 <option value="<?= $row['brand'] . ' ' . $row['nama'] . ' ' . $row['vram'] . ' GB '; ?>" data-id="<?= $row['id']; ?>"></option>
                                             <?php } ?>
                                         </datalist>
-                                        <input type="text" name="id_vga" id="id_vga" value="<?= $d['id_vga'] ?>">
+                                        <input type="hidden" name="id_vga" id="id_vga" value="<?= $d['id_vga'] ?>">
                                     </div>
                                     <button class="btn ungu" name="submit">Simpan</button>
                                     <a href="../komputer/" class="btn btn-danger">Batal</a>
@@ -202,7 +217,7 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
     <script src="../src/js/sweetalert.js"></script>
-    <script src="../src/js/datalist.js"></script>
+    <script src="../src/js/datalistKomputer.js"></script>
 </body>
 
 </html>

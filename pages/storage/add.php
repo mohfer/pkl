@@ -110,18 +110,18 @@ if (isset($_POST['submit'])) {
                                 </div>
                                 <div class="mb-3">
                                     <label for="tipe">Tipe (SSD/HDD)</label>
-                                    <select id="tipe" class="form-select" name="tipe" required>
+                                    <select id="tipe" class="form-select" name="tipe" required autocomplete="off">
                                         <option value="SSD">SSD</option>
                                         <option value="HDD">HDD</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="kapasitas">Kapasitas (GB)</label>
-                                    <input type="number" id="kapasitas" name="kapasitas" class="form-control" placeholder="512" required>
+                                    <input type="number" id="kapasitas" name="kapasitas" class="form-control" placeholder="512" required autocomplete="off">
                                 </div>
                                 <div class="mb-3">
                                     <label for="stok">Stok</label>
-                                    <input type="number" id="stok" name="stok" class="form-control" placeholder="100" required>
+                                    <input type="number" id="stok" name="stok" class="form-control" placeholder="100" required autocomplete="off">
                                 </div>
                             </div>
                             <div class="col">

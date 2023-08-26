@@ -13,6 +13,15 @@ if (isset($_POST['submit'])) {
     $vram = $_POST['vram'];
     $stok = $_POST['stok'];
 
+    $sql_check_name = "SELECT id FROM vga WHERE brand = '$brand' AND nama = '$nama' AND vram = '$vram' AND id != '$id'";
+    $result = mysqli_query($conn, $sql_check_name);
+
+    if (mysqli_num_rows($result) > 0) {
+        $_SESSION['data'] = "sudah ada!";
+        header("Location: ../vga");
+        exit;
+    }
+
     $sql = "UPDATE vga SET  brand = '$brand', nama = '$nama', vram = '$vram', stok = '$stok' WHERE id = '$id'";
 
     if (mysqli_query($conn, $sql)) {
@@ -97,7 +106,7 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="mb-3">
                                         <label for="brand">Brand (NVIDIA/AMD)</label>
-                                        <select id="brand" class="form-select mb-3" name="brand" required>
+                                        <select id="brand" class="form-select mb-3" name="brand" required autocomplete="off">
                                             <option selected><?= $d['brand'] ?></option>
                                             <option value="NVIDIA">NVIDIA</option>
                                             <option value="AMD">AMD</option>
@@ -105,15 +114,15 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="mb-3">
                                         <label for="nama">Nama</label>
-                                        <input type="text" id="nama" name="nama" class="form-control" placeholder="RTX 2080Ti" value="<?= $d['nama'] ?>" required>
+                                        <input type="text" id="nama" name="nama" class="form-control" placeholder="RTX 2080Ti" value="<?= $d['nama'] ?>" required autocomplete="off">
                                     </div>
                                     <div class="mb-3">
                                         <label for="vram">VRAM (GB)</label>
-                                        <input type="number" id="vram" name="vram" class="form-control" placeholder="8" value="<?= $d['vram'] ?>" required>
+                                        <input type="number" id="vram" name="vram" class="form-control" placeholder="8" value="<?= $d['vram'] ?>" required autocomplete="off">
                                     </div>
                                     <div class="mb-3">
                                         <label for="stok">Stok</label>
-                                        <input type="number" id="stok" name="stok" class="form-control" placeholder="100" value="<?= $d['stok'] ?>" required>
+                                        <input type="number" id="stok" name="stok" class="form-control" placeholder="100" value="<?= $d['stok'] ?>" required autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col">

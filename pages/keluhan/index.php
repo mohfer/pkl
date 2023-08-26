@@ -32,7 +32,7 @@ $query_join_proses = "SELECT
     k.status AS status
 FROM keluhan k
 JOIN karyawan ON k.id_karyawan = karyawan.id WHERE status = 'Proses'
-ORDER BY k.tanggal_proses ASC";
+ORDER BY k.tanggal_proses DESC";
 
 $result_join_proses = mysqli_query($conn, $query_join_proses);
 
@@ -48,7 +48,7 @@ $query_join_selesai = "SELECT
     k.status AS status
 FROM keluhan k
 JOIN karyawan ON k.id_karyawan = karyawan.id WHERE status = 'Selesai'
-ORDER BY k.tanggal_selesai ASC";
+ORDER BY k.tanggal_selesai DESC";
 
 $result_join_selesai = mysqli_query($conn, $query_join_selesai);
 
@@ -165,7 +165,7 @@ $result_join_selesai = mysqli_query($conn, $query_join_selesai);
                                                 <th scope="row"><?= $no++ ?></th>
                                                 <td><?= $result["tanggal_masuk"] ?></td>
                                                 <td><?= $result["nama_karyawan"] ?></td>
-                                                <td><?= $result["keluhan"] ?></td>
+                                                <td><?= strlen($result["keluhan"]) > 10 ? substr($result["keluhan"], 0, 10) . "..." : $result["keluhan"] ?></td>
                                                 <td>
                                                     <div class="text-center">
                                                         <a href="update.php?id=<?= $result['id'] ?>" class="btn btn-warning">Edit</a> | <a href="delete.php?id=<?= $result['id'] ?>" id="btn-del" class="btn btn-danger">Hapus</a>
@@ -195,8 +195,8 @@ $result_join_selesai = mysqli_query($conn, $query_join_selesai);
                                                 <th scope="row"><?= $no++ ?></th>
                                                 <td><?= $result["tanggal_proses"] ?></td>
                                                 <td><?= $result["nama_karyawan"] ?></td>
-                                                <td><?= $result["keluhan"] ?></td>
-                                                <td><?= $result["solusi"] ?></td>
+                                                <td><?= strlen($result["keluhan"]) > 10 ? substr($result["keluhan"], 0, 10) . "..." : $result["keluhan"] ?></td>
+                                                <td><?= strlen($result["solusi"]) > 10 ? substr($result["solusi"], 0, 10) . "..." : $result["solusi"] ?></td>
                                                 <td>
                                                     <div class="text-center">
                                                         <a href="update.php?id=<?= $result['id'] ?>" class="btn btn-warning">Edit</a> | <a href="delete.php?id=<?= $result['id'] ?>" id="btn-del" class="btn btn-danger">Hapus</a>
@@ -227,8 +227,8 @@ $result_join_selesai = mysqli_query($conn, $query_join_selesai);
                                                 <th scope="row"><?= $no++ ?></th>
                                                 <td><?= $result["tanggal_selesai"] ?></td>
                                                 <td><?= $result["nama_karyawan"] ?></td>
-                                                <td><?= $result["keluhan"] ?></td>
-                                                <td><?= $result["solusi"] ?></td>
+                                                <td><?= strlen($result["keluhan"]) > 10 ? substr($result["keluhan"], 0, 10) . "..." : $result["keluhan"] ?></td>
+                                                <td><?= strlen($result["solusi"]) > 10 ? substr($result["solusi"], 0, 10) . "..." : $result["solusi"] ?></td>
                                                 <td><?= $result["biaya"] ?></td>
                                                 <td>
                                                     <div class="text-center">
@@ -248,7 +248,6 @@ $result_join_selesai = mysqli_query($conn, $query_join_selesai);
         </div>
     </div>
     <script src="../src/js/sweetalert.js"></script>
-    <script src="../src/js/datalist.js"></script>
 
 </body>
 

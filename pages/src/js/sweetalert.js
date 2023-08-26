@@ -33,7 +33,7 @@ $(document).on('click', '#btn-del', function (e) {
     var link = $(this).attr('href');
     Swal.fire({
         title: 'Hapus data?',
-        text: "Kamu tidak akan bisa mengembalikannya!",
+        text: "Mungkin saja data di halaman lain akan terhapus!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#241468',
@@ -54,7 +54,7 @@ if (data == "berhasil disimpan!" || data == "berhasil dihapus!") {
         confirmButtonColor: '#241468',
         text: 'Data' + ' ' + data,
     })
-} else if (data == "gagal disimpan!" || data == "gagal dihapus!" || data == "sudah ada!" || data == "nip sudah terdaftar!" || data == "jumlah melebihi stok yang tersedia!" || data == "tidak dapat dihapus karena masih digunakan di dalam tabel komputer!") {
+} else if (data == "gagal disimpan!" || data == "gagal dihapus!" || data == "sudah ada!" || data == "nip sudah terdaftar!" || data == "jumlah melebihi stok yang tersedia!" || data == "tidak dapat dihapus karena data masih digunakan di halaman komputer!" || data == "sudah ada!" || data == "tidak ditemukan! tolong pilih data sesuai dengan datalist yang sudah ada!") {
     Swal.fire({
         icon: 'error',
         title: 'Oops...',

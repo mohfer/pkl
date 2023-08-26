@@ -16,21 +16,26 @@ ORDER BY karyawan.nama ASC";
 
 $result_join = mysqli_query($conn, $query_join);
 date_default_timezone_set('Asia/Jakarta');
-$tanggal = date('l, d F Y, h:i:s A');
+$tanggal = date('l, d F Y, H:i:s') . " WIB";
 
 if (isset($_POST['submit'])) {
     $id = $_POST['id'];
     $id_karyawan = $_POST['id_karyawan'];
     $keluhan = $_POST['keluhan'];
 
-    $sql = "INSERT INTO keluhan (id, tanggal_masuk, id_karyawan, keluhan, solusi, biaya, status) VALUES ('$id', '$tanggal', '$id_karyawan', '$keluhan', '', '', '0')";
-
-    if (mysqli_query($conn, $sql)) {
-        $_SESSION['data'] = "berhasil disimpan!";
-        header("Location: ../keluhan");
-        exit;
+    if (empty($id_karyawan)) {
+        $_SESSION['data'] = "tidak ditemukan! tolong pilih data sesuai dengan datalist yang sudah ada!";
     } else {
-        $_SESSION['data'] = "gagal disimpan!";
+
+        $sql = "INSERT INTO keluhan (id, tanggal_masuk, id_karyawan, keluhan, solusi, biaya, status) VALUES ('$id', '$tanggal', '$id_karyawan', '$keluhan', '', '', '0')";
+
+        if (mysqli_query($conn, $sql)) {
+            $_SESSION['data'] = "berhasil disimpan!";
+            header("Location: ../keluhan");
+            exit;
+        } else {
+            $_SESSION['data'] = "gagal disimpan!";
+        }
     }
 }
 
@@ -150,7 +155,7 @@ mysqli_close($conn);
         </div>
     </div>
     <script src="../src/js/sweetalert.js"></script>
-    <script src="../src/js/datalist.js"></script>
+    <script src="../src/js/datalistKomputer.js"></script>
 
 </body>
 

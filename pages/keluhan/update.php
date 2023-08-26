@@ -13,6 +13,9 @@ $result_karyawan = mysqli_query($conn, $query_karyawan);
 $query_join = "SELECT
     k.id AS id,
     karyawan.nama AS nama_karyawan,
+    karyawan.nip AS nip_karyawan,
+    karyawan.jk AS jk_karyawan,
+    karyawan.divisi AS divisi_karyawan,
     p.nama AS nama_processor,
     r.kapasitas AS kapasitas_ram,
     r.tipe_memori AS tipe_ram,
@@ -27,13 +30,13 @@ JOIN komputer k ON kel.id_karyawan = k.id_karyawan
 JOIN processor p ON k.id_processor = p.id
 JOIN ram r ON k.id_ram = r.id
 JOIN storage s ON k.id_storage = s.id
-JOIN vga v ON k.id_vga = v.id 
+JOIN vga v ON k.id_vga = v.id
 WHERE kel.id = $id
 ORDER BY karyawan.nama ASC";
 
 $result_join = mysqli_query($conn, $query_join);
 date_default_timezone_set('Asia/Jakarta');
-$tanggal = date('l, d F Y, h:i:s A');
+$tanggal = date('l, d F Y, H:i:s') . " WIB";
 
 $query_status = "SELECT status FROM keluhan WHERE id = $id";
 $result_status = mysqli_query($conn, $query_status);
@@ -63,8 +66,10 @@ if (isset($_POST['submit'])) {
 
 if (isset($_POST['proses'])) {
     $id = $_GET['id'];
+    $id_karyawan = $_POST['id_karyawan'];
+    $keluhan = $_POST['keluhan'];
 
-    $sql = "UPDATE keluhan SET tanggal_proses = '$tanggal', status = 'Proses' WHERE id = '$id'";
+    $sql = "UPDATE keluhan SET id_karyawan = '$id_karyawan', keluhan = '$keluhan', tanggal_proses = '$tanggal', status = 'Proses' WHERE id = '$id'";
 
     if (mysqli_query($conn, $sql)) {
         $_SESSION['data'] = "berhasil disimpan!";
@@ -189,7 +194,7 @@ if (isset($_POST['selesai'])) {
                                     <div class="col">
                                         <div class="mb-3">
                                             <label for="karyawan">Karyawan</label>
-                                            <input class="form-control" type="text" name="karyawan_input" id="karyawan_input" list="list_karyawan" value="<?= getKaryawan($conn, $d['id_karyawan']) ?>" autocomplete="off" required>
+                                            <input class="form-control" type="text" name="karyawan_input" id="karyawan_input" list="list_karyawan" value="<?= getKaryawan($conn, $d['id_karyawan']) ?>" autocomplete="off" required <?php if ($status == "Proses") echo 'disabled readonly'; ?>>
                                             <datalist id="list_karyawan">
                                                 <?php while ($row = mysqli_fetch_assoc($result_karyawan)) { ?>
                                                     <option value="<?= $row['nama']; ?>" data-id="<?= $row['id']; ?>"></option>
@@ -199,7 +204,7 @@ if (isset($_POST['selesai'])) {
                                         </div>
                                         <div class="mb-3">
                                             <label for="keluhan">Keluhan</label>
-                                            <textarea class="form-control" name="keluhan" id="keluhan" cols="30" rows="5"><?php echo $d['keluhan'] ?></textarea>
+                                            <textarea class="form-control" name="keluhan" id="keluhan" cols="30" rows="5" <?php if ($status == "Proses") echo 'disabled readonly'; ?>><?php echo $d['keluhan'] ?></textarea>
                                         </div>
                                         <?php if ($status == "Proses") : ?>
                                             <div class="mb-3">
@@ -214,6 +219,16 @@ if (isset($_POST['selesai'])) {
                                     </div>
                                     <div class="col mt-3">
                                         <?php if ($result = mysqli_fetch_array($result_join)) : ?>
+                                            <p class="fs-3 fw-bold">Identitas Karyawan</p>
+                                            <span>Nama : <?= $result['nama_karyawan'] ?></span>
+                                            <br>
+                                            <span>NIP : <?= $result['nip_karyawan'] ?></span>
+                                            <br>
+                                            <span>Jenis Kelamin : <?= $result['jk_karyawan'] ?></span>
+                                            <br>
+                                            <span>Divisi : <?= $result['divisi_karyawan'] ?></span>
+                                            <br>
+                                            <br>
                                             <p class="fs-3 fw-bold">Spesifikasi Komputer Karyawan</p>
                                             <span>ID Komputer : <?= $result['id'] ?></span>
                                             <br>
@@ -272,6 +287,16 @@ if (isset($_POST['selesai'])) {
                                     </div>
                                     <div class="col mt-3">
                                         <?php if ($result = mysqli_fetch_array($result_join)) : ?>
+                                            <p class="fs-3 fw-bold">Identitas Karyawan</p>
+                                            <span>Nama : <?= $result['nama_karyawan'] ?></span>
+                                            <br>
+                                            <span>NIP : <?= $result['nip_karyawan'] ?></span>
+                                            <br>
+                                            <span>Jenis Kelamin : <?= $result['jk_karyawan'] ?></span>
+                                            <br>
+                                            <span>Divisi : <?= $result['divisi_karyawan'] ?></span>
+                                            <br>
+                                            <br>
                                             <p class="fs-3 fw-bold">Spesifikasi Komputer Karyawan</p>
                                             <span>ID Komputer : <?= $result['id'] ?></span>
                                             <br>
@@ -307,7 +332,7 @@ if (isset($_POST['selesai'])) {
         </div>
     </div>
     <script src="../src/js/sweetalert.js"></script>
-    <script src="../src/js/datalist.js"></script>
+    <script src="../src/js/datalistKomputer.js"></script>
 
 </body>
 

@@ -16,7 +16,7 @@ $result_ram = mysqli_query($conn, $query_ram);
 $query_storage = "SELECT id, tipe, kapasitas FROM storage ORDER BY kapasitas DESC";
 $result_storage = mysqli_query($conn, $query_storage);
 
-$query_vga = "SELECT id, brand, nama, vram FROM vga";
+$query_vga = "SELECT id, brand, nama, vram FROM vga ORDER BY nama DESC";
 $result_vga = mysqli_query($conn, $query_vga);
 
 $query_join = "SELECT
@@ -48,20 +48,25 @@ if (isset($_POST['submit'])) {
     $id_storage = $_POST['id_storage'];
     $id_vga = $_POST['id_vga'];
 
-    $query = "SELECT id_karyawan FROM komputer WHERE id_karyawan = '$id_karyawan'";
-    $result = mysqli_query($conn, $query);
-
-    if (mysqli_num_rows($result) > 0) {
-        $_SESSION['data'] = "sudah memiliki komputer!";
+    if (empty($id_karyawan) || empty($id_processor) || empty($id_ram) || empty($id_storage) || empty($id_vga)) {
+        $_SESSION['data'] = "tidak ditemukan! tolong pilih data sesuai dengan datalist yang sudah ada!";
     } else {
-        $sql = "INSERT INTO komputer (id, id_karyawan, id_processor, id_ram, id_storage, id_vga) VALUES ('$id', '$id_karyawan', '$id_processor', '$id_ram', '$id_storage', '$id_vga')";
 
-        if (mysqli_query($conn, $sql)) {
-            $_SESSION['data'] = "berhasil disimpan!";
-            header("Location: ../komputer");
-            exit;
+        $query = "SELECT id_karyawan FROM komputer WHERE id_karyawan = '$id_karyawan'";
+        $result = mysqli_query($conn, $query);
+
+        if (mysqli_num_rows($result) > 0) {
+            $_SESSION['data'] = "sudah memiliki komputer!";
         } else {
-            $_SESSION['data'] = "gagal disimpan!";
+            $sql = "INSERT INTO komputer (id, id_karyawan, id_processor, id_ram, id_storage, id_vga) VALUES ('$id', '$id_karyawan', '$id_processor', '$id_ram', '$id_storage', '$id_vga')";
+
+            if (mysqli_query($conn, $sql)) {
+                $_SESSION['data'] = "berhasil disimpan!";
+                header("Location: ../komputer");
+                exit;
+            } else {
+                $_SESSION['data'] = "gagal disimpan!";
+            }
         }
     }
 }
@@ -246,7 +251,7 @@ mysqli_close($conn);
         </div>
     </div>
     <script src="../src/js/sweetalert.js"></script>
-    <script src="../src/js/datalist.js"></script>
+    <script src="../src/js/datalistKomputer.js"></script>
 
 </body>
 

@@ -109,11 +109,11 @@ if (isset($_POST['submit'])) {
                                 </div>
                                 <div class="mb-3">
                                     <label for="nama">Nama</label>
-                                    <input type="text" id="nama" name="nama" class="form-control" placeholder="Intel Core i3 13100" required>
+                                    <input type="text" id="nama" name="nama" class="form-control" placeholder="Intel Core i3 13100" required autocomplete="off">
                                 </div>
                                 <div class="mb-3">
                                     <label for="stok">Stok</label>
-                                    <input type="number" id="stok" name="stok" class="form-control" placeholder="10" required>
+                                    <input type="number" id="stok" name="stok" class="form-control" placeholder="10" required autocomplete="off">
                                 </div>
                             </div>
                             <div class="col">

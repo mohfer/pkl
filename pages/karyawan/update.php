@@ -13,6 +13,15 @@ if (isset($_POST['submit'])) {
     $jk = $_POST['jk'];
     $divisi = $_POST['divisi'];
 
+    $sql_check_duplicate = "SELECT id FROM karyawan WHERE (nama = '$nama' OR nip = '$nip') AND id != '$id'";
+    $result_duplicate = mysqli_query($conn, $sql_check_duplicate);
+
+    if (mysqli_num_rows($result_duplicate) > 0) {
+        $_SESSION['data'] = "sudah ada!";
+        header("Location: ../karyawan");
+        exit;
+    }
+
     $sql = "UPDATE karyawan SET  nama = '$nama', nip = '$nip', jk = '$jk', divisi = '$divisi' WHERE id = '$id'";
 
     if (mysqli_query($conn, $sql)) {
@@ -97,22 +106,22 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="mb-3">
                                         <label for="nama">Nama</label>
-                                        <input type="text" id="nama" name="nama" class="form-control" placeholder="Erwin Susanto" value="<?= $d['nama'] ?>" required>
+                                        <input type="text" id="nama" name="nama" class="form-control" placeholder="Erwin Susanto" value="<?= $d['nama'] ?>" required autocomplete="off">
                                     </div>
                                     <div class="mb-3">
                                         <label for="nip">NIP</label>
-                                        <input type="number" id="nip" name="nip" class="form-control" placeholder="164349612468052144" value="<?= $d['nip'] ?>" required>
+                                        <input type="number" id="nip" name="nip" class="form-control" placeholder="164349612468052144" value="<?= $d['nip'] ?>" required autocomplete="off">
                                     </div>
                                     <div class="mb-3">
                                         <label class="d-block mb-3">Jenis Kelamin</label><?php $jk = $d['jk']; ?>
-                                        <input class="form-check-input" type="radio" name="jk" id="laki_laki" value="Laki - Laki" <?= ($jk == 'Laki - Laki') ? "checked" : "" ?> required>
+                                        <input class="form-check-input" type="radio" name="jk" id="laki_laki" value="Laki - Laki" <?= ($jk == 'Laki - Laki') ? "checked" : "" ?> required autocomplete="off">
                                         <label class="form-check-label mx-2" for="laki_laki">Laki - Laki</label>
-                                        <input class="form-check-input" type="radio" name="jk" id="perempuan" value="Perempuan" <?= ($jk == 'Perempuan') ? "checked" : "" ?> required>
+                                        <input class="form-check-input" type="radio" name="jk" id="perempuan" value="Perempuan" <?= ($jk == 'Perempuan') ? "checked" : "" ?> required autocomplete="off">
                                         <label class="form-check-label mx-2" for="perempuan">Perempuan</label>
                                     </div>
                                     <div class="mb-3">
                                         <label for="divisi">Divisi</label>
-                                        <select id="divisi" class="form-select" name="divisi" required>
+                                        <select id="divisi" class="form-select" name="divisi" required autocomplete="off">
                                             <option selected><?= $d['divisi'] ?></option>
                                             <option value="Marketing">Marketing</option>
                                             <option value="HRD">HRD</option>

@@ -11,7 +11,16 @@ if (isset($_POST['submit'])) {
     $nama = $_POST['nama'];
     $stok = $_POST['stok'];
 
-    $sql = "UPDATE processor SET  nama = '$nama', stok = '$stok' WHERE id = '$id'";
+    $sql_check_name = "SELECT id FROM processor WHERE nama = '$nama' AND id != '$id'";
+    $result = mysqli_query($conn, $sql_check_name);
+
+    if (mysqli_num_rows($result) > 0) {
+        $_SESSION['data'] = "sudah ada!";
+        header("Location: ../processor");
+        exit;
+    }
+
+    $sql = "UPDATE processor SET nama = '$nama', stok = '$stok' WHERE id = '$id'";
 
     if (mysqli_query($conn, $sql)) {
         $_SESSION['data'] = "berhasil disimpan!";
@@ -95,11 +104,11 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="mb-3">
                                         <label for="nama">Nama</label>
-                                        <input type="text" id="nama" name="nama" class="form-control" placeholder="Intel Core i3 13100" value="<?= $d['nama'] ?>" required>
+                                        <input type="text" id="nama" name="nama" class="form-control" placeholder="Intel Core i3 13100" value="<?= $d['nama'] ?>" required autocomplete="off">
                                     </div>
                                     <div class="mb-3">
                                         <label for="stok">Stok</label>
-                                        <input type="number" id="stok" name="stok" class="form-control" placeholder="10" value="<?= $d['stok'] ?>" required>
+                                        <input type="number" id="stok" name="stok" class="form-control" placeholder="10" value="<?= $d['stok'] ?>" required autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col">

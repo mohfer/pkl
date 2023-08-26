@@ -12,6 +12,15 @@ if (isset($_POST['submit'])) {
     $kapasitas = $_POST['kapasitas'];
     $stok = $_POST['stok'];
 
+    $sql_check_name = "SELECT id FROM storage WHERE tipe = '$tipe' AND kapasitas = '$kapasitas' AND id != '$id'";
+    $result = mysqli_query($conn, $sql_check_name);
+
+    if (mysqli_num_rows($result) > 0) {
+        $_SESSION['data'] = "sudah ada!";
+        header("Location: ../storage");
+        exit;
+    }
+
     $sql = "UPDATE storage SET  tipe = '$tipe', kapasitas = '$kapasitas', stok = '$stok' WHERE id = '$id'";
 
     if (mysqli_query($conn, $sql)) {
@@ -96,7 +105,7 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="mb-3">
                                         <label for="tipe">Tipe (SSD/HDD)</label>
-                                        <select id="tipe" class="form-select mb-3" name="tipe" required>
+                                        <select id="tipe" class="form-select mb-3" name="tipe" required autocomplete="off">
                                             <option selected><?= $d['tipe'] ?></option>
                                             <option value="SSD">SSD</option>
                                             <option value="HDD">HDD</option>
@@ -104,11 +113,11 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="mb-3">
                                         <label for="kapasitas">Kapasitas (GB)</label>
-                                        <input type="number" id="kapasitas" name="kapasitas" class="form-control" placeholder="8" value="<?= $d['kapasitas'] ?>" required>
+                                        <input type="number" id="kapasitas" name="kapasitas" class="form-control" placeholder="8" value="<?= $d['kapasitas'] ?>" required autocomplete="off">
                                     </div>
                                     <div class="mb-3">
                                         <label for="stok">Stok</label>
-                                        <input type="number" id="stok" name="stok" class="form-control" placeholder="100" value="<?= $d['stok'] ?>" required>
+                                        <input type="number" id="stok" name="stok" class="form-control" placeholder="100" value="<?= $d['stok'] ?>" required autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col">
