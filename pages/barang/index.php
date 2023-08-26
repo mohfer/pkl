@@ -3,6 +3,7 @@
 session_start();
 
 include "../src/config/connect.php";
+include "../src/function/antiSqlInjection.php";
 include "../src/function/barangFunction.php";
 
 $query_karyawan = "SELECT id, nama FROM karyawan ORDER BY nama ASC";

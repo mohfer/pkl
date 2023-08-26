@@ -3,6 +3,7 @@
 session_start();
 
 include "../src/config/connect.php";
+include "../src/function/antiSqlInjection.php";
 
 $row = mysqli_query($conn, "SELECT * FROM storage ORDER BY kapasitas DESC");
 

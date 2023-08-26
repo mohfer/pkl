@@ -3,6 +3,7 @@
 session_start();
 
 include "../src/config/connect.php";
+include "../src/function/antiSqlInjection.php";
 $id = $_GET['id'];
 
 $sql = "DELETE FROM keluhan WHERE id = '$id'";

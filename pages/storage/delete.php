@@ -3,6 +3,7 @@
 session_start();
 
 include "../src/config/connect.php";
+include "../src/function/antiSqlInjection.php";
 $id = $_GET['id'];
 
 $sql_check_referenced = "SELECT id_storage FROM komputer WHERE id_storage = '$id'";

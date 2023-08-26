@@ -3,6 +3,7 @@
 session_start();
 
 include "../src/config/connect.php";
+include "../src/function/antiSqlInjection.php";
 include "../src/function/dashboardCount.php";
 
 if (!isset($_SESSION['username'])) {

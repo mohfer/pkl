@@ -3,6 +3,7 @@
 session_start();
 
 include "../src/config/connect.php";
+include "../src/function/antiSqlInjection.php";
 
 $query_karyawan = "SELECT id, nama FROM karyawan ORDER BY nama ASC";
 $result_karyawan = mysqli_query($conn, $query_karyawan);

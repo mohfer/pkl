@@ -5,6 +5,7 @@ session_start();
 $id = $_GET['id'];
 
 include "../src/config/connect.php";
+include "../src/function/antiSqlInjection.php";
 include "../src/function/getFunction.php";
 
 $query_karyawan = "SELECT id, nama FROM karyawan ORDER BY nama ASC";
