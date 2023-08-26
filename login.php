@@ -6,6 +6,7 @@ session_start();
 // }
 
 include "pages/src/config/connect.php";
+include "pages/src/function/antiSqlInjection.php";
 
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];
