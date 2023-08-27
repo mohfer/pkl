@@ -25,6 +25,15 @@ if (login == "Berhasil") {
         confirmButtonColor: '#241468',
         text: 'Username atau password tidak boleh kosong!',
     })
+} else if (login == "Logout berhasil!") {
+    Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        confirmButtonColor: '#241468',
+        text: 'Logout berhasil!',
+    }).then(function () {
+        window.location = "./";
+    })
 }
 
 // Delete Page

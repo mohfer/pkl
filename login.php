@@ -1,9 +1,9 @@
 <?php
 
 session_start();
-// if (isset($_SESSION['username'])) {
-//     header("Location: pages/dashboard/");
-// }
+if (isset($_SESSION['username'])) {
+    $_SESSION['info'] = 'Berhasil';
+}
 
 include "pages/src/config/connect.php";
 include "pages/src/function/antiSqlInjection.php";
@@ -53,21 +53,15 @@ if (isset($_POST['submit'])) {
     <!-- Swal -->
 
     <div class="wrapper d-flex justify-content-center align-items-center vh-100">
-        <div class="login w-25 p-5 rounded-5 shadow-lg bg-light">
+        <div class="p-5 border rounded-5 shadow-lg bg-light" style="width: 400px;">
             <div class="d-flex justify-content-center">
-                <img src="pages/src/image/logo.png" class="w-75" alt="">
+                <a href="./"><img src="pages/src/image/assets/logo.png" alt=""></a>
             </div>
             <h2 class="mb-3 fw-bold">Login.</h2>
             <form action="" method="POST">
-                <div class="row">
-                    <input name="username" type="text" class="form-control py-3 mb-3 rounded-pill" placeholder="Username">
-                </div>
-                <div class="row">
-                    <input name="password" type="password" class="form-control py-3 mb-3 rounded-pill" placeholder="Password">
-                </div>
-                <div class="row">
-                    <button name="submit" class="btn btn-login w-100 py-3 rounded-pill text-light">Sign in</button>
-                </div>
+                <input name="username" type="text" class="form-control py-3 mb-3 rounded-pill" placeholder="Username">
+                <input name="password" type="password" class="form-control py-3 mb-3 rounded-pill" placeholder="Password">
+                <button name="submit" class="btn btn-login w-100 py-3 rounded-pill text-light">Sign in</button>
             </form>
         </div>
     </div>

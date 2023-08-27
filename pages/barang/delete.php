@@ -4,6 +4,10 @@ session_start();
 
 include "../src/config/connect.php";
 include "../src/function/antiSqlInjection.php";
+if (!isset($_SESSION['username'])) {
+    header("Location: ../../login.php");
+}
+
 $id = $_GET['id'];
 
 $sql = "DELETE FROM barang WHERE id = '$id'";

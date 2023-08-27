@@ -4,6 +4,10 @@ session_start();
 
 include "../src/config/connect.php";
 include "../src/function/antiSqlInjection.php";
+if (!isset($_SESSION['username'])) {
+    header("Location: ../../login.php");
+}
+
 
 $id = $_GET['id'];
 
@@ -46,7 +50,7 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-    <div class="wrapper">
+    <div class="container-fluid">
         <div class="row vh-100">
             <div class="col-md-2 sidebar text-light">
                 <div class="text-center my-3 mb-5">
@@ -89,6 +93,12 @@ if (isset($_POST['submit'])) {
                     </a>
                     <a href="../keluhan/">
                         <p class="opacity">Keluhan</p>
+                    </a>
+                </div>
+                <div class="mx-4">
+                    <h5>Aksi</h5>
+                    <a href="../../logout.php">
+                        <p class="opacity">Logout</p>
                     </a>
                 </div>
             </div>

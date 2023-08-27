@@ -1,0 +1,84 @@
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #241468;
+}
+
+.ungu {
+  background-color: #241468 !important;
+}
+
+a {
+  text-decoration: none !important;
+  color: #fff !important;
+}
+
+.btn-login {
+  color: #fff;
+  border: 2px solid white;
+  padding: 8px;
+  font-size: 20px;
+  background-color: transparent;
+  transition: 0.2s;
+}
+
+.btn-login:hover {
+  background-color: #241468;
+  border: 2px solid #241468;
+  color: #241468;
+  background-color: #fff;
+}
+
+#hero {
+  padding-top: 150px;
+  padding-bottom: 150px;
+}
+
+.title {
+  font-size: 3rem;
+}
+
+.col-barang {
+  transition: 0.2s;
+}
+
+.line-top {
+  border-top: 2px solid #241468;
+}
+
+.line-bottom {
+  border-bottom: 2px solid #241468;
+}
+
+.col-barang:hover {
+  background-color: #241468;
+  color: #fff;
+  cursor: context-menu;
+  .line-top {
+    border-top: 2px solid #fff;
+  }
+}
+
+.col-barang:hover {
+  background-color: #241468;
+  color: #fff;
+  cursor: context-menu;
+  .line-bottom {
+    border-bottom: 2px solid #fff;
+  }
+}
+
+#about {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+footer {
+  margin-top: 250px;
+}

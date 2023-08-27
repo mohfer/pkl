@@ -4,6 +4,10 @@ session_start();
 
 include "../src/config/connect.php";
 include "../src/function/antiSqlInjection.php";
+if (!isset($_SESSION['username'])) {
+    header("Location: ../../login.php");
+}
+
 
 $query_karyawan = "SELECT id, nama FROM karyawan ORDER BY nama ASC";
 $result_karyawan = mysqli_query($conn, $query_karyawan);
@@ -86,7 +90,7 @@ $result_join_selesai = mysqli_query($conn, $query_join_selesai);
                                             unset($_SESSION['data']) ?>">
     </div>
     <!-- Swal -->
-    <div class="wrapper">
+    <div class="container-fluid">
         <div class="row vh-100">
             <section class="col-md-2 sidebar text-light">
                 <div class="text-center my-3 mb-5">
@@ -129,6 +133,12 @@ $result_join_selesai = mysqli_query($conn, $query_join_selesai);
                     </a>
                     <a href="../keluhan/">
                         <p class="opacity-100 aktif rounded-pill">Keluhan</p>
+                    </a>
+                </div>
+                <div class="mx-4">
+                    <h5>Aksi</h5>
+                    <a href="../../logout.php">
+                        <p class="opacity">Logout</p>
                     </a>
                 </div>
             </section>

@@ -7,7 +7,7 @@ include "../src/function/antiSqlInjection.php";
 include "../src/function/dashboardCount.php";
 
 if (!isset($_SESSION['username'])) {
-    header("Location: /login.php");
+    header("Location: ../../login.php");
 }
 
 ?>
@@ -36,7 +36,7 @@ if (!isset($_SESSION['username'])) {
 
 <body>
     <?php include "../src/layouts/navbar.php" ?>
-    <div class="wrapper">
+    <div class="container-fluid">
         <div class="row vh-100">
             <div class="col-md-2 sidebar text-light">
                 <div class="text-center my-3 mb-3">
@@ -81,6 +81,12 @@ if (!isset($_SESSION['username'])) {
                     </a>
                     <a href="../keluhan/">
                         <p class="opacity">Keluhan</p>
+                    </a>
+                </div>
+                <div class="mx-4">
+                    <h5>Aksi</h5>
+                    <a href="../../logout.php">
+                        <p class="opacity">Logout</p>
                     </a>
                 </div>
             </div>
@@ -250,9 +256,6 @@ if (!isset($_SESSION['username'])) {
                         </div>
                     </div>
                 </div>
-                <table id="table" class="table">
-
-                </table>
             </div>
         </div>
     </div>
