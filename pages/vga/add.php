@@ -4,9 +4,12 @@ session_start();
 
 include "../src/config/connect.php";
 include "../src/function/antiSqlInjection.php";
-if (!isset($_SESSION['username'])) {
-    header("Location: ../../login.php");
+
+if (!isset($_SESSION['id_users'])) {
+    header("Location: ../../pages/me/dashboard");
 }
+
+
 
 
 if (isset($_POST['submit'])) {
@@ -48,6 +51,7 @@ if (isset($_POST['submit'])) {
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <?php include "../src/library/bootstrap.php" ?>
     <?php include "../src/library/sweetalert.php" ?>
+
     <title>Inventory Barang | Processor</title>
 </head>
 

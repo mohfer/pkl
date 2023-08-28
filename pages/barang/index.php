@@ -4,11 +4,14 @@ session_start();
 
 include "../src/config/connect.php";
 include "../src/function/antiSqlInjection.php";
-if (!isset($_SESSION['username'])) {
-    header("Location: ../../login.php");
+include "../src/function/barangFunction.php";
+
+if (!isset($_SESSION['id_users'])) {
+    header("Location: ../../pages/me/dashboard");
 }
 
-include "../src/function/barangFunction.php";
+
+
 
 $query_karyawan = "SELECT id, nama FROM karyawan ORDER BY nama ASC";
 $result_karyawan = mysqli_query($conn, $query_karyawan);
@@ -49,7 +52,6 @@ mysqli_close($conn);
     <script src="../src/js/getStokRam.js"></script>
     <script src="../src/js/getStokStorage.js"></script>
     <script src="../src/js/getStokVga.js"></script>
-
     <title>Inventory Barang | Barang</title>
 </head>
 

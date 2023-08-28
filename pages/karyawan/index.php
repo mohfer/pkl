@@ -4,9 +4,12 @@ session_start();
 
 include "../src/config/connect.php";
 include "../src/function/antiSqlInjection.php";
-if (!isset($_SESSION['username'])) {
-    header("Location: ../../login.php");
+
+if (!isset($_SESSION['id_users'])) {
+    header("Location: ../../pages/me/dashboard");
 }
+
+
 
 
 $row = mysqli_query($conn, "SELECT * FROM karyawan ORDER BY nama ASC");
@@ -25,6 +28,7 @@ $row = mysqli_query($conn, "SELECT * FROM karyawan ORDER BY nama ASC");
     <?php include '../src/library/bootstrap.php' ?>
     <?php include '../src/library/datatables.php' ?>
     <?php include '../src/library/sweetalert.php' ?>
+
     <title>Inventory Barang | Karyawan</title>
 </head>
 

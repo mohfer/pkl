@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-if (isset($_SESSION['username'])) {
+if (isset($_SESSION['id_users'])) {
     $_SESSION['info'] = 'Berhasil';
 }
 
@@ -12,19 +12,29 @@ if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $password = md5($_POST['password']);
 
-    $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
-    $result = mysqli_query($conn, $sql);
+    $sql_users = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+    $result_users = mysqli_query($conn, $sql_users);
 
-    if ($result->num_rows > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $_SESSION['username'] = $row['username'];
-        $_SESSION['info'] = 'Berhasil';
+    $sql_karyawan = "SELECT * FROM karyawan WHERE username = '$username' AND password = '$password'";
+    $result_karyawan = mysqli_query($conn, $sql_karyawan);
+
+    if ($result_users->num_rows > 0) {
+        $row = mysqli_fetch_assoc($result_users);
+        $_SESSION['id_users'] = $row['id'];
+        $_SESSION['level'] = $row['level'];
+        $_SESSION['info'] = 'Berhasil login sebagai Admin!';
+    } else if ($result_karyawan->num_rows > 0) {
+        $row = mysqli_fetch_assoc($result_karyawan);
+        $_SESSION['id_karyawan'] = $row['id'];
+        $_SESSION['level'] = $row['level'];
+        $_SESSION['info'] = 'Berhasil login sebagai Karyawan!';
     } else if ($username == "" || $password == "") {
         $_SESSION['info'] = 'Kosong';
     } else {
         $_SESSION['info'] = 'Gagal';
     }
 }
+
 
 ?>
 
@@ -53,9 +63,9 @@ if (isset($_POST['submit'])) {
     <!-- Swal -->
 
     <div class="wrapper d-flex justify-content-center align-items-center vh-100">
-        <div class="p-5 border rounded-5 shadow-lg bg-light" style="width: 400px;">
+        <div class="p-5 border rounded-5 shadow-lg login mx-5" style="width: 400px;">
             <div class="d-flex justify-content-center">
-                <a href="./"><img src="pages/src/image/assets/logo.png" alt=""></a>
+                <a href="./"><img src="pages/src/image/assets/logo.png" class="img-fluid" alt=""></a>
             </div>
             <h2 class="mb-3 fw-bold">Login.</h2>
             <form action="" method="POST">

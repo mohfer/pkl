@@ -2,14 +2,23 @@ const data = $('.info-data').data('infodata');
 const login = $('.info-login').data('infologin');
 
 // Login Page
-if (login == "Berhasil") {
+if (login == "Berhasil login sebagai Admin!") {
     Swal.fire({
         icon: 'success',
         title: 'Success',
         confirmButtonColor: '#241468',
-        text: 'Login berhasil!',
+        text: login,
     }).then(function () {
         window.location = "pages/dashboard";
+    })
+} else if (login == "Berhasil login sebagai Karyawan!") {
+    Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        confirmButtonColor: '#241468',
+        text: login,
+    }).then(function () {
+        window.location = "pages/me/dashboard";
     })
 } else if (login == "Gagal") {
     Swal.fire({
@@ -63,7 +72,7 @@ if (data == "berhasil disimpan!" || data == "berhasil dihapus!") {
         confirmButtonColor: '#241468',
         text: 'Data' + ' ' + data,
     })
-} else if (data == "gagal disimpan!" || data == "gagal dihapus!" || data == "sudah ada!" || data == "nip sudah terdaftar!" || data == "jumlah melebihi stok yang tersedia!" || data == "tidak dapat dihapus karena data masih digunakan di halaman komputer!" || data == "sudah ada!" || data == "tidak ditemukan! tolong pilih data sesuai dengan datalist yang sudah ada!") {
+} else if (data == "gagal disimpan!" || data == "gagal dihapus!" || data == "sudah ada!" || data == "nip sudah terdaftar!" || data == "jumlah melebihi stok yang tersedia!" || data == "tidak dapat dihapus karena data masih digunakan di halaman lain!" || data == "tidak ditemukan! tolong pilih data sesuai dengan datalist yang sudah ada!") {
     Swal.fire({
         icon: 'error',
         title: 'Oops...',

@@ -4,14 +4,18 @@ session_start();
 
 include "../src/config/connect.php";
 include "../src/function/antiSqlInjection.php";
-if (!isset($_SESSION['username'])) {
-    header("Location: ../../login.php");
+
+if (!isset($_SESSION['id_users'])) {
+    header("Location: ../../pages/me/dashboard");
 }
+
+
 
 
 if (isset($_POST['submit'])) {
     $id = $_POST['id'];
     $nama = $_POST['nama'];
+    $password = md5($_POST['nama']);
     $nip = $_POST['nip'];
     $jk = $_POST['jk'];
     $divisi = $_POST['divisi'];
@@ -22,7 +26,7 @@ if (isset($_POST['submit'])) {
     if (mysqli_num_rows($result) > 0) {
         $_SESSION['data'] = "nip sudah terdaftar!";
     } else {
-        $sql = "INSERT INTO karyawan (id, nama, nip, jk, divisi) VALUES ('$id', '$nama', '$nip', '$jk', '$divisi')";
+        $sql = "INSERT INTO karyawan (id, username, password, nama, nip, jk, divisi, level) VALUES ('$id', '$nama', '$password', '$nama', '$nip', '$jk', '$divisi', 'Karyawan')";
 
         if (mysqli_query($conn, $sql)) {
             $_SESSION['data'] = "berhasil disimpan!";
@@ -48,6 +52,7 @@ if (isset($_POST['submit'])) {
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <?php include "../src/library/bootstrap.php" ?>
     <?php include "../src/library/sweetalert.php" ?>
+
     <title>Inventory Barang | Karyawan</title>
 </head>
 

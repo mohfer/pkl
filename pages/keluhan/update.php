@@ -3,12 +3,16 @@
 session_start();
 
 $id = $_GET['id'];
+$id_users = $_SESSION['id_users'];
 
 include "../src/config/connect.php";
 include "../src/function/antiSqlInjection.php";
-if (!isset($_SESSION['username'])) {
-    header("Location: ../../login.php");
+
+if (!isset($_SESSION['id_users'])) {
+    header("Location: ../../pages/me/dashboard");
 }
+
+
 
 include "../src/function/getFunction.php";
 
@@ -54,11 +58,10 @@ if ($result_status) {
 if (isset($_POST['submit'])) {
     $id = $_POST['id'];
     $id_karyawan = $_POST['id_karyawan'];
-    $keluhan = $_POST['keluhan'];
     $solusi = $_POST['solusi'];
     $biaya = $_POST['biaya'];
 
-    $sql = "UPDATE keluhan SET id_karyawan = '$id_karyawan', keluhan = '$keluhan', solusi = '$solusi', biaya = '$biaya' WHERE id = '$id'";
+    $sql = "UPDATE keluhan SET id_karyawan = '$id_karyawan', solusi = '$solusi', biaya = '$biaya' WHERE id = '$id'";
 
     if (mysqli_query($conn, $sql)) {
         $_SESSION['data'] = "berhasil disimpan!";
@@ -74,7 +77,7 @@ if (isset($_POST['proses'])) {
     $id_karyawan = $_POST['id_karyawan'];
     $keluhan = $_POST['keluhan'];
 
-    $sql = "UPDATE keluhan SET id_karyawan = '$id_karyawan', keluhan = '$keluhan', tanggal_proses = '$tanggal', status = 'Proses' WHERE id = '$id'";
+    $sql = "UPDATE keluhan SET id_users = '$id_users', id_karyawan = '$id_karyawan', keluhan = '$keluhan', tanggal_proses = '$tanggal', status = 'Proses' WHERE id = '$id'";
 
     if (mysqli_query($conn, $sql)) {
         $_SESSION['data'] = "berhasil disimpan!";
@@ -117,6 +120,7 @@ if (isset($_POST['selesai'])) {
     <?php include '../src/library/bootstrap.php' ?>
     <?php include '../src/library/datatables.php' ?>
     <?php include '../src/library/sweetalert.php' ?>
+
     <title>Inventory Barang | Keluhan</title>
 </head>
 

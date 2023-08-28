@@ -6,8 +6,8 @@ include "../src/config/connect.php";
 include "../src/function/antiSqlInjection.php";
 include "../src/function/dashboardCount.php";
 
-if (!isset($_SESSION['username'])) {
-    header("Location: ../../login.php");
+if (!isset($_SESSION['id_users'])) {
+    header("Location: ../../pages/me/dashboard");
 }
 
 ?>
@@ -92,11 +92,11 @@ if (!isset($_SESSION['username'])) {
             </div>
             <div class="col-md-10 content">
                 <div class="wrapper shadow p-3 my-3 left">
-                    <h1>Dashboard</h1>
+                    <h1>Dashboard | <?= $_SESSION['level'] ?></h1>
                     <div class="row my-3">
                         <div class="col-md-6">
                             <a href="../barang/" class="text-dark">
-                                <div class="p-4 shadow hover rounded">
+                                <div class="p-4 shadow hover rounded h-100">
                                     <div class="row">
                                         <div class="col-md-10">
                                             <p class="fs-2">Jumlah Transaksi Masuk</p>
@@ -110,7 +110,7 @@ if (!isset($_SESSION['username'])) {
                         </div>
                         <div class="col-md-6">
                             <a href="../barang/" class="text-dark">
-                                <div class="p-4 shadow hover rounded">
+                                <div class="p-4 shadow hover rounded h-100">
                                     <div class="row">
                                         <div class="col-md-10">
                                             <p class="fs-2">Jumlah Transaksi Keluar</p>
@@ -126,7 +126,7 @@ if (!isset($_SESSION['username'])) {
                     <div class="row my-3">
                         <div class="col-md-4">
                             <a href="../keluhan/" class="text-dark">
-                                <div class="p-4 shadow hover rounded">
+                                <div class="p-4 shadow hover rounded h-100">
                                     <div class="row">
                                         <div class="col-md-10">
                                             <p class="fs-3">Jumlah Keluhan Status "0"</p>
@@ -140,7 +140,7 @@ if (!isset($_SESSION['username'])) {
                         </div>
                         <div class="col-md-4">
                             <a href="../keluhan/" class="text-dark">
-                                <div class="p-4 shadow hover rounded">
+                                <div class="p-4 shadow hover rounded h-100">
                                     <div class="row">
                                         <div class="col-md-10">
                                             <p class="fs-3">Jumlah Keluhan Status "Proses"</p>
@@ -154,7 +154,7 @@ if (!isset($_SESSION['username'])) {
                         </div>
                         <div class="col-md-4">
                             <a href="../keluhan/" class="text-dark">
-                                <div class="p-4 shadow hover rounded">
+                                <div class="p-4 shadow hover rounded h-100">
                                     <div class="row">
                                         <div class="col-md-10">
                                             <p class="fs-3">Jumlah Keluhan Status "Selesai"</p>
@@ -170,7 +170,7 @@ if (!isset($_SESSION['username'])) {
                     <div class="row my-3">
                         <div class="col-md-3">
                             <a href="../processor/" class="text-dark">
-                                <div class="p-4 shadow hover rounded">
+                                <div class="p-4 shadow hover rounded h-100">
                                     <div class="row">
                                         <div class="col-md-10">
                                             <p class="fs-3">Jumlah Processor</p>
@@ -184,7 +184,7 @@ if (!isset($_SESSION['username'])) {
                         </div>
                         <div class="col-md-3">
                             <a href="../ram/" class="text-dark">
-                                <div class="p-4 shadow hover rounded">
+                                <div class="p-4 shadow hover rounded h-100">
                                     <div class="row">
                                         <div class="col-md-10">
                                             <p class="fs-3">Jumlah RAM</p>
@@ -198,7 +198,7 @@ if (!isset($_SESSION['username'])) {
                         </div>
                         <div class="col-md-3">
                             <a href="../storage/" class="text-dark">
-                                <div class="p-4 shadow hover rounded">
+                                <div class="p-4 shadow hover rounded h-100">
                                     <div class="row">
                                         <div class="col-md-10">
                                             <p class="fs-3">Jumlah Storage</p>
@@ -212,7 +212,7 @@ if (!isset($_SESSION['username'])) {
                         </div>
                         <div class="col-md-3">
                             <a href="../vga/" class="text-dark">
-                                <div class="p-4 shadow hover rounded">
+                                <div class="p-4 shadow hover rounded h-100">
                                     <div class="row">
                                         <div class="col-md-10">
                                             <p class="fs-3">Jumlah Graphics Card</p>
@@ -228,7 +228,7 @@ if (!isset($_SESSION['username'])) {
                     <div class="row my-3">
                         <div class="col-md-6">
                             <a href="../karyawan/" class="text-dark">
-                                <div class="p-4 shadow hover rounded">
+                                <div class="p-4 shadow hover rounded h-100">
                                     <div class="row">
                                         <div class="col-md-10">
                                             <p class="fs-2">Jumlah Karyawan</p>
@@ -242,7 +242,7 @@ if (!isset($_SESSION['username'])) {
                         </div>
                         <div class="col-md-6">
                             <a href="../komputer/" class="text-dark">
-                                <div class="p-4 shadow hover rounded">
+                                <div class="p-4 shadow hover rounded h-100">
                                     <div class="row">
                                         <div class="col-md-10">
                                             <p class="fs-2">Jumlah Komputer</p>

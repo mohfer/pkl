@@ -44,34 +44,12 @@ a {
   font-size: 3rem;
 }
 
-.col-barang {
-  transition: 0.2s;
-}
-
 .line-top {
   border-top: 2px solid #241468;
 }
 
 .line-bottom {
   border-bottom: 2px solid #241468;
-}
-
-.col-barang:hover {
-  background-color: #241468;
-  color: #fff;
-  cursor: context-menu;
-  .line-top {
-    border-top: 2px solid #fff;
-  }
-}
-
-.col-barang:hover {
-  background-color: #241468;
-  color: #fff;
-  cursor: context-menu;
-  .line-bottom {
-    border-bottom: 2px solid #fff;
-  }
 }
 
 #about {

@@ -2,40 +2,27 @@
 
 session_start();
 
-include "../src/config/connect.php";
-include "../src/function/antiSqlInjection.php";
+$id_karyawan = $_SESSION['id_karyawan'];
 
-if (!isset($_SESSION['id_users'])) {
-    header("Location: ../../pages/me/dashboard");
+include "../../src/config/connect.php";
+include "../../src/function/antiSqlInjection.php";
+
+if (!isset($_SESSION['id_karyawan'])) {
+    header("Location: ../../../pages/dashboard");
 }
 
-
-
-
-$query_karyawan = "SELECT id, nama FROM karyawan ORDER BY nama ASC";
-$result_karyawan = mysqli_query($conn, $query_karyawan);
-
-$query_join = "SELECT
-    k.id AS id,
-    karyawan.nama AS nama_karyawan
-FROM keluhan k
-JOIN karyawan ON k.id_karyawan = karyawan.id
-ORDER BY karyawan.nama ASC";
-
-$result_join = mysqli_query($conn, $query_join);
 date_default_timezone_set('Asia/Jakarta');
 $tanggal = date('l, d F Y, H:i:s') . " WIB";
 
 if (isset($_POST['submit'])) {
     $id = $_POST['id'];
-    $id_karyawan = $_POST['id_karyawan'];
     $keluhan = $_POST['keluhan'];
 
     if (empty($id_karyawan)) {
         $_SESSION['data'] = "tidak ditemukan! tolong pilih data sesuai dengan datalist yang sudah ada!";
     } else {
 
-        $sql = "INSERT INTO keluhan (id, tanggal_masuk, id_karyawan, keluhan, solusi, biaya, status) VALUES ('$id', '$tanggal', '$id_karyawan', '$keluhan', '', '', '0')";
+        $sql = "INSERT INTO keluhan (id, tanggal_masuk, id_users, id_karyawan, keluhan, solusi, biaya, status) VALUES ('$id', '$tanggal', NULL, '$id_karyawan', '$keluhan', '', '', '0')";
 
         if (mysqli_query($conn, $sql)) {
             $_SESSION['data'] = "berhasil disimpan!";
@@ -59,12 +46,12 @@ mysqli_close($conn);
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="../src/css/global.css">
+    <link rel="stylesheet" href="../../src/css/global.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-    <?php include '../src/library/bootstrap.php' ?>
-    <?php include '../src/library/datatables.php' ?>
-    <?php include '../src/library/sweetalert.php' ?>
+    <?php include '../../src/library/bootstrap.php' ?>
+    <?php include '../../src/library/datatables.php' ?>
+    <?php include '../../src/library/sweetalert.php' ?>
 
     <title>Inventory Barang | Keluhan</title>
 </head>
@@ -76,6 +63,7 @@ mysqli_close($conn);
 </script>
 
 <body>
+
     <!-- Swal -->
     <div class="info-data" data-infodata="<?php if (isset($_SESSION['data'])) {
                                                 echo $_SESSION['data'];
@@ -96,41 +84,14 @@ mysqli_close($conn);
                     </a>
                 </div>
                 <div class="mx-4">
-                    <h5>Master | Komponen</h5>
-                    <a href="../processor/">
-                        <p class="opacity">Processor</p>
-                    </a>
-                    <a href="../ram/">
-                        <p class="opacity">RAM</p>
-                    </a>
-                    <a href="../storage/">
-                        <p class="opacity">Storage</p>
-                    </a>
-                    <a href="../vga/">
-                        <p class="opacity">Graphics Card</p>
-                    </a>
-                </div>
-                <div class="mx-4">
-                    <h5>Master | Karyawan</h5>
-                    <a href="../karyawan/">
-                        <p class="opacity">Karyawan</p>
-                        <a href="../komputer/">
-                            <p class="opacity">Komputer</p>
-                        </a>
-                    </a>
-                </div>
-                <div class="mx-4">
                     <h5>Transaksi</h5>
-                    <a href="../barang/">
-                        <p class="opacity">Barang</p>
-                    </a>
                     <a href="../keluhan/">
                         <p class="opacity-100 aktif rounded-pill">Keluhan</p>
                     </a>
                 </div>
                 <div class="mx-4">
                     <h5>Aksi</h5>
-                    <a href="../../logout.php">
+                    <a href="../../../logout.php">
                         <p class="opacity">Logout</p>
                     </a>
                 </div>
@@ -144,16 +105,6 @@ mysqli_close($conn);
                         </div>
                         <div class="row my-3">
                             <div class="col">
-                                <div class="mb-3">
-                                    <label for="karyawan">Karyawan</label>
-                                    <input class="form-control" type="text" name="karyawan_input" id="karyawan_input" list="list_karyawan" autocomplete="off" required>
-                                    <datalist id="list_karyawan">
-                                        <?php while ($row = mysqli_fetch_assoc($result_karyawan)) { ?>
-                                            <option value="<?= $row['nama']; ?>" data-id="<?= $row['id']; ?>"></option>
-                                        <?php } ?>
-                                    </datalist>
-                                    <input type="hidden" name="id_karyawan" id="id_karyawan">
-                                </div>
                                 <div class="mb-3">
                                     <label for="keluhan">Keluhan</label>
                                     <textarea class="form-control" name="keluhan" id="keluhan" cols="30" rows="5" required></textarea>
@@ -169,8 +120,7 @@ mysqli_close($conn);
             </section>
         </div>
     </div>
-    <script src="../src/js/sweetalert.js"></script>
-    <script src="../src/js/datalistKomputer.js"></script>
+    <script src="../../src/js/sweetalert.js"></script>
 
 </body>
 
