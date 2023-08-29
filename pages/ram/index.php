@@ -95,6 +95,9 @@ $row = mysqli_query($conn, "SELECT * FROM ram ORDER BY tipe_memori DESC");
                 </div>
                 <div class="mx-4">
                     <h5>Aksi</h5>
+                    <a href="../password/">
+                        <p class="opacity">Password</p>
+                    </a>
                     <a href="../../logout.php">
                         <p class="opacity">Logout</p>
                     </a>

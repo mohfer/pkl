@@ -39,7 +39,6 @@ if (!isset($_SESSION['id_users'])) {
     <div class="container-fluid">
         <div class="row vh-100">
             <div class="col-md-2 sidebar text-light">
-
                 <a href="../../">
                     <div class="text-center my-3 mb-5">
                         <h4>Inventory Barang</h4>
@@ -86,6 +85,9 @@ if (!isset($_SESSION['id_users'])) {
                 </div>
                 <div class="mx-4">
                     <h5>Aksi</h5>
+                    <a href="../password/">
+                        <p class="opacity">Password</p>
+                    </a>
                     <a href="../../logout.php">
                         <p class="opacity">Logout</p>
                     </a>

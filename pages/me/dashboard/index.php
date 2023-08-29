@@ -5,7 +5,6 @@ session_start();
 $id = $_SESSION['id_karyawan'];
 
 include "../../src/config/connect.php";
-include "../../src/function/antiSqlInjection.php";
 include "../../src/function/statusCount.php";
 
 if (!isset($_SESSION['id_karyawan'])) {

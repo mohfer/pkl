@@ -26,6 +26,7 @@ if (isset($_POST['submit'])) {
     if ($result_users->num_rows > 0) {
         $row = mysqli_fetch_assoc($result_users);
         $_SESSION['id_users'] = $row['id'];
+        $_SESSION['username_users'] = $row['username'];
         $_SESSION['level'] = $row['level'];
         $_SESSION['info'] = 'Berhasil login sebagai Admin!';
     } else if ($result_karyawan->num_rows > 0) {

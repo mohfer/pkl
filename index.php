@@ -62,13 +62,24 @@ $result_barang = mysqli_query($conn, $query_barang);
         </div>
     </section>
     <section id="about" class="container my-5">
-        <div class="row container py-5 my-5 d-flex justify-content-center align-items-center">
+        <div class="row container py-5 my-5 d-flex justify-content-center align-items-center ">
             <div class="col" data-aos="fade-down">
                 <img src="pages/src/image/assets/picture-about.png" class="img-fluid shadow-lg rounded-3" alt="">
             </div>
             <div class="col">
                 <h1 class="fw-bold title mb-3" data-aos="fade-down" data-aos-delay="200">Inventory Barang?</h1>
-                <p class="text-secondary fs-5" data-aos="fade-down" data-aos-delay="400">Aplikasi inventory merupakan jenis aplikasi yang berkaitan dengan persediaan barang-barang di gudang. Aplikasi inventory biasanya digunakan oleh suatu perusahaan yang bergerak dalam bisnis agar mampu mengelola barang supaya persediaannya dapat teratur dengan baik.</p>
+                <p class="text-secondary fs-5" data-aos="fade-down" data-aos-delay="400">Aplikasi inventori barang adalah perangkat lunak yang dirancang untuk membantu bisnis atau organisasi dalam mengelola dan mengawasi stok atau persediaan barang yang mereka miliki.</p>
+            </div>
+        </div>
+    </section>
+    <section id="keluhan" class="container my-5">
+        <div class="row container py-5 my-5 d-flex justify-content-center align-items-center">
+            <div class="col">
+                <h1 class="fw-bold title mb-3" data-aos="fade-down" data-aos-delay="200">Keluhan karyawan?</h1>
+                <p class="text-secondary fs-5" data-aos="fade-down" data-aos-delay="400">Aplikasi keluhan karyawan adalah perangkat lunak yang dirancang khusus untuk memungkinkan karyawan mengajukan, melacak, dan mengelola keluhan, masalah, atau pertanyaan terkait lingkungan kerja.</p>
+            </div>
+            <div class="col" data-aos="fade-down">
+                <img src="pages/src/image/assets/picture-keluhan.png" class="img-fluid shadow-lg rounded-3" alt="">
             </div>
         </div>
     </section>

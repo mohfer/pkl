@@ -2,37 +2,37 @@
 
 session_start();
 
-include "../src/config/connect.php";
-include "../src/function/antiSqlInjection.php";
-
 if (!isset($_SESSION['id_users'])) {
     header("Location: ../../pages/me/dashboard");
 }
 
+include "../src/config/connect.php";
+include "../src/function/antiSqlInjection.php";
 
+if (isset($_POST['reset'])) {
+    $oldPassword = md5($_POST['oldPassword']);
+    $username = $_SESSION['username_users'];
 
+    $show = mysqli_query($conn, "SELECT * FROM users WHERE username = '$username' AND password = '$oldPassword'");
+    $data = mysqli_fetch_array($show);
 
-if (isset($_POST['submit'])) {
-    $id = $_POST['id'];
-    $nama = $_POST['nama'];
-    $stok = $_POST['stok'];
+    if ($data) {
+        $newPassword = $_POST['newPassword'];
+        $confirmPassword = $_POST['confirmPassword'];
 
-    $query = "SELECT nama FROM processor WHERE nama = '$nama'";
-    $result = mysqli_query($conn, $query);
+        if ($newPassword == $confirmPassword) {
+            $pass_ok = md5($confirmPassword);
+            $ubah = mysqli_query($conn, "UPDATE users SET password = '$pass_ok' WHERE id = '$_SESSION[id_users]'");
 
-    if (mysqli_num_rows($result) > 0) {
-        $_SESSION['data'] = "sudah ada!";
-    } else {
-        $sql = "INSERT INTO processor (id, nama, stok) VALUES ('$id', '$nama', '$stok')";
-        if (mysqli_query($conn, $sql)) {
-            $_SESSION['data'] = "berhasil disimpan!";
-            header("Location: ../processor");
-            exit;
+            if ($ubah) {
+                $_SESSION['data'] = "password berhasil dirubah!";
+            }
         } else {
-            $_SESSION['data'] = "gagal disimpan!";
+            $_SESSION['data'] = "password baru anda tidak sesuai dengan konfirmasi password!";
         }
+    } else {
+        $_SESSION['data'] = "password lama tidak sesuai!";
     }
-    mysqli_close($conn);
 }
 
 ?>
@@ -45,12 +45,10 @@ if (isset($_POST['submit'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="../src/css/global.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-    <?php include "../src/library/bootstrap.php" ?>
-    <?php include "../src/library/sweetalert.php" ?>
-
-    <title>Inventory Barang | Processor</title>
+    <?php include '../src/library/bootstrap.php' ?>
+    <?php include '../src/library/sweetalert.php' ?>
+    <title>Inventory Barang | Dashboard</title>
 </head>
 
 <body>
@@ -78,7 +76,7 @@ if (isset($_POST['submit'])) {
                 <div class="mx-4">
                     <h5>Master | Komponen</h5>
                     <a href="../processor/">
-                        <p class="opacity-100 aktif rounded-pill">Processor</p>
+                        <p class="opacity">Processor</p>
                     </a>
                     <a href="../ram/">
                         <p class="opacity">RAM</p>
@@ -111,7 +109,7 @@ if (isset($_POST['submit'])) {
                 <div class="mx-4">
                     <h5>Aksi</h5>
                     <a href="../password/">
-                        <p class="opacity">Password</p>
+                        <p class="opacity-100 aktif rounded-pill">Password</p>
                     </a>
                     <a href="../../logout.php">
                         <p class="opacity">Logout</p>
@@ -120,30 +118,31 @@ if (isset($_POST['submit'])) {
             </div>
             <div class="col-md-10 content">
                 <div class="wrapper shadow p-3 my-3 left">
-                    <h1>Processor | Tambah</h1>
-                    <form action="" method="POST">
-                        <div class="row">
-                            <div class="col">
-                                <div class="">
-                                    <input type="hidden" id="id" name="id" class="form-control" placeholder="1">
+                    <h1>Password | Reset</h1>
+                    <div class="row my-3">
+                        <?php if (isset($message)) : ?>
+                            <p><?php echo $message; ?></p>
+                        <?php endif; ?>
+                        <form action="" method="POST">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="oldPassword">Password Lama</label>
+                                    <input type="password" id="oldPassword" class="form-control" name="oldPassword" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="nama">Nama</label>
-                                    <input type="text" id="nama" name="nama" class="form-control" placeholder="Intel Core i3 13100" required autocomplete="off">
+                                    <label for="newPassword">Password Baru</label>
+                                    <input type="password" id="newPassword" class="form-control" name="newPassword" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="stok">Stok</label>
-                                    <input type="number" id="stok" name="stok" class="form-control" placeholder="10" required autocomplete="off">
+                                    <label for="confirmPassword">Konfirmasi Password</label>
+                                    <input type="password" id="confirmPassword" class="form-control" name="confirmPassword" required>
                                 </div>
+                                <button class="btn ungu my-3" name="reset">Reset</button>
                             </div>
-                            <div class="col">
+                            <div class="col-md-6">
                             </div>
-                            <div class="mb-3">
-                                <button class="btn ungu" name="submit">Simpan</button>
-                                <a href="../processor/" class="btn btn-danger">Batal</a>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

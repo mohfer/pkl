@@ -2,7 +2,13 @@
 
 session_start();
 
+
+if (!isset($_SESSION['id_karyawan'])) {
+    header("Location: ../../../pages/dashboard");
+}
+
 include "../../src/config/connect.php";
+include "../../src/function/antiSqlInjection.php";
 
 if (isset($_POST['reset'])) {
     $oldPassword = md5($_POST['oldPassword']);
@@ -95,7 +101,7 @@ if (isset($_POST['reset'])) {
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="oldPassword">Password Lama</label>
-                                    <input type="password" id="oldPassword" class="form-control" name="oldPassword">
+                                    <input type="password" id="oldPassword" class="form-control" name="oldPassword" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="newPassword">Password Baru</label>
@@ -103,7 +109,7 @@ if (isset($_POST['reset'])) {
                                 </div>
                                 <div class="mb-3">
                                     <label for="confirmPassword">Konfirmasi Password</label>
-                                    <input type="password" id="confirmPassword" class="form-control" name="confirmPassword">
+                                    <input type="password" id="confirmPassword" class="form-control" name="confirmPassword" required>
                                 </div>
                                 <button class="btn ungu my-3" name="reset">Reset</button>
                             </div>

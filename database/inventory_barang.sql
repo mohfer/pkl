@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 28, 2023 at 11:43 AM
+-- Generation Time: Aug 29, 2023 at 11:41 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -73,9 +73,8 @@ CREATE TABLE `karyawan` (
 --
 
 INSERT INTO `karyawan` (`id`, `username`, `password`, `nama`, `nip`, `jk`, `divisi`, `level`) VALUES
-(9, 'andriant', '646d1e34eee57e93bbcbbbd3c56b511f', 'Andriant', 813716339733501689, 'Laki - Laki', 'IT', 'Karyawan'),
-(10, 'heruprabawa', '217028c555ac3cf442f8ad2d89b97c37', 'Heru Prabawa', 502702989963636661, 'Laki - Laki', 'Engineering', 'Karyawan'),
-(16, 'Erwin Susanto', 'd9efad9d91b435b3ad8a8854e3f150f5', 'Erwin Susanto', 901673287921250467, 'Laki - Laki', 'Marketing', 'Karyawan');
+(18, 'erwinsusanto', '785f0b13d4daf8eee0d11195f58302a4', 'Erwin Susanto', 233817821772255375, 'Laki - Laki', 'IT', 'Karyawan'),
+(19, 'heruprabawa', 'a648ab9a3e32c5f3f6e9ddbd41c0530f', 'Heru Prabawa', 132941390939294143, 'Laki - Laki', 'Engineering', 'Karyawan');
 
 -- --------------------------------------------------------
 
@@ -101,8 +100,8 @@ CREATE TABLE `keluhan` (
 --
 
 INSERT INTO `keluhan` (`id`, `tanggal_masuk`, `tanggal_proses`, `tanggal_selesai`, `id_users`, `id_karyawan`, `keluhan`, `solusi`, `biaya`, `status`) VALUES
-(106, 'Monday, 28 August 2023, 16:36:02 WIB', 'Monday, 28 August 2023, 16:36:44 WIB', '', 1, 16, 'Kok ngga ada fitur ubah password?', 'Iya nanti saya tambahin', 0, 'Proses'),
-(107, 'Monday, 28 August 2023, 16:37:58 WIB', 'Monday, 28 August 2023, 16:38:09 WIB', '', 1, 16, 'Tolong Tambahin saya Komputer Spek Dewa!!!', '', 0, 'Proses');
+(111, 'Tuesday, 29 August 2023, 16:24:06 WIB', '', '', NULL, 18, 'Laptop saya kok lemot ya mas?', '', 0, '0'),
+(112, 'Tuesday, 29 August 2023, 16:24:22 WIB', '', '', NULL, 19, 'Ini kok sering restart sendiri ya pc nya?', '', 0, '0');
 
 -- --------------------------------------------------------
 
@@ -124,9 +123,8 @@ CREATE TABLE `komputer` (
 --
 
 INSERT INTO `komputer` (`id`, `id_karyawan`, `id_processor`, `id_ram`, `id_storage`, `id_vga`) VALUES
-(49, 9, 20, 40, 12, 6),
-(50, 10, 22, 42, 5, 7),
-(52, 16, 22, 42, 12, 17);
+(56, 18, 10, 41, 9, 6),
+(57, 19, 21, 44, 5, 12);
 
 -- --------------------------------------------------------
 
@@ -336,19 +334,19 @@ ALTER TABLE `barang`
 -- AUTO_INCREMENT for table `karyawan`
 --
 ALTER TABLE `karyawan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `keluhan`
 --
 ALTER TABLE `keluhan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 --
 -- AUTO_INCREMENT for table `komputer`
 --
 ALTER TABLE `komputer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `processor`
@@ -388,8 +386,8 @@ ALTER TABLE `vga`
 -- Constraints for table `keluhan`
 --
 ALTER TABLE `keluhan`
-  ADD CONSTRAINT `keluhan_ibfk_1` FOREIGN KEY (`id_karyawan`) REFERENCES `karyawan` (`id`),
-  ADD CONSTRAINT `keluhan_ibfk_2` FOREIGN KEY (`id_users`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
+  ADD CONSTRAINT `keluhan_ibfk_2` FOREIGN KEY (`id_users`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `keluhan_ibfk_3` FOREIGN KEY (`id_karyawan`) REFERENCES `karyawan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `komputer`
