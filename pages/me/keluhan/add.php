@@ -74,9 +74,11 @@ mysqli_close($conn);
     <div class="container-fluid">
         <div class="row vh-100">
             <section class="col-md-2 sidebar text-light">
-                <div class="text-center my-3 mb-5">
-                    <h4>Inventory Barang</h4>
-                </div>
+                <a href="../../../">
+                    <div class="text-center my-3 mb-5">
+                        <h4>Inventory Barang</h4>
+                    </div>
+                </a>
                 <div class="mx-4">
                     <h5>Menu</h5>
                     <a href="../dashboard/">
@@ -91,6 +93,9 @@ mysqli_close($conn);
                 </div>
                 <div class="mx-4">
                     <h5>Aksi</h5>
+                    <a href="../password/">
+                        <p class="opacity">Password</p>
+                    </a>
                     <a href="../../../logout.php">
                         <p class="opacity">Logout</p>
                     </a>

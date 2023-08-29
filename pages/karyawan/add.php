@@ -10,23 +10,23 @@ if (!isset($_SESSION['id_users'])) {
 }
 
 
-
-
 if (isset($_POST['submit'])) {
     $id = $_POST['id'];
     $nama = $_POST['nama'];
-    $password = md5($_POST['nama']);
     $nip = $_POST['nip'];
     $jk = $_POST['jk'];
     $divisi = $_POST['divisi'];
+
+    $username = strtolower(str_replace(' ', '', $nama));
+    $password = md5($username);
 
     $query = "SELECT nip FROM karyawan WHERE nip = '$nip'";
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) > 0) {
-        $_SESSION['data'] = "nip sudah terdaftar!";
+        $_SESSION['data'] = "NIP sudah terdaftar!";
     } else {
-        $sql = "INSERT INTO karyawan (id, username, password, nama, nip, jk, divisi, level) VALUES ('$id', '$nama', '$password', '$nama', '$nip', '$jk', '$divisi', 'Karyawan')";
+        $sql = "INSERT INTO karyawan (id, username, password, nama, nip, jk, divisi, level) VALUES ('$id', '$username', '$password', '$nama', '$nip', '$jk', '$divisi', 'Karyawan')";
 
         if (mysqli_query($conn, $sql)) {
             $_SESSION['data'] = "berhasil disimpan!";
@@ -67,9 +67,11 @@ if (isset($_POST['submit'])) {
     <div class="container-fluid">
         <div class="row vh-100">
             <div class="col-md-2 sidebar text-light">
-                <div class="text-center my-3 mb-5">
-                    <h4>Inventory Barang</h4>
-                </div>
+                <a href="../../">
+                    <div class="text-center my-3 mb-5">
+                        <h4>Inventory Barang</h4>
+                    </div>
+                </a>
                 <div class="mx-4">
                     <h5>Menu</h5>
                     <a href="../dashboard/">

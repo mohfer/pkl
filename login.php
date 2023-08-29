@@ -1,8 +1,13 @@
 <?php
 
 session_start();
+
 if (isset($_SESSION['id_users'])) {
-    $_SESSION['info'] = 'Berhasil';
+    $_SESSION['info'] = 'Berhasil login sebagai Admin!';
+}
+
+if (isset($_SESSION['id_karyawan'])) {
+    $_SESSION['info'] = 'Berhasil login sebagai Karyawan!';
 }
 
 include "pages/src/config/connect.php";
@@ -26,6 +31,7 @@ if (isset($_POST['submit'])) {
     } else if ($result_karyawan->num_rows > 0) {
         $row = mysqli_fetch_assoc($result_karyawan);
         $_SESSION['id_karyawan'] = $row['id'];
+        $_SESSION['username_karyawan'] = $row['username'];
         $_SESSION['level'] = $row['level'];
         $_SESSION['info'] = 'Berhasil login sebagai Karyawan!';
     } else if ($username == "" || $password == "") {
@@ -53,7 +59,6 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-
     <!-- Swal -->
     <div class="info-login" data-infologin="<?php if (isset($_SESSION['info'])) {
                                                 echo $_SESSION['info'];

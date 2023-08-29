@@ -10,22 +10,19 @@ if (!isset($_SESSION['id_users'])) {
     header("Location: ../../pages/me/dashboard");
 }
 
-
-
-
 $query_karyawan = "SELECT id, nama FROM karyawan ORDER BY nama ASC";
 $result_karyawan = mysqli_query($conn, $query_karyawan);
 
 $query_processor = "SELECT id, nama, stok FROM processor ORDER BY nama DESC";
 $result_processor = mysqli_query($conn, $query_processor);
 
-$query_ram = "SELECT id, tipe_memori, kapasitas, stok FROM ram ORDER BY kapasitas DESC";
+$query_ram = "SELECT id, tipe_memori, kapasitas, stok FROM ram ORDER BY tipe_memori DESC";
 $result_ram = mysqli_query($conn, $query_ram);
 
 $query_storage = "SELECT id, tipe, kapasitas, stok FROM storage ORDER BY kapasitas DESC";
 $result_storage = mysqli_query($conn, $query_storage);
 
-$query_vga = "SELECT id, brand, nama, vram, stok FROM vga";
+$query_vga = "SELECT id, brand, nama, vram, stok FROM vga ORDER BY nama DESC";
 $result_vga = mysqli_query($conn, $query_vga);
 
 $query_barang = "SELECT * FROM barang ORDER BY tanggal DESC";
@@ -72,9 +69,11 @@ mysqli_close($conn);
     <div class="container-fluid">
         <div class="row vh-100">
             <section class="col-md-2 sidebar text-light">
-                <div class="text-center my-3 mb-5">
-                    <h4>Inventory Barang</h4>
-                </div>
+                <a href="../../">
+                    <div class="text-center my-3 mb-5">
+                        <h4>Inventory Barang</h4>
+                    </div>
+                </a>
                 <div class="mx-4">
                     <h5>Menu</h5>
                     <a href="../dashboard/">
@@ -308,7 +307,6 @@ mysqli_close($conn);
                                 <th scope="col">Jumlah</th>
                                 <th scope="col">Dari/Untuk</th>
                                 <th class="text-center" scope="col">Status</th>
-                                <th scope="col" class="text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -323,11 +321,6 @@ mysqli_close($conn);
                                     <td><?= $result['perusahaan'] ?></td>
                                     <td class="<?php echo ($result['status'] === 'Masuk') ? 'bg-success text-light text-center' : 'bg-danger text-light text-center'; ?>">
                                         <?php echo $result['status']; ?>
-                                    </td>
-                                    <td>
-                                        <div class="text-center">
-                                            <a href="delete.php?id=<?= $result['id'] ?>" id="btn-del" class="btn btn-danger">Hapus</a>
-                                        </div>
                                     </td>
                                 </tr>
                             <?php endwhile; ?>

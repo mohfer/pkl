@@ -49,9 +49,11 @@ $row = mysqli_query($conn, "SELECT * FROM storage ORDER BY kapasitas DESC");
     <div class="container-fluid">
         <div class="row vh-100">
             <section id="sidebar" class="col-md-2 sidebar text-light">
-                <div class="text-center my-3 mb-5">
-                    <h4>Inventory Barang</h4>
-                </div>
+                <a href="../../">
+                    <div class="text-center my-3 mb-5">
+                        <h4>Inventory Barang</h4>
+                    </div>
+                </a>
                 <div class="mx-4">
                     <h5>Menu</h5>
                     <a href="../dashboard/">
