@@ -3,4 +3,4 @@
 
 ![alt text](https://github.com/Delendins/pkl/blob/main/pages/src/image/Preview/2.png?raw=true)
 
-Demo : http://pkl.rf.gd/?i=1
+# [Demo](http://pkl.rf.gd/)
