@@ -17,7 +17,7 @@ $_SESSION['info'] = 'Logout berhasil!';
     <?php include 'pages/src/library/bootstrap.php' ?>
     <?php include 'pages/src/library/sweetalert.php' ?>
 
-    <title>Document</title>
+    <title>Inventory Barang | Logout</title>
 </head>
 
 <body>
