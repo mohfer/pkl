@@ -1,6 +1,5 @@
 <?php
 include "pages/src/config/connect.php";
-include "pages/src/function/dashboardCount.php";
 
 $query_barang = "SELECT * FROM barang ORDER BY tanggal DESC LIMIT 5";
 $result_barang = mysqli_query($conn, $query_barang);
@@ -15,9 +14,8 @@ $result_barang = mysqli_query($conn, $query_barang);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="pages/src/css/index.css">
-
-    <title>Inventory Barang</title>
     <?php include "pages/src/library/bootstrap.php" ?>
+    <title>Inventory Barang</title>
 </head>
 
 <body>
@@ -67,7 +65,8 @@ $result_barang = mysqli_query($conn, $query_barang);
                 <img src="pages/src/image/assets/picture-about.png" class="img-fluid shadow-lg rounded-3" alt="">
             </div>
             <div class="col">
-                <h1 class="fw-bold title mb-3" data-aos="fade-down" data-aos-delay="200">Inventory Barang?</h1>
+                <h1 class="fw-bold title" data-aos="fade-down" data-aos-delay="200">Inventory Barang?</h1>
+                <span class="line" data-aos="fade-down" data-aos-delay="1000"></span>
                 <p class="text-secondary fs-5" data-aos="fade-down" data-aos-delay="400">Aplikasi inventori barang adalah perangkat lunak yang dirancang untuk membantu bisnis atau organisasi dalam mengelola dan mengawasi stok atau persediaan barang yang mereka miliki.</p>
             </div>
         </div>
@@ -76,6 +75,7 @@ $result_barang = mysqli_query($conn, $query_barang);
         <div class="row container py-5 my-5 d-flex justify-content-center align-items-center">
             <div class="col">
                 <h1 class="fw-bold title mb-3" data-aos="fade-down" data-aos-delay="200">Keluhan karyawan?</h1>
+                <span class="line" data-aos="fade-down" data-aos-delay="1000"></span>
                 <p class="text-secondary fs-5" data-aos="fade-down" data-aos-delay="400">Aplikasi keluhan karyawan adalah perangkat lunak yang dirancang khusus untuk memungkinkan karyawan mengajukan, melacak, dan mengelola keluhan, masalah, atau pertanyaan terkait lingkungan kerja.</p>
             </div>
             <div class="col" data-aos="fade-down">
@@ -87,27 +87,36 @@ $result_barang = mysqli_query($conn, $query_barang);
         <div class="container my-5 py-5">
             <div class="text-center my-5" data-aos="fade-down">
                 <h1 class="fw-bold title">Apa Yang Kami Punya?</h1>
+                <span class="line-center" data-aos="fade-down" data-aos-delay="1000"></span>
             </div>
             <div class="row gap-5 my-5 py-5">
-                <div class="col col-barang rounded-3 shadow-lg" data-aos="fade-down" data-aos-delay="200">
-                    <h2 class="text-center my-3 line-bottom mx-3 py-3">Processor</h2>
-                    <p class="text-secondary p-3">Processor atau unit pemrosesan adalah komponen listrik yang melakukan operasi pada sumber data eksternal, biasanya memori atau aliran data lainnya. Ini biasanya berbentuk mikroprosesor, yang dapat diimplementasikan pada satu chip sirkuit terintegrasi logam-oksida-semikonduktor.</p>
-                    <h2 class="text-center my-3 line-top mx-3 py-3 ">Jumlah : <?= $processor_result ?></h2>
+                <div class="col col-barang rounded-5 shadow-lg" data-aos="fade-down" data-aos-delay="200">
+                    <div class="d-flex justify-content-center align-items-center mt-5">
+                        <img src="pages/src/image/assets/processor.png" class="w-50 img-fluid" alt="">
+                    </div>
+                    <h2 class="text-center line-center mx-3 py-3">Processor</h2>
+                    <p class="text-secondary p-3">Processor atau unit pemrosesan adalah komponen listrik yang melakukan operasi pada sumber data eksternal, biasanya memori atau aliran data lainnya.</p>
                 </div>
-                <div class="col col-barang rounded-3 shadow-lg" data-aos="fade-down" data-aos-delay="400">
-                    <h2 class="text-center my-3 line-bottom mx-3 py-3">RAM</h2>
+                <div class="col col-barang rounded-5 shadow-lg" data-aos="fade-down" data-aos-delay="400">
+                    <div class="d-flex justify-content-center align-items-center mt-5">
+                        <img src="pages/src/image/assets/ram.png" class="w-50 img-fluid" alt="">
+                    </div>
+                    <h2 class="text-center line-center mx-3 py-3">RAM</h2>
                     <p class="text-secondary p-3">Random Access Memory adalah jenis penyimpanan komputer yang isinya dapat diakses dalam waktu tetap, tidak memperdulikan letak datanya dalam memori.</p>
-                    <h2 class="text-center my-3 line-top mx-3 py-3">Jumlah : <?= $ram_result ?></h2>
                 </div>
-                <div class="col col-barang rounded-3 shadow-lg" data-aos="fade-down" data-aos-delay="600">
-                    <h2 class="text-center my-3 line-bottom mx-3 py-3">Storage</h2>
-                    <p class="text-secondary p-3">Penyimpanan data komputer atau memori komputer merujuk pada komponen komputer, perangkat komputer, atau media perekaman yang mempertahankan data digital yang digunakan untuk beberapa jangka waktu. Penyimpanan data komputer menyediakan salah satu dari tiga fungsi inti komputer modern, yakni mempertahankan informasi.</p>
-                    <h2 class="text-center my-3 line-top mx-3 py-3">Jumlah : <?= $storage_result ?></h2>
+                <div class="col col-barang rounded-5 shadow-lg" data-aos="fade-down" data-aos-delay="600">
+                    <div class="d-flex justify-content-center align-items-center mt-5">
+                        <img src="pages/src/image/assets/hard-disk.png" class="w-50 img-fluid" alt="">
+                    </div>
+                    <h2 class="text-center line-center mx-3 py-3">Storage</h2>
+                    <p class="text-secondary p-3">Penyimpanan data komputer atau memori komputer merujuk pada komponen komputer, perangkat komputer, atau media perekaman yang mempertahankan data digital yang digunakan untuk beberapa jangka waktu.</p>
                 </div>
-                <div class="col col-barang rounded-3 shadow-lg" data-aos="fade-down" data-aos-delay="800">
-                    <h2 class="text-center my-3 line-bottom mx-3 py-3">Graphics Card</h2>
-                    <p class="text-secondary p-3">Graphics Card, atau kartu video adalah kartu tambahan yang berfungsi untuk menciptakan dan menampilkan tampilan-tampilan di layar. Seringkali kartu grafis dimaknai sebagai kartu grafis khusus yang terpisah, untuk membedakannya dengan kartu grafis yang sudah tertempel ke papan induk bersama CPU.</p>
-                    <h2 class="text-center my-3 line-top mx-3 py-3">Jumlah : <?= $vga_result ?></h2>
+                <div class="col col-barang rounded-5 shadow-lg" data-aos="fade-down" data-aos-delay="800">
+                    <div class="d-flex justify-content-center align-items-center mt-5">
+                        <img src="pages/src/image/assets/graphic-card.png" class="w-50 img-fluid" alt="">
+                    </div>
+                    <h2 class="text-center line-center mx-3 py-3">Graphics Card</h2>
+                    <p class="text-secondary p-3">Graphics Card, atau kartu video adalah kartu tambahan yang berfungsi untuk menciptakan dan menampilkan tampilan-tampilan di layar.</p>
                 </div>
             </div>
         </div>
@@ -116,6 +125,7 @@ $result_barang = mysqli_query($conn, $query_barang);
         <div class="container my-5 py-5">
             <div class="text-center my-5" data-aos="fade-down">
                 <h1 class="fw-bold title">History Barang</h1>
+                <span class="line-center" data-aos="fade-down" data-aos-delay="1000"></span>
             </div>
             <div class="p-3 shadow-lg rounded-3" data-aos="fade-down" data-aos-delay="200">
                 <div class="table-responsive">
@@ -185,10 +195,7 @@ $result_barang = mysqli_query($conn, $query_barang);
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-8" data-aos="fade-down" data-aos-delay="1000">
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
-                            distinctio earum repellat quaerat voluptatibus placeat nam,
-                            commodi optio pariatur est quia magnam eum harum corrupti
-                            dicta, aliquam sequi voluptate quas.
+                            Ini adalah project web PRAKERIN (Praktik Kerja Industri) untuk memenuhi persyaratan mengikuti UKOM (Uji Kompetensi)
                         </p>
                     </div>
                 </div>

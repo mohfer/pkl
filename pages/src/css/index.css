@@ -1,5 +1,5 @@
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -59,4 +59,23 @@ a {
 
 footer {
   margin-top: 250px;
+}
+
+.line::after {
+  display: block;
+  content: "";
+  margin-bottom: 10px;
+  border-bottom: 5px solid #241468;
+  border-radius: 25px;
+  width: 20%;
+}
+
+.line-center::after {
+  display: block;
+  content: "";
+  margin: 0px auto;
+  margin-top: 20px;
+  border-bottom: 5px solid #241468;
+  border-radius: 25px;
+  width: 10%;
 }
