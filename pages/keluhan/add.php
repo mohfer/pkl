@@ -24,7 +24,7 @@ ORDER BY karyawan.nama ASC";
 
 $result_join = mysqli_query($conn, $query_join);
 date_default_timezone_set('Asia/Jakarta');
-$tanggal = date('l, d F Y, H:i:s') . " WIB";
+$tanggal = date('Y-m-d H:i:s');
 
 if (isset($_POST['submit'])) {
     $id = $_POST['id'];

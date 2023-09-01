@@ -173,6 +173,7 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
     <script src="../src/js/sweetalert.js"></script>
+    <script src="../src/js/inputLength.js"></script>
 </body>
 
 </html>

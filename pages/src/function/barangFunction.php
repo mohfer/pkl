@@ -1,7 +1,7 @@
 <?php
 
 date_default_timezone_set('Asia/Jakarta');
-$tanggal = date('l, d F Y, H:i:s') . " WIB";
+$tanggal = date('Y-m-d H:i:s');
 
 // Processor
 if (isset($_POST['tambahProcessor'])) {

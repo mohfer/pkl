@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2023 at 11:41 AM
+-- Generation Time: Sep 01, 2023 at 01:46 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `barang` (
   `id` int(11) NOT NULL,
-  `tanggal` varchar(50) NOT NULL,
+  `tanggal` datetime NOT NULL,
   `komponen` varchar(25) NOT NULL,
   `nama_komponen` varchar(25) NOT NULL,
   `jumlah` int(11) NOT NULL,
@@ -42,14 +42,11 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id`, `tanggal`, `komponen`, `nama_komponen`, `jumlah`, `perusahaan`, `status`) VALUES
-(84, 'Saturday, 26 August 2023, 22:10:18 WIB', 'Processor', 'Intel Core i9-13900K', 20, 'Dover', 'Keluar'),
-(85, 'Saturday, 26 August 2023, 23:10:55 WIB', 'Processor', 'Intel Core i9-13900K', 20, 'IPSI', 'Masuk'),
-(86, 'Saturday, 26 August 2023, 23:42:47 WIB', 'Processor', 'Intel Core i9-13900K', 10, 'IPSI', 'Masuk'),
-(90, 'Sunday, 27 August 2023, 03:06:20 WIB', 'Processor', 'Intel Core i9-13900K', 50, 'IPSI', 'Keluar'),
-(91, 'Sunday, 27 August 2023, 03:29:56 WIB', 'Processor', 'Intel Core i9-13900K', 50, 'IPSI', 'Masuk'),
-(92, 'Sunday, 27 August 2023, 07:07:21 WIB', 'Processor', 'Intel Core i9-13900K', 20, 'Dover', 'Keluar'),
-(93, 'Sunday, 27 August 2023, 08:36:54 WIB', 'Processor', 'Intel Core i9-13900K', 30, 'SMKIN', 'Keluar'),
-(94, 'Sunday, 27 August 2023, 12:57:05 WIB', 'Processor', 'Intel Core i9-13900K', 50, 'Dover', 'Masuk');
+(97, '2023-09-01 17:46:28', 'Processor', 'Intel Core i9-13900K', 50, 'Dover', 'Keluar'),
+(98, '2023-09-01 17:46:37', 'RAM', '16 GB DDR4', 50, 'Dover', 'Keluar'),
+(99, '2023-09-01 17:46:47', 'Storage', 'SSD 1024 GB', 50, 'Dover', 'Keluar'),
+(100, '2023-09-01 17:46:59', 'Graphics Card', 'AMD RX 6900XT 16 GB ', 20, 'IPSI', 'Masuk'),
+(101, '2023-09-01 17:47:08', 'Processor', 'Intel Core i5-12400F', 40, 'IPSI', 'Masuk');
 
 -- --------------------------------------------------------
 
@@ -84,9 +81,9 @@ INSERT INTO `karyawan` (`id`, `username`, `password`, `nama`, `nip`, `jk`, `divi
 
 CREATE TABLE `keluhan` (
   `id` int(11) NOT NULL,
-  `tanggal_masuk` varchar(50) NOT NULL,
-  `tanggal_proses` varchar(50) NOT NULL,
-  `tanggal_selesai` varchar(50) NOT NULL,
+  `tanggal_masuk` datetime NOT NULL,
+  `tanggal_proses` datetime NOT NULL,
+  `tanggal_selesai` datetime NOT NULL,
   `id_users` int(11) DEFAULT NULL,
   `id_karyawan` int(11) NOT NULL,
   `keluhan` text NOT NULL,
@@ -94,14 +91,6 @@ CREATE TABLE `keluhan` (
   `biaya` int(11) NOT NULL,
   `status` enum('0','Proses','Selesai') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `keluhan`
---
-
-INSERT INTO `keluhan` (`id`, `tanggal_masuk`, `tanggal_proses`, `tanggal_selesai`, `id_users`, `id_karyawan`, `keluhan`, `solusi`, `biaya`, `status`) VALUES
-(111, 'Tuesday, 29 August 2023, 16:24:06 WIB', '', '', NULL, 18, 'Laptop saya kok lemot ya mas?', '', 0, '0'),
-(112, 'Tuesday, 29 August 2023, 16:24:22 WIB', '', '', NULL, 19, 'Ini kok sering restart sendiri ya pc nya?', '', 0, '0');
 
 -- --------------------------------------------------------
 
@@ -143,13 +132,13 @@ CREATE TABLE `processor` (
 --
 
 INSERT INTO `processor` (`id`, `nama`, `stok`) VALUES
-(6, 'Intel Core i5-12400F', 10),
+(6, 'Intel Core i5-12400F', 50),
 (10, 'Intel Core i3-13100', 25),
 (17, 'Intel Core i3-12100', 20),
 (19, 'Intel Core i5-3470', 20),
 (20, 'Intel Core i7-3770', 10),
 (21, 'Intel Core i7-13700', 10),
-(22, 'Intel Core i9-13900K', 50);
+(22, 'Intel Core i9-13900K', 2147483647);
 
 -- --------------------------------------------------------
 
@@ -173,9 +162,9 @@ INSERT INTO `ram` (`id`, `tipe_memori`, `kapasitas`, `stok`) VALUES
 (39, 'DDR3', '4', 100),
 (40, 'DDR3', '8', 50),
 (41, 'DDR4', '8', 32),
-(42, 'DDR5', '16', 30),
+(42, 'DDR5', '16', 50),
 (43, 'DDR2', '1', 100),
-(44, 'DDR4', '16', 100);
+(44, 'DDR4', '16', 50);
 
 -- --------------------------------------------------------
 
@@ -198,7 +187,7 @@ INSERT INTO `storage` (`id`, `tipe`, `kapasitas`, `stok`) VALUES
 (5, 'SSD', 512, 50),
 (9, 'SSD', 256, 100),
 (10, 'SSD', 128, 100),
-(12, 'SSD', 1024, 100),
+(12, 'SSD', 1024, 50),
 (13, 'HDD', 1024, 100);
 
 -- --------------------------------------------------------
@@ -243,7 +232,7 @@ CREATE TABLE `vga` (
 INSERT INTO `vga` (`id`, `brand`, `nama`, `vram`, `stok`) VALUES
 (5, 'NVIDIA', 'RTX 2080Ti', 16, 0),
 (6, 'NVIDIA', 'GTX 1660 Super', 6, 20),
-(7, 'AMD', 'RX 6900XT', 16, 20),
+(7, 'AMD', 'RX 6900XT', 16, 40),
 (9, 'NVIDIA', 'GTX 1080Ti', 11, 10),
 (10, 'NVIDIA', 'RTX 3090', 24, 10),
 (11, 'NVIDIA', 'RTX 3080', 16, 20),
@@ -328,19 +317,19 @@ ALTER TABLE `vga`
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT for table `karyawan`
 --
 ALTER TABLE `karyawan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `keluhan`
 --
 ALTER TABLE `keluhan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 
 --
 -- AUTO_INCREMENT for table `komputer`

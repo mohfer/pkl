@@ -20,7 +20,7 @@ $query = "SELECT * FROM keluhan WHERE id = '$id'";
 $result_query = mysqli_query($conn, $query);
 
 date_default_timezone_set('Asia/Jakarta');
-$tanggal = date('l, d F Y, H:i:s') . " WIB";
+$tanggal = date('Y-m-d H:i:s');
 
 $query_join = "SELECT 
             u.nama AS nama_petugas
