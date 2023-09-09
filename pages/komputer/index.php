@@ -15,7 +15,7 @@ $result_karyawan = mysqli_query($conn, $query_karyawan);
 $query_processor = "SELECT id, nama FROM processor ORDER BY nama DESC";
 $result_processor = mysqli_query($conn, $query_processor);
 
-$query_ram = "SELECT id, tipe_memori, kapasitas FROM ram ORDER BY kapasitas DESC";
+$query_ram = "SELECT id, tipe_memori, kapasitas FROM ram ORDER BY tipe_memori DESC";
 $result_ram = mysqli_query($conn, $query_ram);
 
 $query_storage = "SELECT id, tipe, kapasitas FROM storage ORDER BY kapasitas DESC";
@@ -53,7 +53,7 @@ if (isset($_POST['submit'])) {
     $id_storage = $_POST['id_storage'];
     $id_vga = $_POST['id_vga'];
 
-    if (empty($id_karyawan) || empty($id_processor) || empty($id_ram) || empty($id_storage) || empty($id_vga)) {
+    if (empty($id_karyawan) || empty($id_processor) || empty($id_ram) || empty($id_storage)) {
         $_SESSION['data'] = "tidak ditemukan! tolong pilih data sesuai dengan datalist yang sudah ada!";
     } else {
 
@@ -219,7 +219,7 @@ mysqli_close($conn);
                             </div>
                             <div class="col">
                                 <label for="vga">Graphics Card</label>
-                                <input class="form-control" type="text" name="vga_input" id="vga_input" list="list_vga" autocomplete="off" required>
+                                <input class="form-control" type="text" name="vga_input" id="vga_input" list="list_vga" autocomplete="off">
                                 <datalist id="list_vga">
                                     <?php while ($row = mysqli_fetch_assoc($result_vga)) { ?>
                                         <option value="<?= $row['brand'] . ' ' . $row['nama'] . ' ' . $row['vram'] . ' GB '; ?>" data-id="<?= $row['id']; ?>"></option>

@@ -72,7 +72,7 @@ if (data == "berhasil disimpan!" || data == "berhasil dihapus!" || data == "pass
         confirmButtonColor: '#241468',
         text: 'Data' + ' ' + data,
     })
-} else if (data == "gagal disimpan!" || data == "gagal dihapus!" || data == "sudah ada!" || data == "nip sudah terdaftar!" || data == "jumlah melebihi stok yang tersedia!" || data == "tidak dapat dihapus karena data masih digunakan di halaman lain!" || data == "tidak ditemukan! tolong pilih data sesuai dengan datalist yang sudah ada!" || data == "password baru anda tidak sesuai dengan konfirmasi password!" || data == "password lama tidak sesuai!") {
+} else if (data == "gagal disimpan!" || data == "gagal dihapus!" || data == "sudah ada!" || data == "nip sudah terdaftar!" || data == "jumlah melebihi stok yang tersedia!" || data == "tidak dapat dihapus karena data masih digunakan di halaman lain!" || data == "tidak ditemukan! tolong pilih data sesuai dengan datalist yang sudah ada!" || data == "password baru anda tidak sesuai dengan konfirmasi password!" || data == "password lama tidak sesuai!" || data == "start date wajib di isi!" || data == "end date wajib di isi!") {
     Swal.fire({
         icon: 'error',
         title: 'Oops...',

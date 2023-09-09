@@ -152,9 +152,9 @@ if (isset($_POST['submit'])) {
                                 <div class="col mt-3">
                                     <?php if ($status == "Proses") : ?>
                                         <p class="fs-3 fw-bold">Tanggal Keluhan</p>
-                                        <span>Tanggal Masuk : <?= $result['tanggal_masuk'] ?></span>
+                                        <span>Tanggal Masuk : <?= date('d F Y', strtotime($result["tanggal_masuk"])) ?></span>
                                         <br>
-                                        <span>Tanggal Proses : <?= $result['tanggal_proses'] ?></span>
+                                        <span>Tanggal Proses : <?= date('d F Y', strtotime($result["tanggal_proses"])) ?></span>
                                         <br>
                                     <?php endif; ?>
                                 </div>
@@ -188,11 +188,11 @@ if (isset($_POST['submit'])) {
                                 </div>
                                 <div class="col mt-3">
                                     <p class="fs-3 fw-bold">Tanggal Keluhan</p>
-                                    <span>Tanggal Masuk : <?= $result['tanggal_masuk'] ?></span>
+                                    <span>Tanggal Masuk : <?= date('d F Y', strtotime($result["tanggal_masuk"])) ?></span>
                                     <br>
-                                    <span>Tanggal Proses : <?= $result['tanggal_proses'] ?></span>
+                                    <span>Tanggal Proses : <?= date('d F Y', strtotime($result["tanggal_proses"])) ?></span>
                                     <br>
-                                    <span>Tanggal Selesai : <?= $result['tanggal_selesai'] ?></span>
+                                    <span>Tanggal Selesai : <?= date('d F Y', strtotime($result["tanggal_selesai"])) ?></span>
                                     <br>
                                 </div>
                             </div>

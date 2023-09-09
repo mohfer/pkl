@@ -167,7 +167,7 @@ $result_join_selesai = mysqli_query($conn, $query_join_selesai);
                             </li>
                         </ul>
                         <div class="tab-content" id="pills-tabContent">
-                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                            <div class="tab-pane show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
                                 <table id="myTable0" class="table table-striped display">
                                     <thead>
                                         <tr>
@@ -183,7 +183,7 @@ $result_join_selesai = mysqli_query($conn, $query_join_selesai);
                                         <?php while ($result = mysqli_fetch_array($result_join)) : ?>
                                             <tr>
                                                 <th scope="row"><?= $no++ ?></th>
-                                                <td><?= $result["tanggal_masuk"] ?></td>
+                                                <td><?= date('d F Y', strtotime($result["tanggal_masuk"])) ?></td>
                                                 <td><?= $result["nama_karyawan"] ?></td>
                                                 <td><?= strlen($result["keluhan"]) > 10 ? substr($result["keluhan"], 0, 10) . "..." : $result["keluhan"] ?></td>
                                                 <td>
@@ -196,7 +196,7 @@ $result_join_selesai = mysqli_query($conn, $query_join_selesai);
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="tab-pane fade" id="pills-proses" role="tabpanel" aria-labelledby="pills-proses-tab" tabindex="0">
+                            <div class="tab-pane" id="pills-proses" role="tabpanel" aria-labelledby="pills-proses-tab" tabindex="0">
                                 <table id="myTableProses" class="table table-striped display">
                                     <thead>
                                         <tr>
@@ -213,7 +213,7 @@ $result_join_selesai = mysqli_query($conn, $query_join_selesai);
                                         <?php while ($result = mysqli_fetch_array($result_join_proses)) : ?>
                                             <tr>
                                                 <th scope="row"><?= $no++ ?></th>
-                                                <td><?= $result["tanggal_proses"] ?></td>
+                                                <td><?= date('d F Y', strtotime($result["tanggal_proses"])) ?></td>
                                                 <td><?= $result["nama_karyawan"] ?></td>
                                                 <td><?= strlen($result["keluhan"]) > 10 ? substr($result["keluhan"], 0, 10) . "..." : $result["keluhan"] ?></td>
                                                 <td><?= strlen($result["solusi"]) > 10 ? substr($result["solusi"], 0, 10) . "..." : $result["solusi"] ?></td>
@@ -227,7 +227,7 @@ $result_join_selesai = mysqli_query($conn, $query_join_selesai);
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="tab-pane fade" id="pills-selesai" role="tabpanel" aria-labelledby="pills-selesai-tab" tabindex="0">
+                            <div class="tab-pane" id="pills-selesai" role="tabpanel" aria-labelledby="pills-selesai-tab" tabindex="0">
                                 <table id="myTableSelesai" class="table table-striped display">
                                     <thead>
                                         <tr>
@@ -245,7 +245,7 @@ $result_join_selesai = mysqli_query($conn, $query_join_selesai);
                                         <?php while ($result = mysqli_fetch_array($result_join_selesai)) : ?>
                                             <tr>
                                                 <th scope="row"><?= $no++ ?></th>
-                                                <td><?= $result["tanggal_selesai"] ?></td>
+                                                <td><?= date('d F Y', strtotime($result["tanggal_selesai"])) ?></td>
                                                 <td><?= $result["nama_karyawan"] ?></td>
                                                 <td><?= strlen($result["keluhan"]) > 10 ? substr($result["keluhan"], 0, 10) . "..." : $result["keluhan"] ?></td>
                                                 <td><?= strlen($result["solusi"]) > 10 ? substr($result["solusi"], 0, 10) . "..." : $result["solusi"] ?></td>

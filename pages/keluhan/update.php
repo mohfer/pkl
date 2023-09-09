@@ -330,11 +330,11 @@ if (isset($_POST['selesai'])) {
                                             <br>
                                             <br>
                                             <p class="fs-3 fw-bold">Tanggal Keluhan</p>
-                                            <span>Tanggal Masuk : <?= $d['tanggal_masuk'] ?></span>
+                                            <span>Tanggal Masuk : <?= date('d F Y', strtotime($d["tanggal_masuk"])) ?></span>
                                             <br>
-                                            <span>Tanggal Proses : <?= $d['tanggal_proses'] ?></span>
+                                            <span>Tanggal Proses : <?= date('d F Y', strtotime($d["tanggal_proses"])) ?></span>
                                             <br>
-                                            <span>Tanggal Selesai : <?= $d['tanggal_selesai'] ?></span>
+                                            <span>Tanggal Selesai : <?= date('d F Y', strtotime($d["tanggal_selesai"])) ?></span>
                                         <?php endif; ?>
                                         <?php if ($status == "0") : ?>
                                             <button class="btn ungu my-3" name="proses">Proses</button>

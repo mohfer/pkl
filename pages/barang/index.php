@@ -28,8 +28,9 @@ $result_vga = mysqli_query($conn, $query_vga);
 $query_barang = "SELECT * FROM barang ORDER BY tanggal DESC";
 $result_barang = mysqli_query($conn, $query_barang);
 
-mysqli_close($conn);
+include "../src/function/filterData.php";
 
+mysqli_close($conn);
 
 ?>
 
@@ -56,6 +57,10 @@ mysqli_close($conn);
     $(document).ready(function() {
         $('#myTable').dataTable();
     });
+
+    function refreshPage() {
+        location.reload();
+    }
 </script>
 
 <body>
@@ -142,7 +147,7 @@ mysqli_close($conn);
                             </li>
                         </ul>
                         <div class="tab-content" id="pills-tabContent">
-                            <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                            <div class="tab-pane" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
                                 <div class="col" id="karyawan">
                                     <label for="karyawan">Karyawan</label>
                                     <input class="form-control" type="text" name="karyawan_input" id="karyawan_input" list="list_karyawan" autocomplete="off" required>
@@ -154,7 +159,7 @@ mysqli_close($conn);
                                     <input type="hidden" name="id_karyawan" id="id_karyawan">
                                 </div>
                             </div>
-                            <div class="tab-pane fade show active" id="pills-processor" role="tabpanel" aria-labelledby="pills-processor-tab" tabindex="0">
+                            <div class="tab-pane show active" id="pills-processor" role="tabpanel" aria-labelledby="pills-processor-tab" tabindex="0">
                                 <div class="">
                                     <form action="" method="POST">
                                         <div class="">
@@ -190,7 +195,7 @@ mysqli_close($conn);
                                     </form>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="pills-ram" role="tabpanel" aria-labelledby="pills-ram-tab" tabindex="0">
+                            <div class="tab-pane" id="pills-ram" role="tabpanel" aria-labelledby="pills-ram-tab" tabindex="0">
                                 <div class="">
                                     <form action="" method="POST">
                                         <div class="">
@@ -226,7 +231,7 @@ mysqli_close($conn);
                                     </form>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="pills-storage" role="tabpanel" aria-labelledby="pills-storage-tab" tabindex="0">
+                            <div class="tab-pane" id="pills-storage" role="tabpanel" aria-labelledby="pills-storage-tab" tabindex="0">
                                 <div class="">
                                     <form action="" method="POST">
                                         <div class="">
@@ -262,7 +267,7 @@ mysqli_close($conn);
                                     </form>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="pills-vga" role="tabpanel" aria-labelledby="pills-vga-tab" tabindex="0">
+                            <div class="tab-pane" id="pills-vga" role="tabpanel" aria-labelledby="pills-vga-tab" tabindex="0">
                                 <div class="">
                                     <form action="" method="POST">
                                         <div class="">
@@ -300,6 +305,24 @@ mysqli_close($conn);
                             </div>
                         </div>
                     </nav>
+                    <form action="" method="POST">
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="startDate">Start Date:</label>
+                                <input type="date" class="form-control" name="startdate">
+                            </div>
+                            <div class="col">
+                                <label for="endDate">End Date:</label>
+                                <input type="date" class="form-control" name="enddate">
+                            </div>
+                            <div class="col">
+                                <br>
+                                <button class="btn ungu" name="filter">Filter</button>
+                                <button class="btn btn-warning" name="cetak">Cetak</button>
+                                <button class="btn btn-danger" name="reset" onclick="refreshPage()">Reset</button>
+                            </div>
+                        </div>
+                    </form>
                     <table id="myTable" class="table table-striped display">
                         <thead>
                             <tr>
@@ -317,7 +340,7 @@ mysqli_close($conn);
                             <?php while ($result = mysqli_fetch_array($result_barang)) : ?>
                                 <tr>
                                     <th scope="row"><?= $no++ ?></th>
-                                    <td><?= $result["tanggal"] ?></td>
+                                    <td><?= date('d F Y', strtotime($result["tanggal"])) ?></td>
                                     <td><?= $result["komponen"] ?></td>
                                     <td><?= $result["nama_komponen"] ?></td>
                                     <td><?= $result['jumlah'] ?></td>
