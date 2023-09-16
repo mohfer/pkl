@@ -1,0 +1,15 @@
+.header {
+  text-align: center;
+}
+
+table {
+  width: 100%;
+}
+
+td {
+  padding: 5px;
+}
+
+.signed {
+  text-align: right;
+}

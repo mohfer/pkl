@@ -305,7 +305,7 @@ mysqli_close($conn);
                             </div>
                         </div>
                     </nav>
-                    <form action="" method="POST">
+                    <form action="" method="POST" id="myForm">
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="startDate">Start Date:</label>
@@ -317,8 +317,8 @@ mysqli_close($conn);
                             </div>
                             <div class="col">
                                 <br>
-                                <button class="btn ungu" name="filter">Filter</button>
-                                <button class="btn btn-warning" name="cetak">Cetak</button>
+                                <button class="btn ungu" name="filter" onclick="setFormAction('')">Filter</button>
+                                <button class="btn btn-warning" name="print" onclick="setFormAction('print.php')">Cetak</button>
                                 <button class="btn btn-danger" name="reset" onclick="refreshPage()">Reset</button>
                             </div>
                         </div>
@@ -358,6 +358,11 @@ mysqli_close($conn);
     </div>
     <script src="../src/js/sweetalert.js"></script>
     <script src="../src/js/datalistBarang.js"></script>
+    <script>
+        function setFormAction(action) {
+            document.getElementById('myForm').action = action;
+        }
+    </script>
 </body>
 
 </html>
