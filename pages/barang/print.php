@@ -62,11 +62,11 @@ if (isset($_POST['print'])) {
 
     <div class="signed">
         <br>
-        <h4>Serang, <?= date("d F Y") ?></h4>
+        <p>Serang, <?= date("d F Y") ?></p>
         <br>
         <br>
         <br>
-        <p>Mohamad Ferdiansyah</p>
+        <h4>Mohamad Ferdiansyah</h4>
     </div>
 
 </body>
