@@ -143,7 +143,7 @@ $result_barang = mysqli_query($conn, $query_barang);
                         <tbody>
                             <?php while ($result = mysqli_fetch_array($result_barang)) : ?>
                                 <tr>
-                                    <td><?= $result["tanggal"] ?></td>
+                                    <td><?= date('d F Y', strtotime($result["tanggal"])) ?></td>
                                     <td><?= $result["komponen"] ?></td>
                                     <td><?= $result["nama_komponen"] ?></td>
                                     <td><?= $result['jumlah'] ?></td>
