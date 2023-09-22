@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 01, 2023 at 01:46 PM
+-- Generation Time: Sep 23, 2023 at 01:52 AM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- PHP Version: 8.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -46,7 +46,11 @@ INSERT INTO `barang` (`id`, `tanggal`, `komponen`, `nama_komponen`, `jumlah`, `p
 (98, '2023-09-01 17:46:37', 'RAM', '16 GB DDR4', 50, 'Dover', 'Keluar'),
 (99, '2023-09-01 17:46:47', 'Storage', 'SSD 1024 GB', 50, 'Dover', 'Keluar'),
 (100, '2023-09-01 17:46:59', 'Graphics Card', 'AMD RX 6900XT 16 GB ', 20, 'IPSI', 'Masuk'),
-(101, '2023-09-01 17:47:08', 'Processor', 'Intel Core i5-12400F', 40, 'IPSI', 'Masuk');
+(101, '2023-09-01 17:47:08', 'Processor', 'Intel Core i5-12400F', 40, 'IPSI', 'Masuk'),
+(103, '2023-09-05 12:40:05', 'Processor', 'Intel Core i7-3770', 10, 'SMKIN', 'Keluar'),
+(104, '2023-09-05 14:25:24', 'Processor', 'Intel Core i9-13900K', 20, 'SMK', 'Masuk'),
+(105, '2023-09-05 14:26:01', 'Processor', 'Intel Core i9-13900K', 20, 'SMK', 'Keluar'),
+(106, '2023-09-22 04:55:41', 'Processor', 'Intel Core i9-13900K', 20, 'IPSI', 'Masuk');
 
 -- --------------------------------------------------------
 
@@ -112,7 +116,7 @@ CREATE TABLE `komputer` (
 --
 
 INSERT INTO `komputer` (`id`, `id_karyawan`, `id_processor`, `id_ram`, `id_storage`, `id_vga`) VALUES
-(56, 18, 10, 41, 9, 6),
+(61, 18, 21, 41, 5, 19),
 (57, 19, 21, 44, 5, 12);
 
 -- --------------------------------------------------------
@@ -136,9 +140,9 @@ INSERT INTO `processor` (`id`, `nama`, `stok`) VALUES
 (10, 'Intel Core i3-13100', 25),
 (17, 'Intel Core i3-12100', 20),
 (19, 'Intel Core i5-3470', 20),
-(20, 'Intel Core i7-3770', 10),
+(20, 'Intel Core i7-3770', 0),
 (21, 'Intel Core i7-13700', 10),
-(22, 'Intel Core i9-13900K', 2147483647);
+(22, 'Intel Core i9-13900K', 20);
 
 -- --------------------------------------------------------
 
@@ -241,7 +245,8 @@ INSERT INTO `vga` (`id`, `brand`, `nama`, `vram`, `stok`) VALUES
 (14, 'AMD', 'RX 580', 8, 20),
 (15, 'AMD', 'RX 6600XT', 8, 20),
 (16, 'NVIDIA', 'RTX 3060', 8, 25),
-(17, 'NVIDIA', 'RTX 4090', 24, 10);
+(17, 'NVIDIA', 'RTX 4090', 24, 10),
+(19, 'INTEL', 'Iris Xe Graphics', 2, 0);
 
 --
 -- Indexes for dumped tables
@@ -317,7 +322,7 @@ ALTER TABLE `vga`
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
 -- AUTO_INCREMENT for table `karyawan`
@@ -329,13 +334,13 @@ ALTER TABLE `karyawan`
 -- AUTO_INCREMENT for table `keluhan`
 --
 ALTER TABLE `keluhan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 
 --
 -- AUTO_INCREMENT for table `komputer`
 --
 ALTER TABLE `komputer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `processor`
@@ -365,7 +370,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `vga`
 --
 ALTER TABLE `vga`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables
