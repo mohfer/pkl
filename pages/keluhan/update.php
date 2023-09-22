@@ -58,10 +58,15 @@ if ($result_status) {
 if (isset($_POST['submit'])) {
     $id = $_POST['id'];
     $id_karyawan = $_POST['id_karyawan'];
+    $keluhan = $_POST['keluhan'];
     $solusi = $_POST['solusi'];
     $biaya = $_POST['biaya'];
 
-    $sql = "UPDATE keluhan SET id_karyawan = '$id_karyawan', solusi = '$solusi', biaya = '$biaya' WHERE id = '$id'";
+    if ($status == "0") {
+        $sql = "UPDATE keluhan SET id_karyawan = '$id_karyawan', keluhan = '$keluhan' WHERE id = '$id'";
+    } else if ($status == "Proses") {
+        $sql = "UPDATE keluhan SET id_karyawan = '$id_karyawan', solusi = '$solusi', biaya = '$biaya' WHERE id = '$id'";
+    }
 
     if (mysqli_query($conn, $sql)) {
         $_SESSION['data'] = "berhasil disimpan!";

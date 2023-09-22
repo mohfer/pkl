@@ -140,7 +140,7 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="mb-3">
                                         <label for="keluhan">Keluhan</label>
-                                        <textarea class="form-control" name="keluhan" id="keluhan" cols="30" rows="5" <?php if ($status == "Proses") echo 'disabled readonly'; ?>><?php echo $result['keluhan'] ?></textarea>
+                                        <textarea class="form-control" name="keluhan" id="keluhan" cols="30" rows="5" <?php if ($status == "Proses") echo 'disabled readonly'; ?> required><?php echo $result['keluhan'] ?></textarea>
                                     </div>
                                     <?php if ($status == "Proses") : ?>
                                         <div class="mb-3">
@@ -171,19 +171,19 @@ if (isset($_POST['submit'])) {
                                 <div class="col">
                                     <div class="mb-3">
                                         <label for="petugas">Petugas</label>
-                                        <input class="form-control" name="petugas" id="petugas" value="<?php echo $petugas['nama_petugas'] ?>" disabled readonly></input>
+                                        <input class="form-control" name="petugas" id="petugas" value="<?= $petugas['nama_petugas'] ?>" disabled readonly></input>
                                     </div>
                                     <div class="mb-3">
                                         <label for="keluhan">Keluhan</label>
-                                        <textarea class="form-control" name="keluhan" id="keluhan" cols="30" rows="5" disabled readonly><?php echo $result['keluhan'] ?></textarea>
+                                        <textarea class="form-control" name="keluhan" id="keluhan" cols="30" rows="5" disabled readonly><?= $result['keluhan'] ?></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="solusi">Solusi</label>
-                                        <textarea class="form-control" name="solusi" id="solusi" cols="30" rows="5" required disabled readonly><?php echo $result['solusi'] ?></textarea>
+                                        <textarea class="form-control" name="solusi" id="solusi" cols="30" rows="5" required disabled readonly><?= $result['solusi'] ?></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="biaya">Biaya (Rp)</label>
-                                        <input type="number" id="biaya" name="biaya" value="<?php echo $result['biaya'] ?>" class="form-control" required disabled readonly>
+                                        <input type="number" id="biaya" name="biaya" value="<?= $result['biaya'] ?>" class="form-control" required disabled readonly>
                                     </div>
                                 </div>
                                 <div class="col mt-3">

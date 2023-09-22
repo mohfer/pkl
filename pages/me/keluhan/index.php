@@ -156,7 +156,7 @@ $result_join_selesai = mysqli_query($conn, $query_join_selesai);
                                             <tr>
                                                 <th scope="row"><?= $no++ ?></th>
                                                 <td><?= date('d F Y', strtotime($result["tanggal_masuk"])) ?></td>
-                                                <td><?= strlen($result["keluhan"]) > 10 ? substr($result["keluhan"], 0, 10) . "..." : $result["keluhan"] ?></td>
+                                                <td><?= strlen($result["keluhan"]) > 15 ? substr($result["keluhan"], 0, 15) . "..." : $result["keluhan"] ?></td>
                                                 <td>
                                                     <div class="text-center">
                                                         <a href="update.php?id=<?= $result['id'] ?>" class="btn btn-warning">Edit</a> | <a href="delete.php?id=<?= $result['id'] ?>" id="btn-del" class="btn btn-danger">Hapus</a>
@@ -186,8 +186,8 @@ $result_join_selesai = mysqli_query($conn, $query_join_selesai);
                                                 <th scope="row"><?= $no++ ?></th>
                                                 <td><?= date('d F Y', strtotime($result["tanggal_proses"])) ?></td>
                                                 <td><?= $result["nama_petugas"] ?></td>
-                                                <td><?= strlen($result["keluhan"]) > 10 ? substr($result["keluhan"], 0, 10) . "..." : $result["keluhan"] ?></td>
-                                                <td><?= strlen($result["solusi"]) > 10 ? substr($result["solusi"], 0, 10) . "..." : $result["solusi"] ?></td>
+                                                <td><?= strlen($result["keluhan"]) > 15 ? substr($result["keluhan"], 0, 15) . "..." : $result["keluhan"] ?></td>
+                                                <td><?= strlen($result["solusi"]) > 15 ? substr($result["solusi"], 0, 15) . "..." : $result["solusi"] ?></td>
                                                 <td>
                                                     <div class="text-center">
                                                         <a href="update.php?id=<?= $result['id'] ?>" class="btn btn-warning">Detail</a> | <a href="delete.php?id=<?= $result['id'] ?>" id="btn-del" class="btn btn-danger">Hapus</a>
@@ -218,9 +218,9 @@ $result_join_selesai = mysqli_query($conn, $query_join_selesai);
                                                 <th scope="row"><?= $no++ ?></th>
                                                 <td><?= date('d F Y', strtotime($result["tanggal_selesai"])) ?></td>
                                                 <td><?= $result["nama_petugas"] ?></td>
-                                                <td><?= strlen($result["keluhan"]) > 10 ? substr($result["keluhan"], 0, 10) . "..." : $result["keluhan"] ?></td>
-                                                <td><?= strlen($result["solusi"]) > 10 ? substr($result["solusi"], 0, 10) . "..." : $result["solusi"] ?></td>
-                                                <td><?= $result["biaya"] ?></td>
+                                                <td><?= strlen($result["keluhan"]) > 15 ? substr($result["keluhan"], 0, 15) . "..." : $result["keluhan"] ?></td>
+                                                <td><?= strlen($result["solusi"]) > 15 ? substr($result["solusi"], 0, 15) . "..." : $result["solusi"] ?></td>
+                                                <td><?= number_format($result['biaya'], 2, ',', '.') ?></td>
                                                 <td>
                                                     <div class="text-center">
                                                         <a href="update.php?id=<?= $result['id'] ?>" class="btn btn-warning">Detail</a> | <a href="delete.php?id=<?= $result['id'] ?>" id="btn-del" class="btn btn-danger">Hapus</a>

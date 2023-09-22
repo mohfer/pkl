@@ -46,7 +46,7 @@ $result_barang = mysqli_query($conn, $query_barang);
             </div>
         </div>
     </nav>
-    <section id="hero" class="container-fluid ungu text-light mb-5 mt-5">
+    <section id="hero" class="container-fluid ungu text-light d-flex justify-content-center align-items-center vh-100">
         <div class="row d-flex justify-content-center align-items-center">
             <div class="col-md-6">
                 <h1 class="fw-bold" data-aos="fade-down">Selamat Datang di Aplikasi Inventory Barang dan <br>Keluhan Karyawan Berbasis Web</h1>
