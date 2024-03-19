@@ -161,6 +161,7 @@ if (isset($_POST['submit'])) {
                                 </div>
                             </div>
                             <div class="col">
+                                <small class="text-danger">*Username dan Password akan dibuat secara otomatis berdasarkan nama karyawan menggunakan huruf kecil dan tanpa spasi.</small>
                             </div>
                             <div class="mb-3">
                                 <button class="btn ungu" name="submit">Simpan</button>

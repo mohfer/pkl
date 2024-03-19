@@ -95,28 +95,28 @@ $result_barang = mysqli_query($conn, $query_barang);
                         <img src="pages/src/image/assets/processor.png" class="w-50 img-fluid" alt="">
                     </div>
                     <h2 class="text-center line-center mx-3 py-3">Processor</h2>
-                    <p class="text-secondary p-3">Processor atau unit pemrosesan adalah komponen listrik yang melakukan operasi pada sumber data eksternal, biasanya memori atau aliran data lainnya.</p>
+                    <p class="text-secondary p-3 text-center">Processor atau unit pemrosesan adalah komponen listrik yang melakukan operasi pada sumber data eksternal, biasanya memori atau aliran data lainnya.</p>
                 </div>
                 <div class="col col-barang rounded-5 shadow-lg" data-aos="fade-down" data-aos-delay="400">
                     <div class="d-flex justify-content-center align-items-center mt-5">
                         <img src="pages/src/image/assets/ram.png" class="w-50 img-fluid" alt="">
                     </div>
                     <h2 class="text-center line-center mx-3 py-3">RAM</h2>
-                    <p class="text-secondary p-3">Random Access Memory adalah jenis penyimpanan komputer yang isinya dapat diakses dalam waktu tetap, tidak memperdulikan letak datanya dalam memori.</p>
+                    <p class="text-secondary p-3 text-center">Random Access Memory adalah jenis penyimpanan komputer yang isinya dapat diakses dalam waktu tetap, tidak memperdulikan letak datanya dalam memori.</p>
                 </div>
                 <div class="col col-barang rounded-5 shadow-lg" data-aos="fade-down" data-aos-delay="600">
                     <div class="d-flex justify-content-center align-items-center mt-5">
                         <img src="pages/src/image/assets/hard-disk.png" class="w-50 img-fluid" alt="">
                     </div>
                     <h2 class="text-center line-center mx-3 py-3">Storage</h2>
-                    <p class="text-secondary p-3">Penyimpanan data komputer atau memori komputer merujuk pada komponen komputer, perangkat komputer, atau media perekaman yang mempertahankan data digital yang digunakan untuk beberapa jangka waktu.</p>
+                    <p class="text-secondary p-3 text-center">Penyimpanan data komputer atau memori komputer merujuk pada komponen komputer, perangkat komputer, atau media perekaman yang mempertahankan data digital yang digunakan untuk beberapa jangka waktu.</p>
                 </div>
                 <div class="col col-barang rounded-5 shadow-lg" data-aos="fade-down" data-aos-delay="800">
                     <div class="d-flex justify-content-center align-items-center mt-5">
                         <img src="pages/src/image/assets/graphic-card.png" class="w-50 img-fluid" alt="">
                     </div>
                     <h2 class="text-center line-center mx-3 py-3">Graphics Card</h2>
-                    <p class="text-secondary p-3">Graphics Card, atau kartu video adalah kartu tambahan yang berfungsi untuk menciptakan dan menampilkan tampilan-tampilan di layar.</p>
+                    <p class="text-secondary p-3 text-center">Graphics Card, atau kartu video adalah kartu tambahan yang berfungsi untuk menciptakan dan menampilkan tampilan-tampilan di layar.</p>
                 </div>
             </div>
         </div>
