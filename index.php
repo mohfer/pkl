@@ -202,8 +202,8 @@ $result_barang = mysqli_query($conn, $query_barang);
             </section>
         </div>
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-            © 2023 Copyright
-            <a class="text-white" href="https://github.com/Delendins" target="_blank">Delendins</a>
+            © <?= date('Y') ?> Copyright
+            <a class="text-white" href="https://github.com/mohfer" target="_blank">mohfer</a>
         </div>
     </footer>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
