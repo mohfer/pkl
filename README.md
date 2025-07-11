@@ -42,13 +42,15 @@ Aplikasi **Inventory Barang** adalah sistem manajemen inventory berbasis web yan
 ![Dashboard Karyawan](https://github.com/Delendins/pkl/blob/main/pages/src/image/Preview/2.png?raw=true)
 
 ## Teknologi yang Digunakan
-- **Backend**: PHP Native
+- **Backend**: PHP 8.2+
 - **Database**: MySQL
 - **Frontend**: HTML5, CSS3, JavaScript, Bootstrap 5
+- **Dependencies**: Composer (mPDF untuk generate laporan)
 - **Libraries**: 
   - DataTables untuk tabel interaktif
   - SweetAlert untuk notifikasi
   - AOS (Animate On Scroll) untuk animasi
+  - mPDF untuk generate PDF laporan
 
 ## Struktur Database
 Aplikasi menggunakan database `inventory_barang` dengan tabel utama:
@@ -69,9 +71,14 @@ Aplikasi menggunakan database `inventory_barang` dengan tabel utama:
 
 ## Instalasi
 1. Clone repository ini
-2. Import file `database/inventory_barang.sql` ke MySQL
-3. Konfigurasi koneksi database di `pages/src/config/connect.php`
-4. Jalankan aplikasi melalui web server (XAMPP/Laragon/WAMP)
+2. Install dependencies menggunakan Composer:
+   ```bash
+   composer install
+   ```
+3. Import file `database/inventory_barang.sql` ke MySQL
+4. Konfigurasi koneksi database di `pages/src/config/connect.php`
+5. Pastikan menggunakan PHP 8.2 atau versi yang lebih baru
+6. Jalankan aplikasi melalui web server (XAMPP/Laragon/WAMP)
 
 ## Use Case
 Aplikasi ini cocok untuk:
