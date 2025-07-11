@@ -334,18 +334,19 @@ if (isset($_POST['selesai'])) {
                                             <span>Graphics Card : <?= $result['brand_vga'] . " " . $result['nama_vga'] . " " . $result['vram_vga'] . " GB " ?></span>
                                             <br>
                                             <br>
-                                            <p class="fs-3 fw-bold">Tanggal Keluhan</p>
-                                            <span>Tanggal Masuk : <?= date('d F Y', strtotime($d["tanggal_masuk"])) ?></span>
-                                            <br>
-                                            <span>Tanggal Proses : <?= date('d F Y', strtotime($d["tanggal_proses"])) ?></span>
-                                            <br>
-                                            <span>Tanggal Selesai : <?= date('d F Y', strtotime($d["tanggal_selesai"])) ?></span>
                                         <?php endif; ?>
+                                        <p class="fs-3 fw-bold">Tanggal Keluhan</p>
+                                        <span>Tanggal Masuk : <?= date('d F Y', strtotime($d["tanggal_masuk"])) ?></span>
+                                        <br>
+                                        <span>Tanggal Proses : <?= date('d F Y', strtotime($d["tanggal_proses"])) ?></span>
+                                        <br>
+                                        <span>Tanggal Selesai : <?= date('d F Y', strtotime($d["tanggal_selesai"])) ?></span>
                                         <?php if ($status == "0") : ?>
                                             <button class="btn ungu my-3" name="proses">Proses</button>
                                         <?php elseif ($status == "Proses") : ?>
                                             <button class="btn ungu my-3" name="selesai">Selesai</button>
                                         <?php endif; ?>
+
                                     </div>
                                 </div>
                                 <a href="../keluhan/" class="btn btn-danger mb-3">Kembali</a>

@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
     if (mysqli_num_rows($result) > 0) {
         $_SESSION['data'] = "sudah ada!";
     } else {
-        $sql = "INSERT INTO vga (id, brand, nama, vram, stok) VALUES ('$id', '$brand', '$nama', '$vram', '$stok')";
+        $sql = "INSERT INTO vga (brand, nama, vram, stok) VALUES ('$brand', '$nama', '$vram', '$stok')";
 
         if (mysqli_query($conn, $sql)) {
             $_SESSION['data'] = "berhasil disimpan!";

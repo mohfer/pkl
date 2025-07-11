@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
     if (mysqli_num_rows($result) > 0) {
         $_SESSION['data'] = "sudah ada!";
     } else {
-        $sql = "INSERT INTO ram (id, tipe_memori, kapasitas, stok) VALUES ('$id', '$tipe_memori', '$kapasitas', '$stok')";
+        $sql = "INSERT INTO ram (tipe_memori, kapasitas, stok) VALUES ('$tipe_memori', '$kapasitas', '$stok')";
         if (mysqli_query($conn, $sql)) {
             $_SESSION['data'] = "berhasil disimpan!";
             header("Location: ../ram");

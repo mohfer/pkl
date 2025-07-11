@@ -35,7 +35,8 @@ if (isset($_POST['submit'])) {
         $_SESSION['data'] = "tidak ditemukan! tolong pilih data sesuai dengan datalist yang sudah ada!";
     } else {
 
-        $sql = "INSERT INTO keluhan (id, tanggal_masuk, id_karyawan, keluhan, solusi, biaya, status) VALUES ('$id', '$tanggal', '$id_karyawan', '$keluhan', '', '', '0')";
+        $sql = "INSERT INTO keluhan (tanggal_masuk, id_karyawan, keluhan, solusi, biaya, status)
+        VALUES ('$tanggal', '$id_karyawan', '$keluhan', '', 0, '0')";
 
         if (mysqli_query($conn, $sql)) {
             $_SESSION['data'] = "berhasil disimpan!";

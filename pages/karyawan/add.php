@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
     if (mysqli_num_rows($result) > 0) {
         $_SESSION['data'] = "NIP sudah terdaftar!";
     } else {
-        $sql = "INSERT INTO karyawan (id, username, password, nama, nip, jk, divisi, level) VALUES ('$id', '$username', '$password', '$nama', '$nip', '$jk', '$divisi', 'Karyawan')";
+        $sql = "INSERT INTO karyawan (username, password, nama, nip, jk, divisi, level) VALUES ('$username', '$password', '$nama', '$nip', '$jk', '$divisi', 'Karyawan')";
 
         if (mysqli_query($conn, $sql)) {
             $_SESSION['data'] = "berhasil disimpan!";

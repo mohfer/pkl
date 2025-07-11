@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
     if (mysqli_num_rows($result) > 0) {
         $_SESSION['data'] = "sudah ada!";
     } else {
-        $sql = "INSERT INTO storage (id, tipe, kapasitas, stok) VALUES ('$id', '$tipe', '$kapasitas', '$stok')";
+        $sql = "INSERT INTO storage (tipe, kapasitas, stok) VALUES ('$tipe', '$kapasitas', '$stok')";
 
         if (mysqli_query($conn, $sql)) {
             $_SESSION['data'] = "berhasil disimpan!";

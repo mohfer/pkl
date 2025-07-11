@@ -50,7 +50,12 @@ INSERT INTO `barang` (`id`, `tanggal`, `komponen`, `nama_komponen`, `jumlah`, `p
 (103, '2023-09-05 12:40:05', 'Processor', 'Intel Core i7-3770', 10, 'SMKIN', 'Keluar'),
 (104, '2023-09-05 14:25:24', 'Processor', 'Intel Core i9-13900K', 20, 'SMK', 'Masuk'),
 (105, '2023-09-05 14:26:01', 'Processor', 'Intel Core i9-13900K', 20, 'SMK', 'Keluar'),
-(106, '2023-09-22 04:55:41', 'Processor', 'Intel Core i9-13900K', 20, 'IPSI', 'Masuk');
+(106, '2023-09-22 04:55:41', 'Processor', 'Intel Core i9-13900K', 20, 'IPSI', 'Masuk'),
+(107, '2023-10-01 10:00:00', 'RAM', '8 GB DDR4', 30, 'Tech Solutions', 'Masuk'),
+(108, '2023-10-05 11:30:00', 'Storage', 'HDD 1024 GB', 15, 'Global Corp', 'Keluar'),
+(109, '2023-10-10 09:15:00', 'Graphics Card', 'NVIDIA RTX 3070', 10, 'Innovate Inc.', 'Masuk'),
+(110, '2023-10-15 14:00:00', 'Processor', 'Intel Core i7-13700', 5, 'Dover', 'Keluar'),
+(111, '2023-10-20 16:45:00', 'RAM', '32 GB DDR5', 10, 'Tech Solutions', 'Masuk');
 
 -- --------------------------------------------------------
 
@@ -75,7 +80,11 @@ CREATE TABLE `karyawan` (
 
 INSERT INTO `karyawan` (`id`, `username`, `password`, `nama`, `nip`, `jk`, `divisi`, `level`) VALUES
 (18, 'erwinsusanto', '785f0b13d4daf8eee0d11195f58302a4', 'Erwin Susanto', 233817821772255375, 'Laki - Laki', 'IT', 'Karyawan'),
-(19, 'heruprabawa', 'a648ab9a3e32c5f3f6e9ddbd41c0530f', 'Heru Prabawa', 132941390939294143, 'Laki - Laki', 'Engineering', 'Karyawan');
+(19, 'heruprabawa', 'a648ab9a3e32c5f3f6e9ddbd41c0530f', 'Heru Prabawa', 132941390939294143, 'Laki - Laki', 'Engineering', 'Karyawan'),
+(20, 'anitasari', 'e10adc3949ba59abbe56e057f20f883e', 'Anita Sari', 987654321098765432, 'Perempuan', 'HR', 'Karyawan'),
+(21, 'budianto', 'e10adc3949ba59abbe56e057f20f883e', 'Budi Anto', 123456789012345678, 'Laki - Laki', 'Finance', 'Karyawan'),
+(22, 'citranovita', 'e10adc3949ba59abbe56e057f20f883e', 'Citra Novita', 543210987654321098, 'Perempuan', 'Marketing', 'Karyawan');
+
 
 -- --------------------------------------------------------
 
@@ -86,15 +95,26 @@ INSERT INTO `karyawan` (`id`, `username`, `password`, `nama`, `nip`, `jk`, `divi
 CREATE TABLE `keluhan` (
   `id` int(11) NOT NULL,
   `tanggal_masuk` datetime NOT NULL,
-  `tanggal_proses` datetime NOT NULL,
-  `tanggal_selesai` datetime NOT NULL,
+  `tanggal_proses` datetime DEFAULT NULL,
+  `tanggal_selesai` datetime DEFAULT NULL,
   `id_users` int(11) DEFAULT NULL,
   `id_karyawan` int(11) NOT NULL,
   `keluhan` text NOT NULL,
-  `solusi` text NOT NULL,
+  `solusi` text DEFAULT NULL,
   `biaya` int(11) NOT NULL,
   `status` enum('0','Proses','Selesai') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `keluhan`
+--
+
+INSERT INTO `keluhan` (`id`, `tanggal_masuk`, `tanggal_proses`, `tanggal_selesai`, `id_users`, `id_karyawan`, `keluhan`, `solusi`, `biaya`, `status`) VALUES
+(123, '2023-09-25 10:00:00', '2023-09-25 11:00:00', '2023-09-25 14:00:00', 1, 18, 'Komputer sering restart sendiri.', 'Pembersihan debu dan penggantian thermal paste pada processor.', 50000, 'Selesai'),
+(124, '2023-09-26 09:30:00', '2023-09-26 10:00:00', NULL, 1, 19, 'Monitor tidak menampilkan gambar.', 'Pengecekan kabel VGA dan instalasi ulang driver VGA.', 0, 'Proses'),
+(125, '2023-09-27 11:00:00', NULL, NULL, NULL, 20, 'Keyboard tidak berfungsi.', NULL, 0, '0'),
+(126, '2023-09-28 08:00:00', '2023-09-28 09:00:00', '2023-09-28 11:30:00', 1, 21, 'Laptop lemot dan sering hang.', 'Upgrade RAM ke kapasitas yang lebih besar.', 150000, 'Selesai'),
+(127, '2023-09-29 13:00:00', NULL, NULL, NULL, 22, 'Printer tidak dapat mencetak.', NULL, 0, '0');
 
 -- --------------------------------------------------------
 
@@ -116,8 +136,11 @@ CREATE TABLE `komputer` (
 --
 
 INSERT INTO `komputer` (`id`, `id_karyawan`, `id_processor`, `id_ram`, `id_storage`, `id_vga`) VALUES
+(57, 19, 21, 44, 5, 12),
 (61, 18, 21, 41, 5, 19),
-(57, 19, 21, 44, 5, 12);
+(62, 20, 6, 41, 9, 6),
+(63, 21, 10, 40, 12, 16),
+(64, 22, 17, 39, 10, 13);
 
 -- --------------------------------------------------------
 
@@ -142,7 +165,9 @@ INSERT INTO `processor` (`id`, `nama`, `stok`) VALUES
 (19, 'Intel Core i5-3470', 20),
 (20, 'Intel Core i7-3770', 0),
 (21, 'Intel Core i7-13700', 10),
-(22, 'Intel Core i9-13900K', 20);
+(22, 'Intel Core i9-13900K', 20),
+(23, 'AMD Ryzen 5 5600X', 30),
+(24, 'AMD Ryzen 7 7700X', 15);
 
 -- --------------------------------------------------------
 
@@ -168,7 +193,9 @@ INSERT INTO `ram` (`id`, `tipe_memori`, `kapasitas`, `stok`) VALUES
 (41, 'DDR4', '8', 32),
 (42, 'DDR5', '16', 50),
 (43, 'DDR2', '1', 100),
-(44, 'DDR4', '16', 50);
+(44, 'DDR4', '16', 50),
+(45, 'DDR4', '32', 20),
+(46, 'DDR5', '32', 10);
 
 -- --------------------------------------------------------
 
@@ -192,7 +219,9 @@ INSERT INTO `storage` (`id`, `tipe`, `kapasitas`, `stok`) VALUES
 (9, 'SSD', 256, 100),
 (10, 'SSD', 128, 100),
 (12, 'SSD', 1024, 50),
-(13, 'HDD', 1024, 100);
+(13, 'HDD', 1024, 100),
+(14, 'HDD', 2048, 50),
+(15, 'NVMe SSD', 512, 30);
 
 -- --------------------------------------------------------
 
@@ -213,7 +242,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nama`, `username`, `password`, `level`) VALUES
-(1, 'Mohamad Ferdiansyah', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin');
+(1, 'Mohamad Ferdiansyah', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin'),
+(2, 'Siti Aminah', 'sitia', 'e10adc3949ba59abbe56e057f20f883e', 'Karyawan');
 
 -- --------------------------------------------------------
 
@@ -246,7 +276,8 @@ INSERT INTO `vga` (`id`, `brand`, `nama`, `vram`, `stok`) VALUES
 (15, 'AMD', 'RX 6600XT', 8, 20),
 (16, 'NVIDIA', 'RTX 3060', 8, 25),
 (17, 'NVIDIA', 'RTX 4090', 24, 10),
-(19, 'INTEL', 'Iris Xe Graphics', 2, 0);
+(19, 'INTEL', 'Iris Xe Graphics', 2, 0),
+(20, 'AMD', 'Radeon RX 7900 XTX', 24, 5);
 
 --
 -- Indexes for dumped tables
@@ -322,7 +353,7 @@ ALTER TABLE `vga`
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT for table `karyawan`
@@ -334,43 +365,43 @@ ALTER TABLE `karyawan`
 -- AUTO_INCREMENT for table `keluhan`
 --
 ALTER TABLE `keluhan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
 
 --
 -- AUTO_INCREMENT for table `komputer`
 --
 ALTER TABLE `komputer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT for table `processor`
 --
 ALTER TABLE `processor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `ram`
 --
 ALTER TABLE `ram`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `storage`
 --
 ALTER TABLE `storage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `vga`
 --
 ALTER TABLE `vga`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Constraints for dumped tables

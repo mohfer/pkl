@@ -18,8 +18,8 @@ if (isset($_POST['tambahProcessor'])) {
         $sql_update_processor = "UPDATE processor SET stok = stok + '$jumlah' WHERE id = '$id_processor'";
 
         if (mysqli_query($conn, $sql_update_processor)) {
-            $sql_insert_barang = "INSERT INTO barang (id, tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
-        VALUES ('$id', '$tanggal', 'Processor', '$nama_processor', '$jumlah', '$perusahaan', 'Masuk')";
+            $sql_insert_barang = "INSERT INTO barang (tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
+        VALUES ('$tanggal', 'Processor', '$nama_processor', '$jumlah', '$perusahaan', 'Masuk')";
 
             if (mysqli_query($conn, $sql_insert_barang)) {
                 $_SESSION['data'] = "berhasil disimpan!";
@@ -55,8 +55,8 @@ if (isset($_POST['kurangProcessor'])) {
 
             if ($jumlah <= $stok_processor) {
                 $sql_update_processor = "UPDATE processor SET stok = stok - '$jumlah' WHERE id = '$id_processor'";
-                $sql_insert_barang = "INSERT INTO barang (id, tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
-            VALUES ('$id', '$tanggal', 'Processor', '$nama_processor', '$jumlah', '$perusahaan', 'Keluar')";
+                $sql_insert_barang = "INSERT INTO barang (tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
+            VALUES ('$tanggal', 'Processor', '$nama_processor', '$jumlah', '$perusahaan', 'Keluar')";
 
                 if (mysqli_query($conn, $sql_update_processor) && mysqli_query($conn, $sql_insert_barang)) {
                     $_SESSION['data'] = "berhasil disimpan!";
@@ -88,8 +88,8 @@ if (isset($_POST['tambahRAM'])) {
         $sql_update_ram = "UPDATE ram SET stok = stok + '$jumlah' WHERE id = '$id_ram'";
 
         if (mysqli_query($conn, $sql_update_ram)) {
-            $sql_insert_barang = "INSERT INTO barang (id, tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
-        VALUES ('$id', '$tanggal', 'RAM', '$nama_ram', '$jumlah', '$perusahaan', 'Masuk')";
+            $sql_insert_barang = "INSERT INTO barang (tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
+        VALUES ('$tanggal', 'RAM', '$nama_ram', '$jumlah', '$perusahaan', 'Masuk')";
 
             if (mysqli_query($conn, $sql_insert_barang)) {
                 $_SESSION['data'] = "berhasil disimpan!";
@@ -124,8 +124,8 @@ if (isset($_POST['kurangRAM'])) {
 
             if ($jumlah <= $stok_ram) {
                 $sql_update_ram = "UPDATE ram SET stok = stok - '$jumlah' WHERE id = '$id_ram'";
-                $sql_insert_barang = "INSERT INTO barang (id, tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
-            VALUES ('$id', '$tanggal', 'RAM', '$nama_ram', '$jumlah', '$perusahaan', 'Keluar')";
+                $sql_insert_barang = "INSERT INTO barang (tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
+            VALUES ('$tanggal', 'RAM', '$nama_ram', '$jumlah', '$perusahaan', 'Keluar')";
 
                 if (mysqli_query($conn, $sql_update_ram) && mysqli_query($conn, $sql_insert_barang)) {
                     $_SESSION['data'] = "berhasil disimpan!";
@@ -156,8 +156,8 @@ if (isset($_POST['tambahStorage'])) {
         $sql_update_storage = "UPDATE storage SET stok = stok + '$jumlah' WHERE id = '$id_storage'";
 
         if (mysqli_query($conn, $sql_update_storage)) {
-            $sql_insert_barang = "INSERT INTO barang (id, tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
-        VALUES ('$id', '$tanggal', 'Storage', '$nama_storage', '$jumlah', '$perusahaan', 'Masuk')";
+            $sql_insert_barang = "INSERT INTO barang (tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
+        VALUES ('$tanggal', 'Storage', '$nama_storage', '$jumlah', '$perusahaan', 'Masuk')";
 
             if (mysqli_query($conn, $sql_insert_barang)) {
                 $_SESSION['data'] = "berhasil disimpan!";
@@ -192,8 +192,8 @@ if (isset($_POST['kurangStorage'])) {
 
             if ($jumlah <= $stok_storage) {
                 $sql_update_storage = "UPDATE storage SET stok = stok - '$jumlah' WHERE id = '$id_storage'";
-                $sql_insert_barang = "INSERT INTO barang (id, tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
-            VALUES ('$id', '$tanggal', 'Storage', '$nama_storage', '$jumlah', '$perusahaan', 'Keluar')";
+                $sql_insert_barang = "INSERT INTO barang (tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
+            VALUES ('$tanggal', 'Storage', '$nama_storage', '$jumlah', '$perusahaan', 'Keluar')";
 
                 if (mysqli_query($conn, $sql_update_storage) && mysqli_query($conn, $sql_insert_barang)) {
                     $_SESSION['data'] = "berhasil disimpan!";
@@ -224,8 +224,8 @@ if (isset($_POST['tambahVga'])) {
         $sql_update_vga = "UPDATE vga SET stok = stok + '$jumlah' WHERE id = '$id_vga'";
 
         if (mysqli_query($conn, $sql_update_vga)) {
-            $sql_insert_barang = "INSERT INTO barang (id, tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
-        VALUES ('$id', '$tanggal', 'Graphics Card', '$nama_vga', '$jumlah', '$perusahaan', 'Masuk')";
+            $sql_insert_barang = "INSERT INTO barang (tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
+        VALUES ('$tanggal', 'Graphics Card', '$nama_vga', '$jumlah', '$perusahaan', 'Masuk')";
 
             if (mysqli_query($conn, $sql_insert_barang)) {
                 $_SESSION['data'] = "berhasil disimpan!";
@@ -260,8 +260,8 @@ if (isset($_POST['kurangVga'])) {
 
             if ($jumlah <= $stok_vga) {
                 $sql_update_vga = "UPDATE vga SET stok = stok - '$jumlah' WHERE id = '$id_vga'";
-                $sql_insert_barang = "INSERT INTO barang (id, tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
-            VALUES ('$id', '$tanggal', 'Graphics Card
+                $sql_insert_barang = "INSERT INTO barang (tanggal, komponen, nama_komponen, jumlah, perusahaan, status) 
+            VALUES ('$tanggal', 'Graphics Card
             ', '$nama_vga', '$jumlah', '$perusahaan', 'Keluar')";
 
                 if (mysqli_query($conn, $sql_update_vga) && mysqli_query($conn, $sql_insert_barang)) {

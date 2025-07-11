@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
     if (mysqli_num_rows($result) > 0) {
         $_SESSION['data'] = "sudah ada!";
     } else {
-        $sql = "INSERT INTO processor (id, nama, stok) VALUES ('$id', '$nama', '$stok')";
+        $sql = "INSERT INTO processor (nama, stok) VALUES ('$nama', '$stok')";
         if (mysqli_query($conn, $sql)) {
             $_SESSION['data'] = "berhasil disimpan!";
             header("Location: ../processor");

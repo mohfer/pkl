@@ -63,7 +63,7 @@ if (isset($_POST['submit'])) {
         if (mysqli_num_rows($result) > 0) {
             $_SESSION['data'] = "sudah memiliki komputer!";
         } else {
-            $sql = "INSERT INTO komputer (id, id_karyawan, id_processor, id_ram, id_storage, id_vga) VALUES ('$id', '$id_karyawan', '$id_processor', '$id_ram', '$id_storage', '$id_vga')";
+            $sql = "INSERT INTO komputer (id_karyawan, id_processor, id_ram, id_storage, id_vga) VALUES ('$id_karyawan', '$id_processor', '$id_ram', '$id_storage', '$id_vga')";
 
             if (mysqli_query($conn, $sql)) {
                 $_SESSION['data'] = "berhasil disimpan!";
