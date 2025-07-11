@@ -72,6 +72,7 @@ Aplikasi menggunakan database `inventory_barang` dengan tabel utama:
 ## Instalasi
 1. Clone repository ini
 2. Install dependencies menggunakan Composer:
+
    ```bash
    composer install
    ```
