@@ -76,6 +76,9 @@ $result_join_selesai = mysqli_query($conn, $query_join_selesai);
     <?php include '../../src/library/datatables.php' ?>
     <?php include '../../src/library/sweetalert.php' ?>
     <title>Inventory Barang | Keluhan</title>
+    <!-- Umami Analytics -->
+    <script defer src="https://umami.mohfer.my.id/script.js" data-website-id="2b6ba940-9fe6-4f04-848b-3035b9666d8a"></script>
+    <!-- End Umami Analytics -->
 </head>
 
 <script>

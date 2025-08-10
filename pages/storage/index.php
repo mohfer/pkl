@@ -30,6 +30,9 @@ $row = mysqli_query($conn, "SELECT * FROM storage ORDER BY kapasitas DESC");
     <?php include '../src/library/sweetalert.php' ?>
 
     <title>Inventory Barang | Storage</title>
+    <!-- Umami Analytics -->
+    <script defer src="https://umami.mohfer.my.id/script.js" data-website-id="2b6ba940-9fe6-4f04-848b-3035b9666d8a"></script>
+    <!-- End Umami Analytics -->
 </head>
 
 <script>

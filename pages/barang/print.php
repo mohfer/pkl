@@ -29,6 +29,9 @@ if (isset($_POST['print'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/table.css">
     <title>Inventory Barang | Print</title>
+    <!-- Umami Analytics -->
+    <script defer src="https://umami.mohfer.my.id/script.js" data-website-id="2b6ba940-9fe6-4f04-848b-3035b9666d8a"></script>
+    <!-- End Umami Analytics -->
 </head>
 
 <body>

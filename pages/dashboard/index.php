@@ -22,6 +22,9 @@ if (!isset($_SESSION['id_users'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php include '../src/library/bootstrap.php' ?>
     <title>Inventory Barang | Dashboard</title>
+    <!-- Umami Analytics -->
+    <script defer src="https://umami.mohfer.my.id/script.js" data-website-id="2b6ba940-9fe6-4f04-848b-3035b9666d8a"></script>
+    <!-- End Umami Analytics -->
 </head>
 
 <script>

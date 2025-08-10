@@ -97,6 +97,9 @@ mysqli_close($conn);
 
     <title>Inventory Barang | Komputer</title>
 </head>
+<!-- Umami Analytics -->
+<script defer src="https://umami.mohfer.my.id/script.js" data-website-id="2b6ba940-9fe6-4f04-848b-3035b9666d8a"></script>
+<!-- End Umami Analytics -->
 
 <script>
     $(document).ready(function() {

@@ -51,6 +51,9 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
 
     <title>Inventory Barang | Karyawan</title>
+    <!-- Umami Analytics -->
+    <script defer src="https://umami.mohfer.my.id/script.js" data-website-id="2b6ba940-9fe6-4f04-848b-3035b9666d8a"></script>
+    <!-- End Umami Analytics -->
 </head>
 
 <body>
